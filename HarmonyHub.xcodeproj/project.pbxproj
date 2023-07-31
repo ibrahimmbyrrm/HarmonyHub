@@ -9,13 +9,24 @@
 /* Begin PBXBuildFile section */
 		8025F1CF2A77F64900EA331F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1CE2A77F64900EA331F /* AppDelegate.swift */; };
 		8025F1D12A77F64900EA331F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1D02A77F64900EA331F /* SceneDelegate.swift */; };
-		8025F1D32A77F64900EA331F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1D22A77F64900EA331F /* ViewController.swift */; };
-		8025F1D62A77F64900EA331F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8025F1D42A77F64900EA331F /* Main.storyboard */; };
 		8025F1D82A77F64B00EA331F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8025F1D72A77F64B00EA331F /* Assets.xcassets */; };
 		8025F1DB2A77F64B00EA331F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8025F1D92A77F64B00EA331F /* LaunchScreen.storyboard */; };
 		8025F1E62A77F64B00EA331F /* HarmonyHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1E52A77F64B00EA331F /* HarmonyHubTests.swift */; };
 		8025F1F02A77F64B00EA331F /* HarmonyHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1EF2A77F64B00EA331F /* HarmonyHubUITests.swift */; };
 		8025F1F22A77F64B00EA331F /* HarmonyHubUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1F12A77F64B00EA331F /* HarmonyHubUITestsLaunchTests.swift */; };
+		8025F2052A77F79700EA331F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2042A77F79700EA331F /* HomeView.swift */; };
+		8025F2072A77F79D00EA331F /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2062A77F79D00EA331F /* HomeInteractor.swift */; };
+		8025F2092A77F7A300EA331F /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2082A77F7A300EA331F /* HomePresenter.swift */; };
+		8025F20B2A77F7A800EA331F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F20A2A77F7A800EA331F /* HomeRouter.swift */; };
+		8025F20D2A77F7AD00EA331F /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F20C2A77F7AD00EA331F /* HomeBuilder.swift */; };
+		8025F20F2A77F7B200EA331F /* HomeContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F20E2A77F7B200EA331F /* HomeContracts.swift */; };
+		8025F2122A77FD7600EA331F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8025F2112A77FD7600EA331F /* SnapKit */; };
+		8025F2192A77FFA000EA331F /* MediaCategoryButtonsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2182A77FFA000EA331F /* MediaCategoryButtonsStackView.swift */; };
+		8025F21B2A77FFCC00EA331F /* MediaCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F21A2A77FFCC00EA331F /* MediaCategoryButton.swift */; };
+		8025F21D2A785D9800EA331F /* TopAlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F21C2A785D9800EA331F /* TopAlbumCell.swift */; };
+		8025F2212A78646900EA331F /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2202A78646900EA331F /* ChartModel.swift */; };
+		8025F2242A7866AB00EA331F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8025F2232A7866AB00EA331F /* Kingfisher */; };
+		8025F2262A786D2000EA331F /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2252A786D2000EA331F /* UIImageView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +50,6 @@
 		8025F1CB2A77F64900EA331F /* HarmonyHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarmonyHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8025F1CE2A77F64900EA331F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8025F1D02A77F64900EA331F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8025F1D22A77F64900EA331F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8025F1D52A77F64900EA331F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8025F1D72A77F64B00EA331F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8025F1DA2A77F64B00EA331F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8025F1DC2A77F64B00EA331F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +58,17 @@
 		8025F1EB2A77F64B00EA331F /* HarmonyHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarmonyHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8025F1EF2A77F64B00EA331F /* HarmonyHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyHubUITests.swift; sourceTree = "<group>"; };
 		8025F1F12A77F64B00EA331F /* HarmonyHubUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyHubUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8025F2042A77F79700EA331F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8025F2062A77F79D00EA331F /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		8025F2082A77F7A300EA331F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		8025F20A2A77F7A800EA331F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		8025F20C2A77F7AD00EA331F /* HomeBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
+		8025F20E2A77F7B200EA331F /* HomeContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContracts.swift; sourceTree = "<group>"; };
+		8025F2182A77FFA000EA331F /* MediaCategoryButtonsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCategoryButtonsStackView.swift; sourceTree = "<group>"; };
+		8025F21A2A77FFCC00EA331F /* MediaCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCategoryButton.swift; sourceTree = "<group>"; };
+		8025F21C2A785D9800EA331F /* TopAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlbumCell.swift; sourceTree = "<group>"; };
+		8025F2202A78646900EA331F /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
+		8025F2252A786D2000EA331F /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8025F2242A7866AB00EA331F /* Kingfisher in Frameworks */,
+				8025F2122A77FD7600EA331F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,10 +121,11 @@
 		8025F1CD2A77F64900EA331F /* HarmonyHub */ = {
 			isa = PBXGroup;
 			children = (
-				8025F1CE2A77F64900EA331F /* AppDelegate.swift */,
-				8025F1D02A77F64900EA331F /* SceneDelegate.swift */,
-				8025F1D22A77F64900EA331F /* ViewController.swift */,
-				8025F1D42A77F64900EA331F /* Main.storyboard */,
+				8025F21E2A78640F00EA331F /* Entities */,
+				8025F2012A77F77400EA331F /* Services */,
+				8025F2002A77F76E00EA331F /* Extensions */,
+				8025F1FF2A77F76C00EA331F /* Modules */,
+				8025F1FE2A77F76200EA331F /* App */,
 				8025F1D72A77F64B00EA331F /* Assets.xcassets */,
 				8025F1D92A77F64B00EA331F /* LaunchScreen.storyboard */,
 				8025F1DC2A77F64B00EA331F /* Info.plist */,
@@ -127,6 +150,94 @@
 			path = HarmonyHubUITests;
 			sourceTree = "<group>";
 		};
+		8025F1FE2A77F76200EA331F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				8025F1D02A77F64900EA331F /* SceneDelegate.swift */,
+				8025F1CE2A77F64900EA331F /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		8025F1FF2A77F76C00EA331F /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2022A77F77E00EA331F /* HomePage */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8025F2002A77F76E00EA331F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2252A786D2000EA331F /* UIImageView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8025F2012A77F77400EA331F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8025F2022A77F77E00EA331F /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2132A77FE7D00EA331F /* Views */,
+				8025F2062A77F79D00EA331F /* HomeInteractor.swift */,
+				8025F2082A77F7A300EA331F /* HomePresenter.swift */,
+				8025F20A2A77F7A800EA331F /* HomeRouter.swift */,
+				8025F20C2A77F7AD00EA331F /* HomeBuilder.swift */,
+				8025F20E2A77F7B200EA331F /* HomeContracts.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		8025F2132A77FE7D00EA331F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2172A77FE9000EA331F /* CustomViews */,
+				8025F2162A77FE8C00EA331F /* Cells */,
+				8025F2042A77F79700EA331F /* HomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8025F2162A77FE8C00EA331F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8025F21C2A785D9800EA331F /* TopAlbumCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8025F2172A77FE9000EA331F /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2182A77FFA000EA331F /* MediaCategoryButtonsStackView.swift */,
+				8025F21A2A77FFCC00EA331F /* MediaCategoryButton.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		8025F21E2A78640F00EA331F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				8025F21F2A78645E00EA331F /* ChartAPI */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		8025F21F2A78645E00EA331F /* ChartAPI */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2202A78646900EA331F /* ChartModel.swift */,
+			);
+			path = ChartAPI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +254,10 @@
 			dependencies = (
 			);
 			name = HarmonyHub;
+			packageProductDependencies = (
+				8025F2112A77FD7600EA331F /* SnapKit */,
+				8025F2232A7866AB00EA331F /* Kingfisher */,
+			);
 			productName = HarmonyHub;
 			productReference = 8025F1CB2A77F64900EA331F /* HarmonyHub.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +330,10 @@
 				Base,
 			);
 			mainGroup = 8025F1C22A77F64900EA331F;
+			packageReferences = (
+				8025F2102A77FD7600EA331F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				8025F2222A7866AB00EA331F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 8025F1CC2A77F64900EA331F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +352,6 @@
 			files = (
 				8025F1DB2A77F64B00EA331F /* LaunchScreen.storyboard in Resources */,
 				8025F1D82A77F64B00EA331F /* Assets.xcassets in Resources */,
-				8025F1D62A77F64900EA331F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +376,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8025F1D32A77F64900EA331F /* ViewController.swift in Sources */,
+				8025F20F2A77F7B200EA331F /* HomeContracts.swift in Sources */,
+				8025F2052A77F79700EA331F /* HomeView.swift in Sources */,
+				8025F20B2A77F7A800EA331F /* HomeRouter.swift in Sources */,
 				8025F1CF2A77F64900EA331F /* AppDelegate.swift in Sources */,
+				8025F21B2A77FFCC00EA331F /* MediaCategoryButton.swift in Sources */,
+				8025F2192A77FFA000EA331F /* MediaCategoryButtonsStackView.swift in Sources */,
+				8025F20D2A77F7AD00EA331F /* HomeBuilder.swift in Sources */,
 				8025F1D12A77F64900EA331F /* SceneDelegate.swift in Sources */,
+				8025F2262A786D2000EA331F /* UIImageView+Ext.swift in Sources */,
+				8025F21D2A785D9800EA331F /* TopAlbumCell.swift in Sources */,
+				8025F2092A77F7A300EA331F /* HomePresenter.swift in Sources */,
+				8025F2212A78646900EA331F /* ChartModel.swift in Sources */,
+				8025F2072A77F79D00EA331F /* HomeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +425,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8025F1D42A77F64900EA331F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8025F1D52A77F64900EA331F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8025F1D92A77F64B00EA331F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +562,6 @@
 				INFOPLIST_FILE = HarmonyHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +589,6 @@
 				INFOPLIST_FILE = HarmonyHub/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -602,6 +720,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8025F2102A77FD7600EA331F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8025F2222A7866AB00EA331F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8025F2112A77FD7600EA331F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8025F2102A77FD7600EA331F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		8025F2232A7866AB00EA331F /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8025F2222A7866AB00EA331F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8025F1C32A77F64900EA331F /* Project object */;
 }
