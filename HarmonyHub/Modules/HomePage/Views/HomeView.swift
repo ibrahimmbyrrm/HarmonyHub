@@ -1,137 +1,140 @@
 //
-//  HomeView.swift
+//  HomeVieww.swift
 //  HarmonyHub
 //
-//  Created by İbrahim Bayram on 31.07.2023.
+//  Created by İbrahim Bayram on 1.08.2023.
 //
 
 import Foundation
-import SnapKit
 import UIKit
-import Kingfisher
+import AVFoundation
 
-final class HomeView : UIViewController,HomeViewInterface{
-    var presenter: HomePresenterInterface?
-    
-    let buttonsStackView = MediaButtonsStackView()
-    let scrollView = UIScrollView()
-    var list = [String?]() {
-        didSet {
-            print("set edildi")
-            topAlbumsCollectionView.reloadData()
-        }
-    }
-    private lazy var topAlbumsCollectionView : UICollectionView = {
+class HomeView : UIView {
+    //MARK: - UI Objects
+    lazy var topAlbumsCollectionView : UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionView.register(TopAlbumCell.self, forCellWithReuseIdentifier: "topAlbumCell")
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = false
         return collectionView
         
     }()
+    lazy var artistsCollectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = false
+        collectionView.backgroundColor = .black
+        collectionView.register(ArtistsCell.self, forCellWithReuseIdentifier: "artistCell")
+        return collectionView
+    }()
+    lazy var popularTracksCollectionView : UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        var collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        collectionView.backgroundColor = .black
+        collectionView.isPagingEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.backgroundColor = .black
+        collectionView.isScrollEnabled = false
+        collectionView.register(PopularTracksCell.self, forCellWithReuseIdentifier: "popularTracksCell")
+        return collectionView
+    }()
+    lazy var artistsLabel = HomeTitleLabel()
+    lazy var popularTracksLabel = HomeTitleLabel()
+    lazy var buttonsStackView = MediaButtonsStackView()
+    lazy var scrollView = UIScrollView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        topAlbumsCollectionView.delegate = self
-        topAlbumsCollectionView.dataSource = self
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        artistsLabel.text = "Artists"
+        popularTracksLabel.text = "Popular Tracks"
         addSubviews()
-        setupNavigationController()
-        buttonsStackView.musicButton.backgroundColor = .systemIndigo
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1500)
         setupScrollViewConstraints()
-        Service().fetch { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let albums):
-                    let urls = albums.map { $0.coverMedium }
-                    self.list = urls
-                case .failure(let error):
-                    print("error")
-                }
-            }
-        }
-
+        setupArtistsLabelConstraints()
+        setupButtonsStackViewConstraints()
+        setupArtistsCollectionViewConstraints()
+        setupTopAlbumsCollectionViewConstraints()
+        setupPopularTracksLabelConstraints()
+        setupPopularTracksCollectionViewConstraints()
     }
     
-    func setupNavigationController() {
-        view.backgroundColor = .black
-        title = "HarmonyHub"
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.white,.font : UIFont(name: "Rockwell", size: 44)!]
-        self.navigationController?.navigationBar.prefersLargeTitles = true
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func reloadCollectionViewsAsync() {
+        DispatchQueue.main.async {
+            self.artistsCollectionView.reloadData()
+            self.topAlbumsCollectionView.reloadData()
+            self.popularTracksCollectionView.reloadData()
+        }
     }
     
     func addSubviews(){
-        view.addSubview(scrollView)
-        scrollView.addSubview(topAlbumsCollectionView)
-        scrollView.addSubview(buttonsStackView)
-        buttonsStackView.albumButton.addTarget(nil, action: #selector(tapped), for: .touchUpInside)
-    }
-    
-    @objc func tapped() {
-        print("tapped")
-    }
-    
-    func setupScrollViewConstraints(){
-        scrollView.snp.makeConstraints { make in
-            make.centerX.top.bottom.width.equalTo(view.safeAreaLayoutGuide)
+        addSubview(scrollView)
+        [topAlbumsCollectionView,buttonsStackView,artistsLabel,artistsCollectionView,popularTracksLabel,popularTracksCollectionView].forEach { v in
+            scrollView.addSubview(v)
         }
-        
+    }
+    
+    func setupPopularTracksCollectionViewConstraints() {
+        popularTracksCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(popularTracksLabel.snp.bottom).offset(12)
+            make.leading.equalTo(self.snp.leading).offset(10)
+            make.trailing.equalTo(self.snp.trailing).inset(10)
+            make.height.equalTo(1000)
+        }
+    }
+    
+    func setupPopularTracksLabelConstraints() {
+        popularTracksLabel.snp.makeConstraints { make in
+            make.leading.equalTo(10)
+            make.height.equalTo(40)
+            make.top.equalTo(artistsCollectionView.snp.bottom).offset(12)
+        }
+    }
+    
+    func setupArtistsLabelConstraints() {
+        artistsLabel.snp.makeConstraints { make in
+            make.leading.equalTo(10)
+            make.top.equalTo(topAlbumsCollectionView.snp.bottom).offset(12)
+        }
+    }
+    func setupArtistsCollectionViewConstraints() {
+        artistsCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(artistsLabel.snp.bottom).offset(10)
+            make.leading.equalTo(self.snp.leading).offset(10)
+            make.trailing.equalTo(self.snp.trailing).inset(10)
+            make.height.equalTo(85)
+        }
+    }
+    func setupTopAlbumsCollectionViewConstraints() {
         topAlbumsCollectionView.snp.makeConstraints { make in
             make.top.equalTo(buttonsStackView.snp.bottom).offset(30)
-            make.leading.equalTo(view.snp.leading).offset(10)
-            make.trailing.equalTo(view.snp.trailing).inset(10)
+            make.leading.equalTo(self.snp.leading).offset(10)
+            make.trailing.equalTo(self.snp.trailing).inset(10)
             make.height.equalTo(180)
         }
-        
     }
-    func setupButtonsStackViewConstraints(){
+    func setupScrollViewConstraints() {
+        scrollView.snp.makeConstraints { make in
+            make.centerX.top.bottom.width.equalTo(self.safeAreaLayoutGuide)
+        }
+    }
+    func setupButtonsStackViewConstraints() {
         buttonsStackView.snp.makeConstraints { make in
             make.width.equalTo(285)
             make.leading.equalTo(self.scrollView.snp.leading).offset(10)
             make.height.equalTo(42)
             make.top.equalTo(self.scrollView.snp.top).offset(20)
         }
-    }
-    
-}
-extension HomeView : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return list.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 180)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topAlbumCell", for: indexPath) as! TopAlbumCell
-        cell.backgroundColor = .black
-        cell.albumName.text = "Album Name"
-        DispatchQueue.main.async {
-            if self.list.count > 0 {
-                cell.albumImage.setImage(with: self.list[indexPath.row]!)
-            }
-        }
-        cell.artistName.text = "Artist"
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selectred")
-    }
-}
-class Service {
-    let url = URL(string: "https://api.deezer.com/chart/tracks")!
-    
-    func fetch(completion : @escaping (Result<[AlbumsDatum],Error>)->Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            print("started")
-            guard let data else {return}
-            print("data unwrapped")
-            let decoded = try? JSONDecoder().decode(Welcome.self, from: data)
-            guard let decoded else {return}
-            print("decoded unwrapped")
-            completion(.success((decoded.albums?.data!)!))
-        }.resume()
+        buttonsStackView.musicButton.backgroundColor = .systemIndigo
     }
 }

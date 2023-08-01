@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum HomeInteractorOutput {
+    case chart(Welcome)
+}
+
 final class HomePresenter : HomePresenterInterface {
     private var view : HomeViewInterface
     private var interactor : HomeInteractorInterface
@@ -16,5 +20,23 @@ final class HomePresenter : HomePresenterInterface {
         self.view = view
         self.interactor = interactor
         self.router = router
+    }
+    
+    func viewDidLoad() {
+        view.setDelegates()
+        view.setupNavigationController()
+        view.setupMediaButtonsActions()
+    }
+    
+    func handleViewOutput(output: HomeViewToPresenterOutput) {
+        switch output {
+        case .loadData:
+            interactor.fetchChart()
+        }
+    }
+    func handleInteractorOutput(chart : Welcome) {
+        view.handlePresenterOutput(output: .albumLoaded(chart.albums.data))
+        view.handlePresenterOutput(output: .artistsLoaded(chart.artists.data))
+        view.handlePresenterOutput(output: .tracksLoaded(chart.tracks.data))
     }
 }

@@ -40,15 +40,27 @@ class TopAlbumCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [albumImage,albumName,artistName].forEach { v in
-            stackView.addArrangedSubview(v)
-        }
-        addSubview(stackView)
+        addSubviews()
         setup()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with album : AlbumsDatum) {
+        DispatchQueue.main.async {
+            self.albumImage.setImage(with: album.coverMedium)
+            self.albumName.text = album.title
+            self.artistName.text = album.artist.name
+        }
+    }
+    
+    private func addSubviews() {
+        [albumImage,albumName,artistName].forEach { v in
+            stackView.addArrangedSubview(v)
+        }
+        addSubview(stackView)
     }
     
     func setup() {

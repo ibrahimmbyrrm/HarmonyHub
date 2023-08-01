@@ -14,7 +14,7 @@
 		8025F1E62A77F64B00EA331F /* HarmonyHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1E52A77F64B00EA331F /* HarmonyHubTests.swift */; };
 		8025F1F02A77F64B00EA331F /* HarmonyHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1EF2A77F64B00EA331F /* HarmonyHubUITests.swift */; };
 		8025F1F22A77F64B00EA331F /* HarmonyHubUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1F12A77F64B00EA331F /* HarmonyHubUITestsLaunchTests.swift */; };
-		8025F2052A77F79700EA331F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2042A77F79700EA331F /* HomeView.swift */; };
+		8025F2052A77F79700EA331F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2042A77F79700EA331F /* HomeController.swift */; };
 		8025F2072A77F79D00EA331F /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2062A77F79D00EA331F /* HomeInteractor.swift */; };
 		8025F2092A77F7A300EA331F /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2082A77F7A300EA331F /* HomePresenter.swift */; };
 		8025F20B2A77F7A800EA331F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F20A2A77F7A800EA331F /* HomeRouter.swift */; };
@@ -27,6 +27,22 @@
 		8025F2212A78646900EA331F /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2202A78646900EA331F /* ChartModel.swift */; };
 		8025F2242A7866AB00EA331F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8025F2232A7866AB00EA331F /* Kingfisher */; };
 		8025F2262A786D2000EA331F /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2252A786D2000EA331F /* UIImageView+Ext.swift */; };
+		8025F2282A78F6D800EA331F /* ArtistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2272A78F6D800EA331F /* ArtistsCell.swift */; };
+		8025F22B2A78FED900EA331F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8025F22A2A78FED900EA331F /* Alamofire */; };
+		8025F22D2A79000C00EA331F /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F22C2A79000C00EA331F /* NetworkManager.swift */; };
+		8025F22F2A79013200EA331F /* HttpHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F22E2A79013200EA331F /* HttpHelpers.swift */; };
+		8025F2312A790EE100EA331F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2302A790EE100EA331F /* BaseViewController.swift */; };
+		8025F2332A790F3100EA331F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2322A790F3100EA331F /* HomeView.swift */; };
+		8025F2352A79121C00EA331F /* HomeTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2342A79121C00EA331F /* HomeTitleLabel.swift */; };
+		8025F2372A79137300EA331F /* PopularTracksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2362A79137300EA331F /* PopularTracksCell.swift */; };
+		8025F23B2A79249E00EA331F /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F23A2A79249E00EA331F /* EndPoints.swift */; };
+		8025F23E2A79282700EA331F /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F23D2A79282700EA331F /* SearchView.swift */; };
+		8025F2402A79283100EA331F /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F23F2A79283100EA331F /* SearchController.swift */; };
+		8025F2422A79283600EA331F /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2412A79283600EA331F /* SearchInteractor.swift */; };
+		8025F2442A79283F00EA331F /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2432A79283F00EA331F /* SearchPresenter.swift */; };
+		8025F2462A79284600EA331F /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2452A79284600EA331F /* SearchRouter.swift */; };
+		8025F2482A79284E00EA331F /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2472A79284E00EA331F /* SearchBuilder.swift */; };
+		8025F24C2A79346900EA331F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8025F24B2A79346900EA331F /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +74,7 @@
 		8025F1EB2A77F64B00EA331F /* HarmonyHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarmonyHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8025F1EF2A77F64B00EA331F /* HarmonyHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyHubUITests.swift; sourceTree = "<group>"; };
 		8025F1F12A77F64B00EA331F /* HarmonyHubUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarmonyHubUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		8025F2042A77F79700EA331F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8025F2042A77F79700EA331F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		8025F2062A77F79D00EA331F /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		8025F2082A77F7A300EA331F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		8025F20A2A77F7A800EA331F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
@@ -69,6 +85,21 @@
 		8025F21C2A785D9800EA331F /* TopAlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopAlbumCell.swift; sourceTree = "<group>"; };
 		8025F2202A78646900EA331F /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
 		8025F2252A786D2000EA331F /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
+		8025F2272A78F6D800EA331F /* ArtistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistsCell.swift; sourceTree = "<group>"; };
+		8025F22C2A79000C00EA331F /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		8025F22E2A79013200EA331F /* HttpHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpHelpers.swift; sourceTree = "<group>"; };
+		8025F2302A790EE100EA331F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8025F2322A790F3100EA331F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8025F2342A79121C00EA331F /* HomeTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleLabel.swift; sourceTree = "<group>"; };
+		8025F2362A79137300EA331F /* PopularTracksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTracksCell.swift; sourceTree = "<group>"; };
+		8025F23A2A79249E00EA331F /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		8025F23D2A79282700EA331F /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		8025F23F2A79283100EA331F /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		8025F2412A79283600EA331F /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
+		8025F2432A79283F00EA331F /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		8025F2452A79284600EA331F /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		8025F2472A79284E00EA331F /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
+		8025F24B2A79346900EA331F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8025F24C2A79346900EA331F /* AVFoundation.framework in Frameworks */,
+				8025F22B2A78FED900EA331F /* Alamofire in Frameworks */,
 				8025F2242A7866AB00EA331F /* Kingfisher in Frameworks */,
 				8025F2122A77FD7600EA331F /* SnapKit in Frameworks */,
 			);
@@ -105,6 +138,7 @@
 				8025F1E42A77F64B00EA331F /* HarmonyHubTests */,
 				8025F1EE2A77F64B00EA331F /* HarmonyHubUITests */,
 				8025F1CC2A77F64900EA331F /* Products */,
+				8025F24A2A79346900EA331F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +163,7 @@
 				8025F1D72A77F64B00EA331F /* Assets.xcassets */,
 				8025F1D92A77F64B00EA331F /* LaunchScreen.storyboard */,
 				8025F1DC2A77F64B00EA331F /* Info.plist */,
+				8025F2302A790EE100EA331F /* BaseViewController.swift */,
 			);
 			path = HarmonyHub;
 			sourceTree = "<group>";
@@ -162,6 +197,7 @@
 		8025F1FF2A77F76C00EA331F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				8025F23C2A79281D00EA331F /* SearchPage */,
 				8025F2022A77F77E00EA331F /* HomePage */,
 			);
 			path = Modules;
@@ -178,6 +214,8 @@
 		8025F2012A77F77400EA331F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8025F2392A79249000EA331F /* Helpers */,
+				8025F2382A79248D00EA331F /* Core */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -200,7 +238,8 @@
 			children = (
 				8025F2172A77FE9000EA331F /* CustomViews */,
 				8025F2162A77FE8C00EA331F /* Cells */,
-				8025F2042A77F79700EA331F /* HomeView.swift */,
+				8025F2042A77F79700EA331F /* HomeController.swift */,
+				8025F2322A790F3100EA331F /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				8025F21C2A785D9800EA331F /* TopAlbumCell.swift */,
+				8025F2272A78F6D800EA331F /* ArtistsCell.swift */,
+				8025F2362A79137300EA331F /* PopularTracksCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -218,6 +259,7 @@
 			children = (
 				8025F2182A77FFA000EA331F /* MediaCategoryButtonsStackView.swift */,
 				8025F21A2A77FFCC00EA331F /* MediaCategoryButton.swift */,
+				8025F2342A79121C00EA331F /* HomeTitleLabel.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -236,6 +278,52 @@
 				8025F2202A78646900EA331F /* ChartModel.swift */,
 			);
 			path = ChartAPI;
+			sourceTree = "<group>";
+		};
+		8025F2382A79248D00EA331F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8025F22C2A79000C00EA331F /* NetworkManager.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		8025F2392A79249000EA331F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8025F22E2A79013200EA331F /* HttpHelpers.swift */,
+				8025F23A2A79249E00EA331F /* EndPoints.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8025F23C2A79281D00EA331F /* SearchPage */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2492A79284F00EA331F /* Views */,
+				8025F2412A79283600EA331F /* SearchInteractor.swift */,
+				8025F2432A79283F00EA331F /* SearchPresenter.swift */,
+				8025F2452A79284600EA331F /* SearchRouter.swift */,
+				8025F2472A79284E00EA331F /* SearchBuilder.swift */,
+			);
+			path = SearchPage;
+			sourceTree = "<group>";
+		};
+		8025F2492A79284F00EA331F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8025F23F2A79283100EA331F /* SearchController.swift */,
+				8025F23D2A79282700EA331F /* SearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8025F24A2A79346900EA331F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8025F24B2A79346900EA331F /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +345,7 @@
 			packageProductDependencies = (
 				8025F2112A77FD7600EA331F /* SnapKit */,
 				8025F2232A7866AB00EA331F /* Kingfisher */,
+				8025F22A2A78FED900EA331F /* Alamofire */,
 			);
 			productName = HarmonyHub;
 			productReference = 8025F1CB2A77F64900EA331F /* HarmonyHub.app */;
@@ -333,6 +422,7 @@
 			packageReferences = (
 				8025F2102A77FD7600EA331F /* XCRemoteSwiftPackageReference "SnapKit" */,
 				8025F2222A7866AB00EA331F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				8025F2292A78FED900EA331F /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8025F1CC2A77F64900EA331F /* Products */;
 			projectDirPath = "";
@@ -376,17 +466,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8025F2282A78F6D800EA331F /* ArtistsCell.swift in Sources */,
+				8025F2372A79137300EA331F /* PopularTracksCell.swift in Sources */,
+				8025F2482A79284E00EA331F /* SearchBuilder.swift in Sources */,
 				8025F20F2A77F7B200EA331F /* HomeContracts.swift in Sources */,
-				8025F2052A77F79700EA331F /* HomeView.swift in Sources */,
+				8025F2052A77F79700EA331F /* HomeController.swift in Sources */,
+				8025F2332A790F3100EA331F /* HomeView.swift in Sources */,
 				8025F20B2A77F7A800EA331F /* HomeRouter.swift in Sources */,
 				8025F1CF2A77F64900EA331F /* AppDelegate.swift in Sources */,
+				8025F2442A79283F00EA331F /* SearchPresenter.swift in Sources */,
 				8025F21B2A77FFCC00EA331F /* MediaCategoryButton.swift in Sources */,
 				8025F2192A77FFA000EA331F /* MediaCategoryButtonsStackView.swift in Sources */,
+				8025F2312A790EE100EA331F /* BaseViewController.swift in Sources */,
+				8025F23E2A79282700EA331F /* SearchView.swift in Sources */,
+				8025F2462A79284600EA331F /* SearchRouter.swift in Sources */,
+				8025F23B2A79249E00EA331F /* EndPoints.swift in Sources */,
 				8025F20D2A77F7AD00EA331F /* HomeBuilder.swift in Sources */,
 				8025F1D12A77F64900EA331F /* SceneDelegate.swift in Sources */,
 				8025F2262A786D2000EA331F /* UIImageView+Ext.swift in Sources */,
+				8025F2352A79121C00EA331F /* HomeTitleLabel.swift in Sources */,
+				8025F2402A79283100EA331F /* SearchController.swift in Sources */,
 				8025F21D2A785D9800EA331F /* TopAlbumCell.swift in Sources */,
+				8025F2422A79283600EA331F /* SearchInteractor.swift in Sources */,
+				8025F22F2A79013200EA331F /* HttpHelpers.swift in Sources */,
 				8025F2092A77F7A300EA331F /* HomePresenter.swift in Sources */,
+				8025F22D2A79000C00EA331F /* NetworkManager.swift in Sources */,
 				8025F2212A78646900EA331F /* ChartModel.swift in Sources */,
 				8025F2072A77F79D00EA331F /* HomeInteractor.swift in Sources */,
 			);
@@ -738,6 +842,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		8025F2292A78FED900EA331F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -750,6 +862,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8025F2222A7866AB00EA331F /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		8025F22A2A78FED900EA331F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8025F2292A78FED900EA331F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
