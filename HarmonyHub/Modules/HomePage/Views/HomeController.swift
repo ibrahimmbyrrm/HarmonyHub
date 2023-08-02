@@ -10,6 +10,7 @@ import SnapKit
 import UIKit
 import Kingfisher
 import AVFoundation
+var player : AVPlayer!
 
 final class HomeController : BaseViewController<HomeView>{
     //MARK: - Variables
@@ -17,6 +18,7 @@ final class HomeController : BaseViewController<HomeView>{
     var albums: [AlbumsDatum] = []
     var artists: [ArtistElement] = []
     var tracks : [TracksDatum] = []
+    
     var presenter: HomePresenterInterface?
     //MARK: - UIViewController Life Cycle
     override func viewDidLoad() {
@@ -27,12 +29,7 @@ final class HomeController : BaseViewController<HomeView>{
     }
     //MARK: - Interface Methods
     func setDelegates() {
-        rootView.topAlbumsCollectionView.delegate = self
-        rootView.topAlbumsCollectionView.dataSource = self
-        rootView.artistsCollectionView.delegate = self
-        rootView.artistsCollectionView.dataSource = self
-        rootView.popularTracksCollectionView.delegate = self
-        rootView.popularTracksCollectionView.dataSource = self
+        rootView.setCollectionViewDelegates(self)
     }
     
     func setupMediaButtonsActions() {
@@ -117,6 +114,12 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
         }
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let url = tracks[indexPath.row].preview.convertToUrl() else {return}
+        AudioManager.shared.insertQueueAndPlay(url: url)
+    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        AudioManager.shared.stopAndClearQueue()
+        
     }
 }
 

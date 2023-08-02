@@ -43,6 +43,8 @@
 		8025F2462A79284600EA331F /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2452A79284600EA331F /* SearchRouter.swift */; };
 		8025F2482A79284E00EA331F /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2472A79284E00EA331F /* SearchBuilder.swift */; };
 		8025F24C2A79346900EA331F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8025F24B2A79346900EA331F /* AVFoundation.framework */; };
+		80F1222A2A7AA3BC0063A0D5 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F122292A7AA3BC0063A0D5 /* String+Ext.swift */; };
+		80F122302A7AAC950063A0D5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1222F2A7AAC950063A0D5 /* AudioManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		8025F2452A79284600EA331F /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		8025F2472A79284E00EA331F /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		8025F24B2A79346900EA331F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		80F122292A7AA3BC0063A0D5 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		80F1222F2A7AAC950063A0D5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				8025F2252A786D2000EA331F /* UIImageView+Ext.swift */,
+				80F122292A7AA3BC0063A0D5 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,8 +219,8 @@
 		8025F2012A77F77400EA331F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8025F2392A79249000EA331F /* Helpers */,
-				8025F2382A79248D00EA331F /* Core */,
+				80F1222E2A7AAC880063A0D5 /* AudioManager */,
+				80F1222D2A7AAC810063A0D5 /* NetworkManager */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -324,6 +329,23 @@
 				8025F24B2A79346900EA331F /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80F1222D2A7AAC810063A0D5 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				8025F2382A79248D00EA331F /* Core */,
+				8025F2392A79249000EA331F /* Helpers */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		80F1222E2A7AAC880063A0D5 /* AudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				80F1222F2A7AAC950063A0D5 /* AudioManager.swift */,
+			);
+			path = AudioManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -480,6 +502,7 @@
 				8025F2312A790EE100EA331F /* BaseViewController.swift in Sources */,
 				8025F23E2A79282700EA331F /* SearchView.swift in Sources */,
 				8025F2462A79284600EA331F /* SearchRouter.swift in Sources */,
+				80F122302A7AAC950063A0D5 /* AudioManager.swift in Sources */,
 				8025F23B2A79249E00EA331F /* EndPoints.swift in Sources */,
 				8025F20D2A77F7AD00EA331F /* HomeBuilder.swift in Sources */,
 				8025F1D12A77F64900EA331F /* SceneDelegate.swift in Sources */,
@@ -488,6 +511,7 @@
 				8025F2402A79283100EA331F /* SearchController.swift in Sources */,
 				8025F21D2A785D9800EA331F /* TopAlbumCell.swift in Sources */,
 				8025F2422A79283600EA331F /* SearchInteractor.swift in Sources */,
+				80F1222A2A7AA3BC0063A0D5 /* String+Ext.swift in Sources */,
 				8025F22F2A79013200EA331F /* HttpHelpers.swift in Sources */,
 				8025F2092A77F7A300EA331F /* HomePresenter.swift in Sources */,
 				8025F22D2A79000C00EA331F /* NetworkManager.swift in Sources */,

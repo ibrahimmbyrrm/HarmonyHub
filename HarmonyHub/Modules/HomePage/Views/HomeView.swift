@@ -69,6 +69,17 @@ class HomeView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    typealias CollectionViewDelegate = UICollectionViewDelegate & UICollectionViewDataSource & UICollectionViewDelegateFlowLayout
+    
+    func setCollectionViewDelegates(_ delegate : CollectionViewDelegate) {
+        topAlbumsCollectionView.delegate = delegate
+        topAlbumsCollectionView.dataSource = delegate
+        artistsCollectionView.delegate = delegate
+        artistsCollectionView.dataSource = delegate
+        popularTracksCollectionView.delegate = delegate
+        popularTracksCollectionView.dataSource = delegate
+    }
+    
     func reloadCollectionViewsAsync() {
         DispatchQueue.main.async {
             self.artistsCollectionView.reloadData()
