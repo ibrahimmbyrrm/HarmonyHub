@@ -7,14 +7,74 @@
 
 import Foundation
 import UIKit
+class SearchView: UIView {
 
-class SearchView : UIView {
-    
+    lazy var scrollView = UIScrollView()
+
+    lazy var popularPlaylistsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        var collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        collectionView.backgroundColor = .black
+        collectionView.isPagingEnabled = false
+        collectionView.showsVerticalScrollIndicator = false // Enable scrolling
+        collectionView.backgroundColor = .white
+        collectionView.isScrollEnabled = false
+        collectionView.register(PopularPlaylistsCell.self, forCellWithReuseIdentifier: "playlistCell")
+        return collectionView
+    }()
+
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "What do you want to listen?"
+        searchBar.backgroundColor = .systemIndigo
+        return searchBar
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1800)
+        addSubviews()
+        setupSearchBarConstraints()
+        setupScrollViewConstraints()
+        setupCollectionViewConstraints()
+    }
+
+    func addSubviews() {
+        addSubview(searchBar)
+        addSubview(scrollView)
+        scrollView.addSubview(popularPlaylistsCollectionView)
+    }
+
+    func setupCollectionViewConstraints() {
+        popularPlaylistsCollectionView.snp.makeConstraints { make in
+            make.width.equalTo(self.snp.width)
+            make.bottom.equalTo(self.snp.bottom)
+            make.leading.trailing.equalTo(self)
+            make.top.equalTo(scrollView.snp.bottom) // Change this line
+        }
+    }
+
+    func setupScrollViewConstraints() {
+        // Adjust the contentSize to fit your content
+        scrollView.snp.makeConstraints { make in
+            make.centerX.bottom.width.equalTo(self.safeAreaLayoutGuide)
+            make.top.equalTo(searchBar.snp.bottom).offset(20)
+        }
     }
     
+    func setupSearchBarConstraints() {
+        searchBar.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.width.equalTo(self.snp.width)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+        }
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

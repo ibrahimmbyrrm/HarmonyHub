@@ -34,6 +34,17 @@ final class HomePresenter : HomePresenterInterface {
             interactor.fetchChart()
         }
     }
+    
+    func handleTrackPreviewOutput(output : HomeViewTrackPreviewOutput) {
+        switch output {
+        case .playPreview(let track):
+            interactor.playPreview(url: track.previewURL)
+        case .stopPreview:
+            interactor.stopPreview()
+        }
+        
+    }
+    
     func handleInteractorOutput(chart : Welcome) {
         view.handlePresenterOutput(output: .albumLoaded(chart.albums.data))
         view.handlePresenterOutput(output: .artistsLoaded(chart.artists.data))

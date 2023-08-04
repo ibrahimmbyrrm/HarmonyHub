@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import UIKit
+
+extension UICollectionViewCell {
+    func asTrackCell() -> PopularTracksCell {
+        if let newCell = self as? PopularTracksCell {
+            return newCell
+        }
+        return PopularTracksCell()
+    }
+}

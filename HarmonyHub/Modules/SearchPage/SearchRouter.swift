@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import UIKit
+
+final class SearchRouter : SearchRouterInterface {
+    unowned var view: UIViewController?
+}

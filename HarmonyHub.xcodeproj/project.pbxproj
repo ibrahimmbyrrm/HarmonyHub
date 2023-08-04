@@ -43,8 +43,11 @@
 		8025F2462A79284600EA331F /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2452A79284600EA331F /* SearchRouter.swift */; };
 		8025F2482A79284E00EA331F /* SearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F2472A79284E00EA331F /* SearchBuilder.swift */; };
 		8025F24C2A79346900EA331F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8025F24B2A79346900EA331F /* AVFoundation.framework */; };
+		80B76CEF2A7D0EA400FC3CE6 /* SearchConstracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */; };
 		80F1222A2A7AA3BC0063A0D5 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F122292A7AA3BC0063A0D5 /* String+Ext.swift */; };
 		80F122302A7AAC950063A0D5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1222F2A7AAC950063A0D5 /* AudioManager.swift */; };
+		80F122322A7B06540063A0D5 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F122312A7B06540063A0D5 /* UICollectionView+Ext.swift */; };
+		80F747712A7BC462001EDB04 /* PlaylistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F747702A7BC462001EDB04 /* PlaylistsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,8 +105,11 @@
 		8025F2452A79284600EA331F /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		8025F2472A79284E00EA331F /* SearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBuilder.swift; sourceTree = "<group>"; };
 		8025F24B2A79346900EA331F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConstracts.swift; sourceTree = "<group>"; };
 		80F122292A7AA3BC0063A0D5 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		80F1222F2A7AAC950063A0D5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		80F122312A7B06540063A0D5 /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
+		80F747702A7BC462001EDB04 /* PlaylistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,7 @@
 			children = (
 				8025F2252A786D2000EA331F /* UIImageView+Ext.swift */,
 				80F122292A7AA3BC0063A0D5 /* String+Ext.swift */,
+				80F122312A7B06540063A0D5 /* UICollectionView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -310,6 +317,7 @@
 				8025F2432A79283F00EA331F /* SearchPresenter.swift */,
 				8025F2452A79284600EA331F /* SearchRouter.swift */,
 				8025F2472A79284E00EA331F /* SearchBuilder.swift */,
+				80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */,
 			);
 			path = SearchPage;
 			sourceTree = "<group>";
@@ -317,6 +325,7 @@
 		8025F2492A79284F00EA331F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				80F7476F2A7BC455001EDB04 /* Cells */,
 				8025F23F2A79283100EA331F /* SearchController.swift */,
 				8025F23D2A79282700EA331F /* SearchView.swift */,
 			);
@@ -346,6 +355,14 @@
 				80F1222F2A7AAC950063A0D5 /* AudioManager.swift */,
 			);
 			path = AudioManager;
+			sourceTree = "<group>";
+		};
+		80F7476F2A7BC455001EDB04 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				80F747702A7BC462001EDB04 /* PlaylistsCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,12 +508,15 @@
 				8025F2282A78F6D800EA331F /* ArtistsCell.swift in Sources */,
 				8025F2372A79137300EA331F /* PopularTracksCell.swift in Sources */,
 				8025F2482A79284E00EA331F /* SearchBuilder.swift in Sources */,
+				80F747712A7BC462001EDB04 /* PlaylistsCell.swift in Sources */,
 				8025F20F2A77F7B200EA331F /* HomeContracts.swift in Sources */,
+				80F122322A7B06540063A0D5 /* UICollectionView+Ext.swift in Sources */,
 				8025F2052A77F79700EA331F /* HomeController.swift in Sources */,
 				8025F2332A790F3100EA331F /* HomeView.swift in Sources */,
 				8025F20B2A77F7A800EA331F /* HomeRouter.swift in Sources */,
 				8025F1CF2A77F64900EA331F /* AppDelegate.swift in Sources */,
 				8025F2442A79283F00EA331F /* SearchPresenter.swift in Sources */,
+				80B76CEF2A7D0EA400FC3CE6 /* SearchConstracts.swift in Sources */,
 				8025F21B2A77FFCC00EA331F /* MediaCategoryButton.swift in Sources */,
 				8025F2192A77FFA000EA331F /* MediaCategoryButtonsStackView.swift in Sources */,
 				8025F2312A790EE100EA331F /* BaseViewController.swift in Sources */,

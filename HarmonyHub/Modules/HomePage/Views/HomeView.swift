@@ -65,6 +65,7 @@ class HomeView : UIView {
         setupPopularTracksCollectionViewConstraints()
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -78,6 +79,13 @@ class HomeView : UIView {
         artistsCollectionView.dataSource = delegate
         popularTracksCollectionView.delegate = delegate
         popularTracksCollectionView.dataSource = delegate
+    }
+    
+    func restartTrackCellPreviewButton(url : URL) {
+        popularTracksCollectionView.visibleCells.filter({$0.asTrackCell().ownerTrack.previewURL != url}).map( {
+                $0.asTrackCell().playPreviewButton.setTitle("▶", for: .normal)
+                $0.asTrackCell().isPlaying = false
+        })
     }
     
     func reloadCollectionViewsAsync() {

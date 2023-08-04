@@ -9,5 +9,5 @@ import Foundation
 import UIKit
 
 final class HomeRouter : HomeRouterInterface{
-    var view: UIViewController?
+    unowned var view: UIViewController?
 }

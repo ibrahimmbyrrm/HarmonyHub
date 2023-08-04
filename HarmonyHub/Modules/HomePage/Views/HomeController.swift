@@ -51,7 +51,7 @@ final class HomeController : BaseViewController<HomeView>{
     }
     
 }
-extension HomeController : HomeViewInterface {
+extension HomeController : HomeViewInterface , PreviewButtonDelegate{
     func handlePresenterOutput(output: HomePresenterToViewOutput) {
         switch output {
         case .albumLoaded(let albums):
@@ -63,8 +63,21 @@ extension HomeController : HomeViewInterface {
         }
         rootView.reloadCollectionViewsAsync()
     }
+    
+    func handleCellsAudioOutput(output: previewPlayerOutput) {
+        switch output {
+        case .play(let indexPath):
+            presenter?.handleTrackPreviewOutput(output: .playPreview(tracks[indexPath.row]))
+        case .stop:
+            presenter?.handleTrackPreviewOutput(output: .stopPreview)
+        }
+    }
 }
 extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //Go to detail screen
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
@@ -106,20 +119,14 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
             return cell
         case rootView.popularTracksCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularTracksCell", for: indexPath) as! PopularTracksCell
+            cell.indexPath = indexPath
+            cell.delegate = self
             let trackAtIndex = tracks[indexPath.row]
             cell.configure(track: trackAtIndex)
             return cell
         default:
             return UICollectionViewCell()
         }
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = tracks[indexPath.row].preview.convertToUrl() else {return}
-        AudioManager.shared.insertQueueAndPlay(url: url)
-    }
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        AudioManager.shared.stopAndClearQueue()
-        
     }
 }
 

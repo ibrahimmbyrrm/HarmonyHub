@@ -15,6 +15,12 @@ enum HomePresenterToViewOutput {
 }
 enum HomeViewToPresenterOutput {
     case loadData
+    
+}
+
+enum HomeViewTrackPreviewOutput {
+    case playPreview(TracksDatum)
+    case stopPreview
 }
 
 protocol HomeViewInterface {
@@ -31,12 +37,15 @@ protocol HomeViewInterface {
 protocol HomePresenterInterface {
     func handleInteractorOutput(chart : Welcome)
     func handleViewOutput(output : HomeViewToPresenterOutput)
+    func handleTrackPreviewOutput(output : HomeViewTrackPreviewOutput)
     func viewDidLoad()
 }
 protocol HomeInteractorInterface {
     var presenter : HomePresenterInterface? {get set}
     var service : NetworkService {get set}
     func fetchChart()
+    func playPreview(url : URL)
+    func stopPreview()
 }
 protocol HomeRouterInterface {
     var view : UIViewController? {get set}

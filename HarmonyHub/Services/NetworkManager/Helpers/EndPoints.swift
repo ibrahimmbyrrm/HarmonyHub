@@ -16,6 +16,8 @@ protocol EndPointType {
 
 enum EndPointItems<T : Decodable> {
     case chart
+    case trackDetail(Int)
+    case search(String)
 }
 
 extension EndPointItems : EndPointType {
@@ -23,6 +25,10 @@ extension EndPointItems : EndPointType {
         switch self {
         case .chart:
             return "chart/"
+        case .trackDetail(let trackId):
+            return "track/\(trackId)"
+        case .search(let query):
+            return "search?q=\(query)"
         }
     }
     

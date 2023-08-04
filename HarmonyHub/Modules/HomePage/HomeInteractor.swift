@@ -20,10 +20,17 @@ final class HomeInteractor : HomeInteractorInterface {
         service.fetchData(type: EndPointItems<Welcome>.chart) { result in
             switch result {
             case .success(let chart):
+                print(chart.playlists.data.map({ $0.title}))
                 self.presenter?.handleInteractorOutput(chart: chart)
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    func playPreview(url : URL) {
+        AudioManager.shared.insertQueueAndPlay(url: url)
+    }
+    func stopPreview() {
+        AudioManager.shared.stopAndClearQueue()
     }
 }

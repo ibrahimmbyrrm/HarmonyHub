@@ -75,7 +75,7 @@ enum ArtistType: String, Codable {
 
 enum RecordTypeEnum: String, Codable {
     case album = "album"
-    case compile = "compile"
+    case ep = "ep"
 }
 
 // MARK: - Artists
@@ -222,5 +222,10 @@ struct Album: Codable {
         case coverXl = "cover_xl"
         case md5Image = "md5_image"
         case tracklist, type
+    }
+}
+extension TracksDatum {
+    var previewURL : URL {
+        return URL(string: self.preview)!
     }
 }
