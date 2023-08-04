@@ -51,6 +51,13 @@ class SearchView: UIView {
         setupCollectionViewConstraints()
     }
 
+    func restartTrackCellPreviewButton(url : URL) {
+        searchResultsTableView.visibleCells.filter({$0.asSearchResultCell().ownerTrack.previewURL != url}).map( {
+                $0.asSearchResultCell().playPreviewButton.setTitle("▶", for: .normal)
+                $0.asSearchResultCell().isPlaying = false
+        })
+    }
+    
     func addSubviews() {
         addSubview(searchBar)
         addSubview(scrollView)

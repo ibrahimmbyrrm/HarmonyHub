@@ -45,6 +45,7 @@
 		8025F24C2A79346900EA331F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8025F24B2A79346900EA331F /* AVFoundation.framework */; };
 		80B76CEF2A7D0EA400FC3CE6 /* SearchConstracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */; };
 		80B76CF32A7D2E6800FC3CE6 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CF22A7D2E6800FC3CE6 /* SearchResultCell.swift */; };
+		80B76CF82A7D3D8200FC3CE6 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CF72A7D3D8200FC3CE6 /* UITableView+Ext.swift */; };
 		80F1222A2A7AA3BC0063A0D5 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F122292A7AA3BC0063A0D5 /* String+Ext.swift */; };
 		80F122302A7AAC950063A0D5 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F1222F2A7AAC950063A0D5 /* AudioManager.swift */; };
 		80F122322A7B06540063A0D5 /* UICollectionView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F122312A7B06540063A0D5 /* UICollectionView+Ext.swift */; };
@@ -108,6 +109,7 @@
 		8025F24B2A79346900EA331F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConstracts.swift; sourceTree = "<group>"; };
 		80B76CF22A7D2E6800FC3CE6 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		80B76CF72A7D3D8200FC3CE6 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		80F122292A7AA3BC0063A0D5 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		80F1222F2A7AAC950063A0D5 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		80F122312A7B06540063A0D5 /* UICollectionView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Ext.swift"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				8025F2252A786D2000EA331F /* UIImageView+Ext.swift */,
 				80F122292A7AA3BC0063A0D5 /* String+Ext.swift */,
 				80F122312A7B06540063A0D5 /* UICollectionView+Ext.swift */,
+				80B76CF72A7D3D8200FC3CE6 /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				8025F22F2A79013200EA331F /* HttpHelpers.swift in Sources */,
 				8025F2092A77F7A300EA331F /* HomePresenter.swift in Sources */,
 				8025F22D2A79000C00EA331F /* NetworkManager.swift in Sources */,
+				80B76CF82A7D3D8200FC3CE6 /* UITableView+Ext.swift in Sources */,
 				8025F2212A78646900EA331F /* ChartModel.swift in Sources */,
 				8025F2072A77F79D00EA331F /* HomeInteractor.swift in Sources */,
 			);

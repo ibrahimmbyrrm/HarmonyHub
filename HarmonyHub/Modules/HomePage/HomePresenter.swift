@@ -35,7 +35,7 @@ final class HomePresenter : HomePresenterInterface {
         }
     }
     
-    func handleTrackPreviewOutput(output : HomeViewTrackPreviewOutput) {
+    func handleTrackPreviewOutput(output : TrackPreviewOutput) {
         switch output {
         case .playPreview(let track):
             guard let url = track.previewURL else {return}

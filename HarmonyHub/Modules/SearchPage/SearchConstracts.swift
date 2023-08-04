@@ -31,12 +31,15 @@ protocol SearchViewInterface : AnyObject {
 }
 protocol SearchPresenterInterface {
     func viewDidLoad()
+    func handleTrackPreviewOutput(output : TrackPreviewOutput)
     func handleViewOutput(output : SearchViewToPresenterOutput)
     func handleInteractorOutput(output : SearchInteractorToPresenterOutput)
 }
 protocol SearchInteractorInterface {
     var presenter : SearchPresenterInterface? {get set}
     func fetchPlaylists()
+    func playPreview(url : URL)
+    func stopPreview()
     func fetchQueryResults(_ query : String)
 }
 protocol SearchRouterInterface {

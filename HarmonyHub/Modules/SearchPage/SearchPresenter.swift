@@ -33,6 +33,16 @@ final class SearchPresenter : SearchPresenterInterface {
         }
     }
     
+    func handleTrackPreviewOutput(output : TrackPreviewOutput) {
+        switch output {
+        case .playPreview(let track):
+            guard let url = track.previewURL else {return}
+            interactor.playPreview(url: url)
+        case .stopPreview:
+            interactor.stopPreview()
+        }
+    }
+    
     func handleInteractorOutput(output: SearchInteractorToPresenterOutput) {
         switch output {
         case .playlistsLoaded(let playlists):

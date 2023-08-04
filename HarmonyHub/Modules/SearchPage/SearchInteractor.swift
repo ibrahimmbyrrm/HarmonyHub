@@ -26,6 +26,14 @@ final class SearchInteractor : SearchInteractorInterface {
             }
         }
     }
+    
+    func playPreview(url : URL) {
+        AudioManager.shared.insertQueueAndPlay(url: url)
+    }
+    func stopPreview() {
+        AudioManager.shared.stopAndClearQueue()
+    }
+    
     func fetchQueryResults(_ query : String) {
         guard let queryString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
         print(queryString)

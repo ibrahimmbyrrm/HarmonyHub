@@ -18,7 +18,7 @@ enum HomeViewToPresenterOutput {
     
 }
 
-enum HomeViewTrackPreviewOutput {
+enum TrackPreviewOutput {
     case playPreview(TracksDatum)
     case stopPreview
 }
@@ -37,7 +37,7 @@ protocol HomeViewInterface : AnyObject {
 protocol HomePresenterInterface {
     func handleInteractorOutput(chart : Welcome)
     func handleViewOutput(output : HomeViewToPresenterOutput)
-    func handleTrackPreviewOutput(output : HomeViewTrackPreviewOutput)
+    func handleTrackPreviewOutput(output : TrackPreviewOutput)
     func viewDidLoad()
 }
 protocol HomeInteractorInterface {

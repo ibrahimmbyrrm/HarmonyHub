@@ -64,12 +64,23 @@ extension SearchController : SearchViewInterface {
     }
 }
 
-extension SearchController : UITableViewDelegate, UITableViewDataSource {
+extension SearchController : UITableViewDelegate, UITableViewDataSource, PreviewButtonDelegate {
+    
+    func handleCellsAudioOutput(output: previewPlayerOutput) {
+        switch output {
+        case .play(let indexPath):
+            presenter?.handleTrackPreviewOutput(output: .playPreview(searchResults[indexPath.row]))
+        case .stop:
+            presenter?.handleTrackPreviewOutput(output: .stopPreview)
+        }
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchResultCell
+        cell.indexPath = indexPath
+        cell.delegate = self
         cell.configure(track: searchResults[indexPath.row])
         return cell
     }

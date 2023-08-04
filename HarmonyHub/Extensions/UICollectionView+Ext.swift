@@ -12,7 +12,9 @@ extension UICollectionViewCell {
     func asTrackCell() -> PopularTracksCell {
         if let newCell = self as? PopularTracksCell {
             return newCell
+        }else {
+            return PopularTracksCell()
         }
-        return PopularTracksCell()
     }
+    
 }
