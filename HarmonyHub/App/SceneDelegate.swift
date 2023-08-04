@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: scene)
         let homeScreen = UINavigationController(rootViewController: HomeBuilder.buildModule())
-        let searchPage = UINavigationController(rootViewController: SearchController())
+        let searchPage = UINavigationController(rootViewController: SearchBuilder.buildModule())
         homeScreen.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         searchPage.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         let tabbar = UITabBarController()

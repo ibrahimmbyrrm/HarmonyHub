@@ -12,7 +12,7 @@ enum HomeInteractorOutput {
 }
 
 final class HomePresenter : HomePresenterInterface {
-    private var view : HomeViewInterface
+    private weak var view : HomeViewInterface?
     private var interactor : HomeInteractorInterface
     private var router : HomeRouterInterface
     
@@ -23,9 +23,9 @@ final class HomePresenter : HomePresenterInterface {
     }
     
     func viewDidLoad() {
-        view.setDelegates()
-        view.setupNavigationController()
-        view.setupMediaButtonsActions()
+        view?.setDelegates()
+        view?.setupNavigationController()
+        view?.setupMediaButtonsActions()
     }
     
     func handleViewOutput(output: HomeViewToPresenterOutput) {
@@ -38,7 +38,8 @@ final class HomePresenter : HomePresenterInterface {
     func handleTrackPreviewOutput(output : HomeViewTrackPreviewOutput) {
         switch output {
         case .playPreview(let track):
-            interactor.playPreview(url: track.previewURL)
+            guard let url = track.previewURL else {return}
+            interactor.playPreview(url: url)
         case .stopPreview:
             interactor.stopPreview()
         }
@@ -46,8 +47,9 @@ final class HomePresenter : HomePresenterInterface {
     }
     
     func handleInteractorOutput(chart : Welcome) {
-        view.handlePresenterOutput(output: .albumLoaded(chart.albums.data))
-        view.handlePresenterOutput(output: .artistsLoaded(chart.artists.data))
-        view.handlePresenterOutput(output: .tracksLoaded(chart.tracks.data))
+        guard let albums = chart.albums?.data,let artists = chart.artists?.data,let tracks = chart.tracks?.data else {return}
+        view?.handlePresenterOutput(output: .albumLoaded(albums))
+        view?.handlePresenterOutput(output: .artistsLoaded(artists))
+        view?.handlePresenterOutput(output: .tracksLoaded(tracks))
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 final class SearchPresenter : SearchPresenterInterface {
     
     private var interactor : SearchInteractorInterface
-    private var view : SearchViewInterface
+    private weak var view : (SearchViewInterface)?
     private var router : SearchRouterInterface
     
     init(interactor : SearchInteractorInterface,view : SearchViewInterface,router : SearchRouterInterface) {
@@ -20,7 +20,26 @@ final class SearchPresenter : SearchPresenterInterface {
     }
     
     func viewDidLoad() {
-        
+        view?.setDelegates()
+        view?.setupNavigationController()
+    }
+    
+    func handleViewOutput(output: SearchViewToPresenterOutput) {
+        switch output {
+        case .loadPlaylists:
+            interactor.fetchPlaylists()
+        case .fetchSearchResults(let queryString):
+            interactor.fetchQueryResults(queryString)
+        }
+    }
+    
+    func handleInteractorOutput(output: SearchInteractorToPresenterOutput) {
+        switch output {
+        case .playlistsLoaded(let playlists):
+            view?.handlePresenterOutput(output: .playlistsLoaded(playlists))
+        case .queryResultsLoaded(let tracks):
+            view?.handlePresenterOutput(output: .queryResultsLoaded(tracks))
+        }
     }
     
     

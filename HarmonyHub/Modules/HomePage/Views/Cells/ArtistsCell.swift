@@ -38,7 +38,8 @@ class ArtistsCell: UICollectionViewCell {
     
     func configureData(artist : ArtistElement) {
         DispatchQueue.main.async {
-            self.artistImage.setImage(with: artist.pictureSmall)
+            guard let image = artist.pictureSmall else {return}
+            self.artistImage.setImage(with: image)
             self.artistNameLabel.text = artist.name
         }
     }

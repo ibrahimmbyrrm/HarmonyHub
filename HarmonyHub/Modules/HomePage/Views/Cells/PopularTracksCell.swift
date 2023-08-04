@@ -94,10 +94,11 @@ class PopularTracksCell: UICollectionViewCell {
     
     func configure(track : TracksDatum) {
         DispatchQueue.main.async {
-            self.artistLabel.text = track.artist.name
+            self.artistLabel.text = track.artist?.name
             self.trackTitle.text = track.title
-            self.trackImageView.setImage(with: track.album.coverMedium)
             self.ownerTrack = track
+            guard let image = track.album?.coverMedium else {return}
+            self.trackImageView.setImage(with: image)
         }
     }
     

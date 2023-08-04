@@ -20,10 +20,17 @@ class SearchView: UIView {
         collectionView.backgroundColor = .black
         collectionView.isPagingEnabled = false
         collectionView.showsVerticalScrollIndicator = false // Enable scrolling
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         collectionView.isScrollEnabled = false
         collectionView.register(PopularPlaylistsCell.self, forCellWithReuseIdentifier: "playlistCell")
         return collectionView
+    }()
+    
+    lazy var searchResultsTableView : UITableView = {
+        var tableView = UITableView()
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: "searchCell")
+        tableView.isHidden = true
+        return tableView
     }()
 
     lazy var searchBar: UISearchBar = {
@@ -40,12 +47,14 @@ class SearchView: UIView {
         addSubviews()
         setupSearchBarConstraints()
         setupScrollViewConstraints()
+        setupSearchResultsTableViewConstraints()
         setupCollectionViewConstraints()
     }
 
     func addSubviews() {
         addSubview(searchBar)
         addSubview(scrollView)
+        scrollView.addSubview(searchResultsTableView)
         scrollView.addSubview(popularPlaylistsCollectionView)
     }
 
@@ -63,6 +72,15 @@ class SearchView: UIView {
         scrollView.snp.makeConstraints { make in
             make.centerX.bottom.width.equalTo(self.safeAreaLayoutGuide)
             make.top.equalTo(searchBar.snp.bottom).offset(20)
+        }
+    }
+    
+    func setupSearchResultsTableViewConstraints() {
+        searchResultsTableView.snp.makeConstraints { make in
+            make.width.equalTo(self.snp.width)
+            make.bottom.equalTo(self.snp.bottom)
+            make.leading.trailing.equalTo(self)
+            make.top.equalTo(scrollView.snp.bottom) // Change this line
         }
     }
     

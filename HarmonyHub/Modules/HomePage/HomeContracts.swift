@@ -23,7 +23,7 @@ enum HomeViewTrackPreviewOutput {
     case stopPreview
 }
 
-protocol HomeViewInterface {
+protocol HomeViewInterface : AnyObject {
     var albums : [AlbumsDatum] {get set}
     var artists : [ArtistElement] {get set}
     var tracks : [TracksDatum] {get set}

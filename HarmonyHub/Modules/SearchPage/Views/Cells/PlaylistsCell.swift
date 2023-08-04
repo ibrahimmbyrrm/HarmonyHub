@@ -19,13 +19,21 @@ class PopularPlaylistsCell : UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(playlistImageView)
+        setupPlaylistImageViewConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configure(playlist : PlaylistsDatum) {
+        guard let image = playlist.pictureBig else {return}
+        self.playlistImageView.setImage(with: image)
+    }
+    
     private func setupPlaylistImageViewConstraints() {
-        
+        playlistImageView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalTo(self)
+        }
     }
 }

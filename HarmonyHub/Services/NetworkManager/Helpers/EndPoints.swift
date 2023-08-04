@@ -18,6 +18,7 @@ enum EndPointItems<T : Decodable> {
     case chart
     case trackDetail(Int)
     case search(String)
+    case playlists
 }
 
 extension EndPointItems : EndPointType {
@@ -29,6 +30,8 @@ extension EndPointItems : EndPointType {
             return "track/\(trackId)"
         case .search(let query):
             return "search?q=\(query)"
+        case .playlists:
+            return "chart/0/playlists"
         }
     }
     
