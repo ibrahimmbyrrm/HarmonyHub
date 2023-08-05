@@ -74,6 +74,7 @@ extension SearchController : UITableViewDelegate, UITableViewDataSource, Preview
             presenter?.handleTrackPreviewOutput(output: .stopPreview)
         }
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }

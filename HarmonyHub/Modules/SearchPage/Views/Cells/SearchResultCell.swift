@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 typealias SearchViewPreviewDelegate = SearchController & PreviewButtonDelegate
 
 class SearchResultCell : UITableViewCell {
@@ -30,6 +31,18 @@ class SearchResultCell : UITableViewCell {
         return imageView
     }()
     
+    
+    
+    lazy var infoStackView : UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [trackName,artistName])
+        stackView.axis = .vertical
+        stackView.distribution = .equalCentering
+        stackView.spacing = 2
+        stackView.alignment = .leading
+        stackView.backgroundColor = .black
+        return stackView
+    }()
+    
     lazy var playPreviewButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("▶", for: .normal)
@@ -38,16 +51,6 @@ class SearchResultCell : UITableViewCell {
         button.tintColor = .systemIndigo
         button.addTarget(nil, action: #selector(playPreviewButtonTapped), for: .touchUpInside)
         return button
-    }()
-    
-    lazy var infoStackView : UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [trackName,artistName])
-        stackView.axis = .vertical
-        stackView.distribution = .equalCentering
-        stackView.spacing = 2
-        stackView.alignment = .leading
-        stackView.backgroundColor = .gray
-        return stackView
     }()
     
     var delegate : SearchViewPreviewDelegate?
@@ -64,6 +67,7 @@ class SearchResultCell : UITableViewCell {
         setupTrackNameLabelConstraints()
         setupPlayPreviewButtonConstraints()
         listenToAudioManagerForMusicChanges()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -89,6 +93,7 @@ class SearchResultCell : UITableViewCell {
     }
     
     @objc func playPreviewButtonTapped() {
+        print("asd")
         if isPlaying {
             delegate?.handleCellsAudioOutput(output: .stop)
             playPreviewButton.setTitle("▶", for: .normal)
@@ -100,6 +105,8 @@ class SearchResultCell : UITableViewCell {
             playPreviewButton.setTitle("▐▐", for: .normal)
         }
     }
+    
+    
     
     private func setupTrackImageViewConstraints() {
         trackImage.snp.makeConstraints { make in
@@ -130,7 +137,8 @@ class SearchResultCell : UITableViewCell {
     private func setupPlayPreviewButtonConstraints() {
         playPreviewButton.snp.makeConstraints { make in
             make.trailing.equalTo(self.snp.trailing).inset(5)
-            make.centerY.equalTo(self.snp.centerY)
+            make.top.equalTo(self.snp.top).offset(20
+            )
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
@@ -142,3 +150,4 @@ class SearchResultCell : UITableViewCell {
         }
     }
 }
+

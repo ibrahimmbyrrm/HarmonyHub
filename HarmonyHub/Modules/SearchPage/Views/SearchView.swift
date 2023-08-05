@@ -30,6 +30,7 @@ class SearchView: UIView {
         var tableView = UITableView()
         tableView.register(SearchResultCell.self, forCellReuseIdentifier: "searchCell")
         tableView.isHidden = true
+        tableView.isUserInteractionEnabled = true
         return tableView
     }()
 

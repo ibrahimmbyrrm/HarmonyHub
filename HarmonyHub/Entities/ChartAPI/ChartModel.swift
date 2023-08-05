@@ -27,12 +27,10 @@ struct AlbumsDatum: Codable {
     let link, cover: String?
     let coverSmall, coverMedium, coverBig, coverXl: String?
     let md5Image: String?
-    let recordType: RecordTypeEnum?
     let tracklist: String?
     let explicitLyrics: Bool?
     let position: Int?
     let artist: ArtistElement?
-    let type: RecordTypeEnum?
 
     enum CodingKeys: String, CodingKey {
         case id, title, link, cover
@@ -41,10 +39,9 @@ struct AlbumsDatum: Codable {
         case coverBig = "cover_big"
         case coverXl = "cover_xl"
         case md5Image = "md5_image"
-        case recordType = "record_type"
         case tracklist
         case explicitLyrics = "explicit_lyrics"
-        case position, artist, type
+        case position, artist
     }
 }
 
@@ -73,10 +70,6 @@ enum ArtistType: String, Codable {
     case artist = "artist"
 }
 
-enum RecordTypeEnum: String, Codable {
-    case album = "album"
-    case ep = "ep"
-}
 
 // MARK: - Artists
 struct Artists: Codable {
@@ -212,7 +205,6 @@ struct Album: Codable {
     let coverSmall, coverMedium, coverBig, coverXl: String?
     let md5Image: String?
     let tracklist: String?
-    let type: RecordTypeEnum?
 
     enum CodingKeys: String, CodingKey {
         case id, title, cover
@@ -221,7 +213,7 @@ struct Album: Codable {
         case coverBig = "cover_big"
         case coverXl = "cover_xl"
         case md5Image = "md5_image"
-        case tracklist, type
+        case tracklist
     }
 }
 
