@@ -35,9 +35,7 @@ final class SearchInteractor : SearchInteractorInterface {
     }
     
     func fetchQueryResults(_ query : String) {
-        guard let queryString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
-        print(queryString)
-        service.fetchData(type: EndPointItems<Tracks>.search(queryString)) { result in
+        service.fetchData(type: EndPointItems<Tracks>.search(query)) { result in
             switch result {
             case .success(let trackData):
                 guard let data = trackData.data else {return}

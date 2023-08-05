@@ -58,6 +58,8 @@ class SearchResultCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .black
+        self.selectionStyle = .none
+        
         addSubviews()
         setupTrackImageViewConstraints()
         setupTrackNameLabelConstraints()
@@ -126,7 +128,6 @@ class SearchResultCell : UITableViewCell {
 }
 //MARK: - Preview Playable Methods
 extension SearchResultCell : PreviewPlayableCell {
-    
    
     @objc func playPreviewButtonTapped() {
         if isPlaying {

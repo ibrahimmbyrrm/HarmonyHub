@@ -29,7 +29,12 @@ extension EndPointItems : EndPointType {
         case .trackDetail(let trackId):
             return "track/\(trackId)"
         case .search(let query):
-            return "search?q=\(query)"
+            if let queryString = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+                return "search?q=\(queryString)"
+            }else {
+                return "search?q="
+            }
+            
         case .playlists:
             return "chart/0/playlists"
         }
