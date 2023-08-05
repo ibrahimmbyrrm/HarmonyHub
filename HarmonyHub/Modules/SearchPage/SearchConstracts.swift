@@ -11,6 +11,8 @@ import UIKit
 enum SearchViewToPresenterOutput {
     case loadPlaylists
     case fetchSearchResults(String)
+    case platlistSelected(PlaylistsDatum)
+    case trackSelected(TracksDatum)
 }
 
 enum SearchInteractorToPresenterOutput {
@@ -29,7 +31,7 @@ protocol SearchViewInterface : AnyObject {
     func setDelegates()
     func handlePresenterOutput(output : SearchPresenterToViewOutput)
 }
-protocol SearchPresenterInterface {
+protocol SearchPresenterInterface : AnyObject {
     func viewDidLoad()
     func handleTrackPreviewOutput(output : TrackPreviewOutput)
     func handleViewOutput(output : SearchViewToPresenterOutput)
@@ -44,4 +46,11 @@ protocol SearchInteractorInterface {
 }
 protocol SearchRouterInterface {
     var view : UIViewController? {get set}
+    
+    func navigateTo(to rotate : SearchRouterNavigations)
+}
+
+enum SearchRouterNavigations {
+    case toPlatlist(Int)
+    case toTrack(Int)
 }

@@ -22,13 +22,13 @@ class SearchView: UIView {
         collectionView.showsVerticalScrollIndicator = false // Enable scrolling
         collectionView.backgroundColor = .black
         collectionView.isScrollEnabled = false
-        collectionView.register(PopularPlaylistsCell.self, forCellWithReuseIdentifier: "playlistCell")
+        collectionView.register(PopularPlaylistsCell.self, forCellWithReuseIdentifier: SearchModuleConstants.playlistCell)
         return collectionView
     }()
     
     lazy var searchResultsTableView : UITableView = {
         var tableView = UITableView()
-        tableView.register(SearchResultCell.self, forCellReuseIdentifier: "searchCell")
+        tableView.register(SearchResultCell.self, forCellReuseIdentifier: SearchModuleConstants.searchCell)
         tableView.isHidden = true
         tableView.isUserInteractionEnabled = true
         return tableView
@@ -36,7 +36,7 @@ class SearchView: UIView {
 
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "What do you want to listen?"
+        searchBar.placeholder = SearchModuleConstants.searchBarPlaceholder
         searchBar.backgroundColor = .systemIndigo
         return searchBar
     }()
@@ -63,7 +63,7 @@ class SearchView: UIView {
 
     func restartTrackCellPreviewButton(url : URL) {
         searchResultsTableView.visibleCells.filter({$0.asSearchResultCell().ownerTrack.previewURL != url}).map( {
-                $0.asSearchResultCell().playPreviewButton.setTitle("▶", for: .normal)
+            $0.asSearchResultCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
                 $0.asSearchResultCell().isPlaying = false
         })
     }

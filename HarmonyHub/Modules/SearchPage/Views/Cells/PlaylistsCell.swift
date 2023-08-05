@@ -18,7 +18,9 @@ class PopularPlaylistsCell : UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(playlistImageView)
+        self.isUserInteractionEnabled = true
+        contentView.addSubview(playlistImageView)
+        contentView.bringSubviewToFront(playlistImageView)
         setupPlaylistImageViewConstraints()
     }
     

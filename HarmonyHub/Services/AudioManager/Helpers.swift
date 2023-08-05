@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol PreviewPlayableCell {
+protocol PreviewPlayable {
     var delegate : PreviewButtonDelegate? {get}
     var indexPath : IndexPath? {get}
     var ownerTrack : TracksDatum! {get}

@@ -85,7 +85,7 @@ struct Playlists: Codable {
 
 // MARK: - PlaylistsDatum
 struct PlaylistsDatum: Codable {
-    let id: Int?
+    let id: Int
     let title: String?
     let datumPublic: Bool?
     let nbTracks: Int?
@@ -121,7 +121,7 @@ enum PictureTypeEnum: String, Codable {
 
 // MARK: - User
 struct User: Codable {
-    let id: Int?
+    let id: Int
     let name: String?
     let tracklist: String?
     let type: UserType?
@@ -139,7 +139,7 @@ struct Podcasts: Codable {
 
 // MARK: - PodcastsDatum
 struct PodcastsDatum: Codable {
-    let id: Int?
+    let id: Int
     let title, description: String?
     let available: Bool?
     let fans: Int?
@@ -170,7 +170,7 @@ struct Tracks: Codable {
 
 // MARK: - TracksDatum
 struct TracksDatum: Codable {
-    let id: Int?
+    let id: Int
     let title, titleShort, titleVersion: String?
     let link: String?
     let duration, rank: Int?
@@ -199,7 +199,7 @@ struct TracksDatum: Codable {
 
 // MARK: - Album
 struct Album: Codable {
-    let id: Int?
+    let id: Int
     let title: String?
     let cover: String?
     let coverSmall, coverMedium, coverBig, coverXl: String?

@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 final class HomeInteractor : HomeInteractorInterface {
-    var presenter: HomePresenterInterface?
+    weak var presenter: HomePresenterInterface?
     var service: NetworkService
     
     init(service : NetworkService) {

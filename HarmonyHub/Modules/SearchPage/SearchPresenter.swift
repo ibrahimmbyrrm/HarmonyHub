@@ -30,6 +30,10 @@ final class SearchPresenter : SearchPresenterInterface {
             interactor.fetchPlaylists()
         case .fetchSearchResults(let queryString):
             interactor.fetchQueryResults(queryString)
+        case .platlistSelected(let selectedPlaylist):
+            router.navigateTo(to: .toPlatlist(selectedPlaylist.id))
+        case .trackSelected(let selectedTrack):
+            router.navigateTo(to: .toTrack(selectedTrack.id))
         }
     }
     

@@ -40,8 +40,8 @@ final class HomeController : BaseViewController<HomeView>{
     
     func setupNavigationController() {
         view.backgroundColor = .black
-        title = "HarmonyHub"
-        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.white,.font : UIFont(name: "Rockwell", size: 44)!]
+        title = HomeModuleConstants.pageTitle
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.white,.font : UIFont(name: FontNames.rockwell, size: 44)!]
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -108,17 +108,17 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case rootView.topAlbumsCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topAlbumCell", for: indexPath) as! TopAlbumCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeModuleConstants.albumCell, for: indexPath) as! TopAlbumCell
             let albumAtIndex = albums[indexPath.row]
             cell.configure(with: albumAtIndex)
             return cell
         case rootView.artistsCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "artistCell", for: indexPath) as! ArtistsCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeModuleConstants.artistCell, for: indexPath) as! ArtistsCell
             let artistAtIndex = artists[indexPath.row]
             cell.configureData(artist: artistAtIndex)
             return cell
         case rootView.popularTracksCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularTracksCell", for: indexPath) as! PopularTracksCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeModuleConstants.popularTrackCell, for: indexPath) as! PopularTracksCell
             cell.setupIndexPathAndDelegate(delegate: self, indexPath: indexPath)
             let trackAtIndex = tracks[indexPath.row]
             cell.configure(track: trackAtIndex)

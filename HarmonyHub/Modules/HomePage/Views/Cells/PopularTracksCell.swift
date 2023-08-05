@@ -33,7 +33,7 @@ class PopularTracksCell: UICollectionViewCell {
     }()
     lazy var playPreviewButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("▶", for: .normal)
+        button.setTitle(PreviewButtonIcons.play, for: .normal)
         button.layer.cornerRadius = 15
         button.backgroundColor = .black
         button.tintColor = .systemIndigo
@@ -101,18 +101,18 @@ class PopularTracksCell: UICollectionViewCell {
     
 }
 //MARK: - PreviewPlayable Protocol Methods
-extension PopularTracksCell : PreviewPlayableCell {
+extension PopularTracksCell : PreviewPlayable {
     
     @objc func playPreviewButtonTapped() {
         if isPlaying {
             delegate?.handleCellsAudioOutput(output: .stop)
-            playPreviewButton.setTitle("▶", for: .normal)
+            playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
             isPlaying = false
         }else {
             guard let indexPath else {return}
             delegate?.handleCellsAudioOutput(output: .play(indexPath))
             self.isPlaying = true
-            playPreviewButton.setTitle("▐▐", for: .normal)
+            playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
         }
     }
     

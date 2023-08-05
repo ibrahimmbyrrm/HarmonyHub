@@ -15,12 +15,12 @@ class SearchResultCell : UITableViewCell {
     lazy var trackName : UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name: "Ariel", size: 30)
+        label.font = UIFont(name: FontNames.ariel, size: 30)
         return label
     }()
     lazy var artistName : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Ariel", size: 18)
+        label.font = UIFont(name: FontNames.ariel, size: 18)
         label.textColor = .gray
         return label
     }()
@@ -40,7 +40,7 @@ class SearchResultCell : UITableViewCell {
     }()
     lazy var playPreviewButton : UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("▶", for: .normal)
+        button.setTitle(PreviewButtonIcons.play, for: .normal)
         button.layer.cornerRadius = 15
         button.backgroundColor = .black
         button.tintColor = .systemIndigo
@@ -59,14 +59,11 @@ class SearchResultCell : UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .black
         self.selectionStyle = .none
-        
         addSubviews()
         setupTrackImageViewConstraints()
-        setupTrackNameLabelConstraints()
+        setupStackViewConstraints()
         setupPlayPreviewButtonConstraints()
-        setupArtistNameLabelConstraints()
         listenToAudioManagerForMusicChanges()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -92,28 +89,19 @@ class SearchResultCell : UITableViewCell {
         }
     }
     
-    private func setupTrackNameLabelConstraints() {
+    private func setupStackViewConstraints() {
         infoStackView.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
-            make.leading.equalTo(self.trackImage.snp.trailing).offset(10)
-            make.width.equalTo(120)
+            make.leading.equalTo(self.trackImage.snp.trailing).offset(20)
+            make.width.equalTo(200)
             make.height.equalTo(45)
-        }
-    }
-    
-    private func setupArtistNameLabelConstraints() {
-        artistName.snp.makeConstraints { make in
-            make.top.equalTo(self.trackName.snp.bottom).offset(2)
-            make.leading.equalTo(self.trackImage.snp.trailing).offset(2)
-            make.height.equalTo(20)
         }
     }
     
     private func setupPlayPreviewButtonConstraints() {
         playPreviewButton.snp.makeConstraints { make in
             make.trailing.equalTo(self.snp.trailing).inset(5)
-            make.top.equalTo(self.snp.top).offset(20
-            )
+            make.top.equalTo(self.snp.top).offset(20)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
@@ -127,18 +115,18 @@ class SearchResultCell : UITableViewCell {
     }
 }
 //MARK: - Preview Playable Methods
-extension SearchResultCell : PreviewPlayableCell {
+extension SearchResultCell : PreviewPlayable {
    
     @objc func playPreviewButtonTapped() {
         if isPlaying {
             delegate?.handleCellsAudioOutput(output: .stop)
-            playPreviewButton.setTitle("▶", for: .normal)
+            playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
             isPlaying = false
         }else {
             guard let indexPath else {return}
             delegate?.handleCellsAudioOutput(output: .play(indexPath))
             self.isPlaying = true
-            playPreviewButton.setTitle("▐▐", for: .normal)
+            playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
         }
     }
     func listenToAudioManagerForMusicChanges() {

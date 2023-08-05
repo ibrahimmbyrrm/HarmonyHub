@@ -19,13 +19,13 @@ class TopAlbumCell: UICollectionViewCell {
     
     lazy var albumName : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Ariel", size: 12)
+        label.font = UIFont(name: FontNames.ariel, size: 12)
         label.textColor = .white
         return label
     }()
     lazy var artistName : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Ariel", size: 10)
+        label.font = UIFont(name: FontNames.ariel, size: 10)
         label.textColor = .gray
         return label
     }()

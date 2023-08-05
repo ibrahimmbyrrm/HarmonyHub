@@ -34,7 +34,7 @@ protocol HomeViewInterface : AnyObject {
     func setupMediaButtonsActions()
     func setDelegates()
 }
-protocol HomePresenterInterface {
+protocol HomePresenterInterface : AnyObject {
     func handleInteractorOutput(chart : Welcome)
     func handleViewOutput(output : HomeViewToPresenterOutput)
     func handleTrackPreviewOutput(output : TrackPreviewOutput)

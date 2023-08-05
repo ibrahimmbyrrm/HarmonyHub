@@ -15,7 +15,7 @@ class HomeView : UIView {
         var layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.register(TopAlbumCell.self, forCellWithReuseIdentifier: "topAlbumCell")
+        collectionView.register(TopAlbumCell.self, forCellWithReuseIdentifier: HomeModuleConstants.albumCell)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = false
         return collectionView
@@ -28,7 +28,7 @@ class HomeView : UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = false
         collectionView.backgroundColor = .black
-        collectionView.register(ArtistsCell.self, forCellWithReuseIdentifier: "artistCell")
+        collectionView.register(ArtistsCell.self, forCellWithReuseIdentifier: HomeModuleConstants.artistCell)
         return collectionView
     }()
     lazy var popularTracksCollectionView : UICollectionView = {
@@ -42,7 +42,7 @@ class HomeView : UIView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .black
         collectionView.isScrollEnabled = false
-        collectionView.register(PopularTracksCell.self, forCellWithReuseIdentifier: "popularTracksCell")
+        collectionView.register(PopularTracksCell.self, forCellWithReuseIdentifier: HomeModuleConstants.popularTrackCell)
         return collectionView
     }()
     lazy var artistsLabel = HomeTitleLabel()
@@ -52,8 +52,8 @@ class HomeView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        artistsLabel.text = "Artists"
-        popularTracksLabel.text = "Popular Tracks"
+        artistsLabel.text = HomeModuleConstants.artistTitle
+        popularTracksLabel.text = HomeModuleConstants.tracksTitle
         addSubviews()
         scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1500)
         setupScrollViewConstraints()
@@ -83,7 +83,7 @@ class HomeView : UIView {
     
     func restartTrackCellPreviewButton(url : URL) {
         popularTracksCollectionView.visibleCells.filter({$0.asTrackCell().ownerTrack.previewURL != url}).map( {
-                $0.asTrackCell().playPreviewButton.setTitle("▶", for: .normal)
+            $0.asTrackCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
                 $0.asTrackCell().isPlaying = false
         })
     }
