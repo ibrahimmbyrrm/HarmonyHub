@@ -49,4 +49,9 @@ protocol HomeInteractorInterface {
 }
 protocol HomeRouterInterface {
     var view : UIViewController? {get set}
+    
+    func navigateTo(to rotate : HomeRouterNavigations)
+}
+enum HomeRouterNavigations {
+    
 }

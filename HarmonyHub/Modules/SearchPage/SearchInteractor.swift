@@ -8,6 +8,7 @@
 import Foundation
 
 final class SearchInteractor : SearchInteractorInterface {
+    
     weak var presenter: SearchPresenterInterface?
     var service : NetworkService
     

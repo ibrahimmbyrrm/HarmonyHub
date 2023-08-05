@@ -56,6 +56,7 @@ class SearchView: UIView {
         self.popularPlaylistsCollectionView.isHidden = isStarted
         self.searchResultsTableView.isHidden = !isStarted
         self.scrollView.isScrollEnabled = !isStarted
+        self.searchResultsTableView.reloadData()
         if isStarted {
             scrollView.setContentOffset(CGPointZero, animated: true)
         }

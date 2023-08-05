@@ -120,7 +120,7 @@ extension SearchResultCell : PreviewPlayable {
     @objc func playPreviewButtonTapped() {
         if isPlaying {
             delegate?.handleCellsAudioOutput(output: .stop)
-            playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
+            playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
             isPlaying = false
         }else {
             guard let indexPath else {return}

@@ -10,4 +10,8 @@ import UIKit
 
 final class HomeRouter : HomeRouterInterface{
     unowned var view: UIViewController?
+    
+    func navigateTo(to rotate: HomeRouterNavigations) {
+        
+    }
 }
