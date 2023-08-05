@@ -7,17 +7,6 @@
 
 import UIKit
 
-enum previewPlayerOutput {
-    case stop
-    case play(IndexPath)
-}
-
-protocol PreviewButtonDelegate {
-    func handleCellsAudioOutput(output : previewPlayerOutput)
-}
-
-typealias PreviewButtonDelegateHomeController = PreviewButtonDelegate & HomeController
-
 class PopularTracksCell: UICollectionViewCell {
     
     lazy var trackImageView : UIImageView = {
@@ -48,11 +37,11 @@ class PopularTracksCell: UICollectionViewCell {
         button.layer.cornerRadius = 15
         button.backgroundColor = .black
         button.tintColor = .systemIndigo
-        button.addTarget(nil, action: #selector(previewButtonTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(playPreviewButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    var delegate : PreviewButtonDelegateHomeController?
+    weak var delegate : PreviewButtonDelegate?
     var indexPath : IndexPath?
     
     var ownerTrack : TracksDatum!
@@ -65,31 +54,8 @@ class PopularTracksCell: UICollectionViewCell {
         listenToAudioManagerForMusicChanges()
     }
     
-    func listenToAudioManagerForMusicChanges() {
-        AudioManager.shared.bind { url in
-            if url != self.ownerTrack.previewURL {
-                self.delegate?.rootView.restartTrackCellPreviewButton(url: url)
-                self.isPlaying = false
-            }
-        }
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc func previewButtonTapped() {
-        if isPlaying {
-            delegate?.handleCellsAudioOutput(output: .stop)
-            playPreviewButton.setTitle("▶", for: .normal)
-            isPlaying = false
-        }else {
-            guard let indexPath else {return}
-            delegate?.handleCellsAudioOutput(output: .play(indexPath))
-            self.isPlaying = true
-            playPreviewButton.setTitle("▐▐", for: .normal)
-        }
-        
     }
     
     func configure(track : TracksDatum) {
@@ -133,4 +99,34 @@ class PopularTracksCell: UICollectionViewCell {
         }
     }
     
+}
+//MARK: - PreviewPlayable Protocol Methods
+extension PopularTracksCell : PreviewPlayableCell {
+    
+    @objc func playPreviewButtonTapped() {
+        if isPlaying {
+            delegate?.handleCellsAudioOutput(output: .stop)
+            playPreviewButton.setTitle("▶", for: .normal)
+            isPlaying = false
+        }else {
+            guard let indexPath else {return}
+            delegate?.handleCellsAudioOutput(output: .play(indexPath))
+            self.isPlaying = true
+            playPreviewButton.setTitle("▐▐", for: .normal)
+        }
+    }
+    
+    func listenToAudioManagerForMusicChanges() {
+        AudioManager.shared.bind { url in
+            if url != self.ownerTrack.previewURL {
+                (self.delegate as! HomeController).rootView.restartTrackCellPreviewButton(url: url)
+                self.isPlaying = false
+            }
+        }
+    }
+    
+    func setupIndexPathAndDelegate(delegate: PreviewButtonDelegate, indexPath: IndexPath) {
+        self.delegate = delegate
+        self.indexPath = indexPath
+    }
 }

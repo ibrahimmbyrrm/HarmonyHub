@@ -44,12 +44,21 @@ class SearchView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
-        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1800)
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1300)
         addSubviews()
         setupSearchBarConstraints()
         setupScrollViewConstraints()
         setupSearchResultsTableViewConstraints()
         setupCollectionViewConstraints()
+    }
+    
+    func searchStarted(_ isStarted : Bool) {
+        self.popularPlaylistsCollectionView.isHidden = isStarted
+        self.searchResultsTableView.isHidden = !isStarted
+        self.scrollView.isScrollEnabled = !isStarted
+        if isStarted {
+            scrollView.setContentOffset(CGPointZero, animated: true)
+        }
     }
 
     func restartTrackCellPreviewButton(url : URL) {

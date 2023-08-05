@@ -39,12 +39,8 @@ final class SearchController : BaseViewController<SearchView> {
 }
 extension SearchController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        rootView.popularPlaylistsCollectionView.isHidden = searchText.count > 0
-        rootView.searchResultsTableView.isHidden = searchText.count == 0
-        if searchText.count > 0 {
-            presenter?.handleViewOutput(output: .fetchSearchResults(searchText))
-        }
-        
+        rootView.searchStarted(searchText.count > 0)
+        searchText.count > 0 ? presenter?.handleViewOutput(output: .fetchSearchResults(searchText)) : nil
     }
 }
 extension SearchController : SearchViewInterface {
@@ -80,8 +76,7 @@ extension SearchController : UITableViewDelegate, UITableViewDataSource, Preview
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as! SearchResultCell
-        cell.indexPath = indexPath
-        cell.delegate = self
+        cell.setupIndexPathAndDelegate(delegate: self, indexPath: indexPath)
         cell.configure(track: searchResults[indexPath.row])
         return cell
     }
@@ -101,8 +96,5 @@ extension SearchController : UICollectionViewDelegate,UICollectionViewDataSource
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 189, height: 250)
-    }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(rootView.bounds)
     }
 }

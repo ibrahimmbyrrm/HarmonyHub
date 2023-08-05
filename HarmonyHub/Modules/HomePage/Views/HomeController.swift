@@ -119,8 +119,7 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
             return cell
         case rootView.popularTracksCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "popularTracksCell", for: indexPath) as! PopularTracksCell
-            cell.indexPath = indexPath
-            cell.delegate = self
+            cell.setupIndexPathAndDelegate(delegate: self, indexPath: indexPath)
             let trackAtIndex = tracks[indexPath.row]
             cell.configure(track: trackAtIndex)
             return cell

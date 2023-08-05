@@ -9,10 +9,9 @@ import Foundation
 import UIKit
 
 
-typealias SearchViewPreviewDelegate = SearchController & PreviewButtonDelegate
 
 class SearchResultCell : UITableViewCell {
-    
+    //MARK: - UI Objects
     lazy var trackName : UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -30,9 +29,6 @@ class SearchResultCell : UITableViewCell {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
-    
-    
     lazy var infoStackView : UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [trackName,artistName])
         stackView.axis = .vertical
@@ -42,23 +38,23 @@ class SearchResultCell : UITableViewCell {
         stackView.backgroundColor = .black
         return stackView
     }()
-    
     lazy var playPreviewButton : UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("▶", for: .normal)
         button.layer.cornerRadius = 15
         button.backgroundColor = .black
         button.tintColor = .systemIndigo
-        button.addTarget(nil, action: #selector(playPreviewButtonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(playPreviewButtonTapped), for: .touchUpInside)
         return button
     }()
-    
-    var delegate : SearchViewPreviewDelegate?
+    //MARK: - Preview Playable Variables
+    weak var delegate : PreviewButtonDelegate?
     var indexPath : IndexPath?
     
     var ownerTrack : TracksDatum!
     var isPlaying = false
     
+    //MARK: - Initialize Methods
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .black
@@ -66,6 +62,7 @@ class SearchResultCell : UITableViewCell {
         setupTrackImageViewConstraints()
         setupTrackNameLabelConstraints()
         setupPlayPreviewButtonConstraints()
+        setupArtistNameLabelConstraints()
         listenToAudioManagerForMusicChanges()
         
     }
@@ -73,41 +70,17 @@ class SearchResultCell : UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func listenToAudioManagerForMusicChanges() {
-        AudioManager.shared.bind { url in
-            if url != self.ownerTrack.previewURL {
-                self.delegate?.rootView.restartTrackCellPreviewButton(url: url)
-                self.isPlaying = false
-            }
-        }
-    }
-    
+    //MARK: - Setup UI Methods
     func configure(track : TracksDatum) {
         guard let name = track.title,let image = track.album?.coverMedium,let artist = track.artist?.name else {return}
         DispatchQueue.main.async {
             self.artistName.text = artist
             self.trackName.text = name
             self.trackImage.setImage(with: image)
+            self.ownerTrack = track
         }
     }
-    
-    @objc func playPreviewButtonTapped() {
-        print("asd")
-        if isPlaying {
-            delegate?.handleCellsAudioOutput(output: .stop)
-            playPreviewButton.setTitle("▶", for: .normal)
-            isPlaying = false
-        }else {
-            guard let indexPath else {return}
-            delegate?.handleCellsAudioOutput(output: .play(indexPath))
-            self.isPlaying = true
-            playPreviewButton.setTitle("▐▐", for: .normal)
-        }
-    }
-    
-    
-    
+    //MARK: - Layout Methods
     private func setupTrackImageViewConstraints() {
         trackImage.snp.makeConstraints { make in
             make.leading.equalTo(self.snp.leading).offset(2)
@@ -121,7 +94,7 @@ class SearchResultCell : UITableViewCell {
         infoStackView.snp.makeConstraints { make in
             make.centerY.equalTo(self.snp.centerY)
             make.leading.equalTo(self.trackImage.snp.trailing).offset(10)
-            make.trailing.equalTo(self.playPreviewButton.snp.leading).inset(-10)
+            make.width.equalTo(120)
             make.height.equalTo(45)
         }
     }
@@ -146,8 +119,38 @@ class SearchResultCell : UITableViewCell {
     
     private func addSubviews() {
         [infoStackView,trackImage,playPreviewButton].forEach { v in
-            addSubview(v)
+            contentView.addSubview(v)
         }
+        contentView.bringSubviewToFront(playPreviewButton)
+    }
+}
+//MARK: - Preview Playable Methods
+extension SearchResultCell : PreviewPlayableCell {
+    
+   
+    @objc func playPreviewButtonTapped() {
+        if isPlaying {
+            delegate?.handleCellsAudioOutput(output: .stop)
+            playPreviewButton.setTitle("▶", for: .normal)
+            isPlaying = false
+        }else {
+            guard let indexPath else {return}
+            delegate?.handleCellsAudioOutput(output: .play(indexPath))
+            self.isPlaying = true
+            playPreviewButton.setTitle("▐▐", for: .normal)
+        }
+    }
+    func listenToAudioManagerForMusicChanges() {
+        AudioManager.shared.bind { url in
+            if url != self.ownerTrack.previewURL {
+                (self.delegate as! SearchController).rootView.restartTrackCellPreviewButton(url: url)
+                self.isPlaying = false
+            }
+        }
+    }
+    func setupIndexPathAndDelegate(delegate: PreviewButtonDelegate, indexPath: IndexPath) {
+        self.delegate = delegate
+        self.indexPath = indexPath
     }
 }
 
