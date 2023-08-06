@@ -19,11 +19,14 @@ enum EndPointItems<T : Decodable> {
     case trackDetail(Int)
     case search(String)
     case playlists
+    case playlistDetail(Int)
 }
 
 extension EndPointItems : EndPointType {
     var path: String {
         switch self {
+        case .playlistDetail(let playlistID):
+            return "playlist/\(playlistID)"
         case .chart:
             return "chart/"
         case .trackDetail(let trackId):

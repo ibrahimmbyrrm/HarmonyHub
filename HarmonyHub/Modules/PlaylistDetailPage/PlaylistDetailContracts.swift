@@ -19,6 +19,7 @@ protocol PlaylistDetailPresenterInterface : AnyObject {
 }
 protocol PlaylistDetailInteractorInterface {
     var presenter : PlaylistDetailPresenterInterface? {get set}
+    func fetchDetails(id : Int)
 }
 protocol PlaylistDetailRouterInterface {
     var view : UIViewController? {get set}

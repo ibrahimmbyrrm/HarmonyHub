@@ -14,6 +14,7 @@
 		801AD2032A7FBB2B00E06F79 /* PlaylistDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801AD2022A7FBB2B00E06F79 /* PlaylistDetailPresenter.swift */; };
 		801AD2072A7FBB3500E06F79 /* PlaylistDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801AD2062A7FBB3500E06F79 /* PlaylistDetailView.swift */; };
 		801AD2092A7FBB3B00E06F79 /* PlaylistDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801AD2082A7FBB3B00E06F79 /* PlaylistDetailController.swift */; };
+		801AD20C2A7FC2D900E06F79 /* Playlist Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801AD20B2A7FC2D900E06F79 /* Playlist Model.swift */; };
 		8025F1CF2A77F64900EA331F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1CE2A77F64900EA331F /* AppDelegate.swift */; };
 		8025F1D12A77F64900EA331F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8025F1D02A77F64900EA331F /* SceneDelegate.swift */; };
 		8025F1D82A77F64B00EA331F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8025F1D72A77F64B00EA331F /* Assets.xcassets */; };
@@ -86,6 +87,7 @@
 		801AD2022A7FBB2B00E06F79 /* PlaylistDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailPresenter.swift; sourceTree = "<group>"; };
 		801AD2062A7FBB3500E06F79 /* PlaylistDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailView.swift; sourceTree = "<group>"; };
 		801AD2082A7FBB3B00E06F79 /* PlaylistDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetailController.swift; sourceTree = "<group>"; };
+		801AD20B2A7FC2D900E06F79 /* Playlist Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Playlist Model.swift"; sourceTree = "<group>"; };
 		8025F1CB2A77F64900EA331F /* HarmonyHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarmonyHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8025F1CE2A77F64900EA331F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8025F1D02A77F64900EA331F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,14 @@
 			children = (
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		801AD20A2A7FC2CF00E06F79 /* PlaylistAPI */ = {
+			isa = PBXGroup;
+			children = (
+				801AD20B2A7FC2D900E06F79 /* Playlist Model.swift */,
+			);
+			path = PlaylistAPI;
 			sourceTree = "<group>";
 		};
 		8025F1C22A77F64900EA331F = {
@@ -333,6 +343,7 @@
 		8025F21E2A78640F00EA331F /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				801AD20A2A7FC2CF00E06F79 /* PlaylistAPI */,
 				8025F21F2A78645E00EA331F /* ChartAPI */,
 			);
 			path = Entities;
@@ -584,6 +595,7 @@
 				8025F2332A790F3100EA331F /* HomeView.swift in Sources */,
 				8025F20B2A77F7A800EA331F /* HomeRouter.swift in Sources */,
 				801AD1FF2A7FBB1E00E06F79 /* PlaylistDetailRouter.swift in Sources */,
+				801AD20C2A7FC2D900E06F79 /* Playlist Model.swift in Sources */,
 				8025F1CF2A77F64900EA331F /* AppDelegate.swift in Sources */,
 				8025F2442A79283F00EA331F /* SearchPresenter.swift in Sources */,
 				80B76CEF2A7D0EA400FC3CE6 /* SearchConstracts.swift in Sources */,

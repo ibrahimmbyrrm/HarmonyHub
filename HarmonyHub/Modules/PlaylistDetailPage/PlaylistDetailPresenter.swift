@@ -19,7 +19,6 @@ final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
     }
     
     func viewDidLoad() {
-        
     }
     
     func handleViewOutput(output: PlaylistDetailViewToPresenterOutput) {
