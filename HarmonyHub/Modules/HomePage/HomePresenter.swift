@@ -32,6 +32,8 @@ final class HomePresenter : HomePresenterInterface {
         switch output {
         case .loadData:
             interactor.fetchChart()
+        case .goToAlbumDetail(let albumId):
+            router.navigateTo(to: .toAlbum(albumId))
         }
     }
     

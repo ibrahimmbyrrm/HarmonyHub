@@ -13,15 +13,13 @@ typealias PlaylistDetailViewAndController = UIViewController & PlaylistDetailVie
 final class PlaylistDetailBuilder {
     
     static func buildModule(playlistID : Int) -> UIViewController {
-        var view : PlaylistDetailViewAndController = PlaylistDetailController()
+        let view : PlaylistDetailViewAndController = PlaylistDetailController()
         var router : PlaylistDetailRouterInterface = PlaylistDetailRouter()
         var interactor : PlaylistDetailInteractorInterface = PlaylistDetailInteractor(service: NetworkManager())
-        let presenter : PlaylistDetailPresenterInterface = PlaylistDetailPresenter(view: view, interactor: interactor, router: router)
+        let presenter : PlaylistDetailPresenterInterface = PlaylistDetailPresenter(id: playlistID,view: view, interactor: interactor, router: router)
         view.presenter = presenter
-        view.title = "\(playlistID)"
         router.view = view
         interactor.presenter = presenter
-        interactor.fetchDetails(id: playlistID)
         return view
     }
 }

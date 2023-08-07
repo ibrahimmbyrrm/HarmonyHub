@@ -41,7 +41,8 @@ class PopularTracksCell: UICollectionViewCell {
         return button
     }()
     
-    weak var delegate : PreviewButtonDelegate?
+    weak var controllerDelegate : PreviewButtonDelegate?
+    weak var rootViewDelegate : PreviewPlayerViewInterface?
     var indexPath : IndexPath?
     
     var ownerTrack : TracksDatum!
@@ -63,7 +64,7 @@ class PopularTracksCell: UICollectionViewCell {
             self.artistLabel.text = track.artist?.name
             self.trackTitle.text = track.title
             self.ownerTrack = track
-            guard let image = track.album?.coverMedium else {return}
+            guard let image = track.album.coverMedium else {return}
             self.trackImageView.setImage(with: image)
         }
     }
@@ -105,12 +106,12 @@ extension PopularTracksCell : PreviewPlayable {
     
     @objc func playPreviewButtonTapped() {
         if isPlaying {
-            delegate?.handleCellsAudioOutput(output: .stop)
+            controllerDelegate?.handleCellsAudioOutput(output: .stop)
             playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
             isPlaying = false
         }else {
             guard let indexPath else {return}
-            delegate?.handleCellsAudioOutput(output: .play(indexPath))
+            controllerDelegate?.handleCellsAudioOutput(output: .play(indexPath))
             self.isPlaying = true
             playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
         }
@@ -119,14 +120,15 @@ extension PopularTracksCell : PreviewPlayable {
     func listenToAudioManagerForMusicChanges() {
         AudioManager.shared.bind { url in
             if url != self.ownerTrack.previewURL {
-                (self.delegate as! HomeController).rootView.restartTrackCellPreviewButton(url: url)
+                self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
                 self.isPlaying = false
             }
         }
     }
     
-    func setupIndexPathAndDelegate(delegate: PreviewButtonDelegate, indexPath: IndexPath) {
-        self.delegate = delegate
+    func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewInterface,delegate: PreviewButtonDelegate, indexPath: IndexPath) {
+        self.rootViewDelegate = viewDelegate
+        self.controllerDelegate = delegate
         self.indexPath = indexPath
     }
 }

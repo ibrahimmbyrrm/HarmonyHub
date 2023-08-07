@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 extension UITableViewCell {
-    func asSearchResultCell() -> SearchResultCell {
-        if let newCell = self as? SearchResultCell {
+    func asTrackListCell() -> TrackListCell {
+        if let newCell = self as? TrackListCell {
             return newCell
         }else {
-            return SearchResultCell()
+            return TrackListCell()
         }
     }
 }

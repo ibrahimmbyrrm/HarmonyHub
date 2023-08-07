@@ -9,14 +9,15 @@ import Foundation
 import UIKit
 
 protocol PreviewPlayable {
-    var delegate : PreviewButtonDelegate? {get}
+    var controllerDelegate : PreviewButtonDelegate? {get}
+    var rootViewDelegate : PreviewPlayerViewInterface? {get set}
     var indexPath : IndexPath? {get}
     var ownerTrack : TracksDatum! {get}
     var isPlaying : Bool {get set}
     
+    func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewInterface,delegate: PreviewButtonDelegate, indexPath: IndexPath)
     func listenToAudioManagerForMusicChanges()
     func playPreviewButtonTapped()
-    func setupIndexPathAndDelegate(delegate : PreviewButtonDelegate, indexPath : IndexPath)
 }
 
 protocol PreviewButtonDelegate : AnyObject {

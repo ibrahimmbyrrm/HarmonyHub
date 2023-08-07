@@ -27,6 +27,6 @@ enum PreviewButtonIcons {
     static let pause = "▐▐"
 }
 enum FontNames {
-    static let ariel = "Ariel"
+    static let ariel = "Arial"
     static let rockwell = "Rockwell"
 }

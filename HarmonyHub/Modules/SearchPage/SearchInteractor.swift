@@ -20,8 +20,7 @@ final class SearchInteractor : SearchInteractorInterface {
         service.fetchData(type: EndPointItems<Playlists>.playlists) { result in
             switch result {
             case .success(let platlistData):
-                guard let data = platlistData.data else {return}
-                self.presenter?.handleInteractorOutput(output: .playlistsLoaded(data))
+                self.presenter?.handleInteractorOutput(output: .playlistsLoaded(platlistData.data))
             case .failure(let error):
                 print(error)
             }
@@ -39,8 +38,7 @@ final class SearchInteractor : SearchInteractorInterface {
         service.fetchData(type: EndPointItems<Tracks>.search(query)) { result in
             switch result {
             case .success(let trackData):
-                guard let data = trackData.data else {return}
-                self.presenter?.handleInteractorOutput(output: .queryResultsLoaded(data))
+                self.presenter?.handleInteractorOutput(output: .queryResultsLoaded(trackData.data))
             case .failure(let error):
                 print(error)
             }

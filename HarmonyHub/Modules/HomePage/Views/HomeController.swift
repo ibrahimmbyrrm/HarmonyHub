@@ -76,7 +76,16 @@ extension HomeController : HomeViewInterface , PreviewButtonDelegate{
 extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //Go to detail screen
+        switch collectionView {
+        case rootView.topAlbumsCollectionView:
+            self.presenter?.handleViewOutput(output: .goToAlbumDetail(albums[indexPath.row].id))
+        case rootView.artistsCollectionView:
+            print("go to artist")
+        case rootView.popularTracksCollectionView:
+            print("go to track")
+        default:
+            break
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -119,7 +128,7 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
             return cell
         case rootView.popularTracksCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeModuleConstants.popularTrackCell, for: indexPath) as! PopularTracksCell
-            cell.setupIndexPathAndDelegate(delegate: self, indexPath: indexPath)
+            cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
             let trackAtIndex = tracks[indexPath.row]
             cell.configure(track: trackAtIndex)
             return cell

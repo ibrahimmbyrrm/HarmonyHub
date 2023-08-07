@@ -7,7 +7,13 @@
 
 import Foundation
 import UIKit
-class SearchView: UIView {
+
+protocol PreviewPlayerViewInterface : AnyObject {
+    func restartTrackCellPreviewButton(url : URL)
+}
+
+
+class SearchView: UIView, PreviewPlayerViewInterface {
 
     lazy var scrollView = UIScrollView()
 
@@ -28,7 +34,7 @@ class SearchView: UIView {
     
     lazy var searchResultsTableView : UITableView = {
         var tableView = UITableView()
-        tableView.register(SearchResultCell.self, forCellReuseIdentifier: SearchModuleConstants.searchCell)
+        tableView.register(TrackListCell.self, forCellReuseIdentifier: SearchModuleConstants.searchCell)
         tableView.isHidden = true
         tableView.isUserInteractionEnabled = true
         return tableView
@@ -63,9 +69,9 @@ class SearchView: UIView {
     }
 
     func restartTrackCellPreviewButton(url : URL) {
-        searchResultsTableView.visibleCells.filter({$0.asSearchResultCell().ownerTrack.previewURL != url}).map( {
-            $0.asSearchResultCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
-                $0.asSearchResultCell().isPlaying = false
+        searchResultsTableView.visibleCells.filter({$0.asTrackListCell().ownerTrack.previewURL != url}).map( {
+            $0.asTrackListCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
+                $0.asTrackListCell().isPlaying = false
         })
     }
     

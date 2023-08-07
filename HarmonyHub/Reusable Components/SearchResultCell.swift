@@ -9,18 +9,17 @@ import Foundation
 import UIKit
 
 
-
-class SearchResultCell : UITableViewCell {
+class TrackListCell : UITableViewCell {
     //MARK: - UI Objects
     lazy var trackName : UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont(name: FontNames.ariel, size: 30)
+        label.font = UIFont(name: FontNames.ariel, size: 18)
         return label
     }()
     lazy var artistName : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontNames.ariel, size: 18)
+        label.font = UIFont(name: FontNames.ariel, size: 16)
         label.textColor = .gray
         return label
     }()
@@ -48,7 +47,8 @@ class SearchResultCell : UITableViewCell {
         return button
     }()
     //MARK: - Preview Playable Variables
-    weak var delegate : PreviewButtonDelegate?
+    weak var controllerDelegate : PreviewButtonDelegate?
+    weak var rootViewDelegate : PreviewPlayerViewInterface?
     var indexPath : IndexPath?
     
     var ownerTrack : TracksDatum!
@@ -71,10 +71,10 @@ class SearchResultCell : UITableViewCell {
     }
     //MARK: - Setup UI Methods
     func configure(track : TracksDatum) {
-        guard let name = track.title,let image = track.album?.coverMedium,let artist = track.artist?.name else {return}
+        guard let image = track.album.coverMedium,let artist = track.artist?.name else {return}
         DispatchQueue.main.async {
             self.artistName.text = artist
-            self.trackName.text = name
+            self.trackName.text = track.title
             self.trackImage.setImage(with: image)
             self.ownerTrack = track
         }
@@ -115,16 +115,16 @@ class SearchResultCell : UITableViewCell {
     }
 }
 //MARK: - Preview Playable Methods
-extension SearchResultCell : PreviewPlayable {
+extension TrackListCell : PreviewPlayable {
    
     @objc func playPreviewButtonTapped() {
         if isPlaying {
-            delegate?.handleCellsAudioOutput(output: .stop)
+            controllerDelegate?.handleCellsAudioOutput(output: .stop)
             playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
             isPlaying = false
         }else {
             guard let indexPath else {return}
-            delegate?.handleCellsAudioOutput(output: .play(indexPath))
+            controllerDelegate?.handleCellsAudioOutput(output: .play(indexPath))
             self.isPlaying = true
             playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
         }
@@ -132,13 +132,14 @@ extension SearchResultCell : PreviewPlayable {
     func listenToAudioManagerForMusicChanges() {
         AudioManager.shared.bind { url in
             if url != self.ownerTrack.previewURL {
-                (self.delegate as! SearchController).rootView.restartTrackCellPreviewButton(url: url)
+                self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
                 self.isPlaying = false
             }
         }
     }
-    func setupIndexPathAndDelegate(delegate: PreviewButtonDelegate, indexPath: IndexPath) {
-        self.delegate = delegate
+    func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewInterface,delegate: PreviewButtonDelegate, indexPath: IndexPath) {
+        self.rootViewDelegate = viewDelegate
+        self.controllerDelegate = delegate
         self.indexPath = indexPath
     }
 }

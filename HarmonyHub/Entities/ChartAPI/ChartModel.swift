@@ -22,7 +22,7 @@ struct Albums: Codable {
 
 // MARK: - AlbumsDatum
 struct AlbumsDatum: Codable {
-    let id: Int?
+    let id: Int
     let title: String?
     let link, cover: String?
     let coverSmall, coverMedium, coverBig, coverXl: String?
@@ -47,8 +47,8 @@ struct AlbumsDatum: Codable {
 
 // MARK: - ArtistElement
 struct ArtistElement: Codable {
-    let id: Int?
-    let name: String?
+    let id: Int
+    let name: String
     let link, picture: String?
     let pictureSmall, pictureMedium, pictureBig, pictureXl: String?
     let radio: Bool?
@@ -79,14 +79,14 @@ struct Artists: Codable {
 
 // MARK: - Playlists
 struct Playlists: Codable {
-    let data: [PlaylistsDatum]?
+    let data: [PlaylistsDatum]
     let total: Int?
 }
 
 // MARK: - PlaylistsDatum
 struct PlaylistsDatum: Codable {
     let id: Int
-    let title: String?
+    let title: String
     let datumPublic: Bool?
     let nbTracks: Int?
     let link, picture: String?
@@ -164,7 +164,7 @@ enum PurpleType: String, Codable {
 
 // MARK: - Tracks
 struct Tracks: Codable {
-    let data: [TracksDatum]?
+    let data: [TracksDatum]
     let total: Int?
 }
 
@@ -176,11 +176,11 @@ struct TracksDatum: Codable {
     let duration, rank: Int?
     let explicitLyrics: Bool?
     let explicitContentLyrics, explicitContentCover: Int?
-    let preview: String?
+    let preview: String
     let md5Image: String?
     let position: Int?
     let artist: ArtistElement?
-    let album: Album?
+    let album: Album
     let type: String?
 
     enum CodingKeys: String, CodingKey {
@@ -219,7 +219,6 @@ struct Album: Codable {
 
 extension TracksDatum {
     var previewURL : URL? {
-        guard let preview = self.preview else {return nil}
-        return URL(string: preview)
+        return URL(string: self.preview)
     }
 }

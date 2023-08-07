@@ -15,7 +15,7 @@ enum HomePresenterToViewOutput {
 }
 enum HomeViewToPresenterOutput {
     case loadData
-    
+    case goToAlbumDetail(Int)
 }
 
 enum TrackPreviewOutput {
@@ -53,5 +53,7 @@ protocol HomeRouterInterface {
     func navigateTo(to rotate : HomeRouterNavigations)
 }
 enum HomeRouterNavigations {
-    
+    case toAlbum(Int)
+    case toTrack(Int)
+    case toArtist(Int)
 }
