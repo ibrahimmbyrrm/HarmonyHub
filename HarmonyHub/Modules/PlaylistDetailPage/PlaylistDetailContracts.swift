@@ -14,17 +14,14 @@ protocol PlaylistDetailViewInterface : AnyObject {
     func setupNavigationController()
     func setDelegates()
 }
-protocol PlaylistDetailPresenterInterface : AnyObject {
-    func handleTrackPreviewOutput(output : TrackPreviewOutput)
+protocol PlaylistDetailPresenterInterface : AnyObject,PreviewPresenter {
     func handleInteractorOutput(output : PlaylistDetailInteractorToPresenterOutput)
     func handleViewOutput(output : PlaylistDetailViewToPresenterOutput)
     func viewDidLoad()
 }
-protocol PlaylistDetailInteractorInterface {
+protocol PlaylistDetailInteractorInterface : PreviewInteractor {
     var presenter : PlaylistDetailPresenterInterface? {get set}
     func fetchDetails(id : Int)
-    func playPreview(url : URL)
-    func stopPreview()
 }
 protocol PlaylistDetailRouterInterface {
     var view : UIViewController? {get set}

@@ -26,6 +26,25 @@ final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
         view?.setupNavigationController()
     }
     
+    func handleViewOutput(output: PlaylistDetailViewToPresenterOutput) {
+        switch output {
+        case .loadPlaylistDetails(let id):
+            interactor.fetchDetails(id: id)
+        }
+    }
+    
+    func handleInteractorOutput(output: PlaylistDetailInteractorToPresenterOutput) {
+        switch output {
+        case .playlistDownloaded(let detailedPlaylist):
+            print(detailedPlaylist.pictureMedium)
+            self.view?.handlePresenterOutput(output: .playlistDetailsLoaded(detailedPlaylist))
+        }
+    }
+    //MARK: - PreviewPresenter Methods
+    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+        interactor.setupAudioServiceDelegate(delegate: delegate)
+    }
+    
     func handleTrackPreviewOutput(output : TrackPreviewOutput) {
         switch output {
         case .playPreview(let track):
@@ -36,17 +55,4 @@ final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
         }
     }
     
-    func handleViewOutput(output: PlaylistDetailViewToPresenterOutput) {
-        switch output {
-        case .loadPlaylistDetails(let id):
-            interactor.fetchDetails(id: id)
-        }
-    }
-    func handleInteractorOutput(output: PlaylistDetailInteractorToPresenterOutput) {
-        switch output {
-        case .playlistDownloaded(let detailedPlaylist):
-            print(detailedPlaylist.pictureMedium)
-            self.view?.handlePresenterOutput(output: .playlistDetailsLoaded(detailedPlaylist))
-        }
-    }
 }

@@ -12,12 +12,12 @@ protocol AlbumDetailViewInterface : AnyObject {
     var presenter : AlbumDetailPresenterInterface? {get set}
     func handlePresenterOutput(output : AlbumDetailPresenterToViewOutput)
 }
-protocol AlbumDetailPresenterInterface : AnyObject {
+protocol AlbumDetailPresenterInterface : AnyObject,PreviewPresenter {
     func viewDidLoad()
     func handleViewOutput(output : AlbumDetailViewOutput)
     func handleInteractorOutput(output : AlbumDetailInteractorOutput)
 }
-protocol AlbumDetailInteractorInterface {
+protocol AlbumDetailInteractorInterface : PreviewInteractor {
     var presenter : AlbumDetailPresenterInterface? {get set}
     func fetchAlbumDetail(id : Int)
 }

@@ -128,6 +128,7 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
             return cell
         case rootView.popularTracksCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeModuleConstants.popularTrackCell, for: indexPath) as! PopularTracksCell
+            presenter?.implementPreviewPlayableDelegate(delegate: cell as PreviewPlayable)
             cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
             let trackAtIndex = tracks[indexPath.row]
             cell.configure(track: trackAtIndex)

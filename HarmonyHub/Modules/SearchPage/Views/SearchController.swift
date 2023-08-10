@@ -88,6 +88,7 @@ extension SearchController : UITableViewDelegate, UITableViewDataSource, Preview
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.searchCell, for: indexPath) as! TrackListCell
+        presenter?.implementPreviewPlayableDelegate(delegate: cell as PreviewPlayable)
         cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
         cell.configure(track: searchResults[indexPath.row])
         return cell

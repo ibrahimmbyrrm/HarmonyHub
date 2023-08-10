@@ -149,7 +149,7 @@ class PlaylistDetailView : UIView, PreviewPlayerViewInterface {
             make.leading.equalTo(self.scrollView.snp.leading).offset(5)
             make.height.equalTo(30)
             make.top.equalTo(self.playlistCover.snp.bottom).offset(5)
-            make.height.equalTo(300)
+            make.width.equalTo(300)
         }
     }
     

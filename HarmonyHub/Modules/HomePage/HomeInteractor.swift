@@ -11,9 +11,10 @@ import Alamofire
 final class HomeInteractor : HomeInteractorInterface {
     weak var presenter: HomePresenterInterface?
     var service: NetworkService
-    
-    init(service : NetworkService) {
+    var audioService: AudioService
+    init(service : NetworkService,audioService : AudioService) {
         self.service = service
+        self.audioService = audioService
     }
     
     func fetchChart() {
@@ -26,10 +27,15 @@ final class HomeInteractor : HomeInteractorInterface {
             }
         }
     }
+    //MARK: - PreviewInteractor Methods
+    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+        self.audioService.previewPlayerDelegate = delegate
+    }
+    
     func playPreview(url : URL) {
-        AudioManager.shared.insertQueueAndPlay(url: url)
+        audioService.insertQueueAndPlay(url: url)
     }
     func stopPreview() {
-        AudioManager.shared.stopAndClearQueue()
+        audioService.stopAndClearQueue()
     }
 }

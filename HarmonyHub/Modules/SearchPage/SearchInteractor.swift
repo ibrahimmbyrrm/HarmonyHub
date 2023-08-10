@@ -11,27 +11,10 @@ final class SearchInteractor : SearchInteractorInterface {
     
     weak var presenter: SearchPresenterInterface?
     var service : NetworkService
-    
-    init(service : NetworkService) {
+    var audioService: AudioService
+    init(service : NetworkService,audioService : AudioService) {
         self.service = service
-    }
-    
-    func fetchPlaylists() {
-        service.fetchData(type: EndPointItems<Playlists>.playlists) { result in
-            switch result {
-            case .success(let platlistData):
-                self.presenter?.handleInteractorOutput(output: .playlistsLoaded(platlistData.data))
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func playPreview(url : URL) {
-        AudioManager.shared.insertQueueAndPlay(url: url)
-    }
-    func stopPreview() {
-        AudioManager.shared.stopAndClearQueue()
+        self.audioService = audioService
     }
     
     func fetchQueryResults(_ query : String) {
@@ -44,4 +27,28 @@ final class SearchInteractor : SearchInteractorInterface {
             }
         }
     }
+    
+    func fetchPlaylists() {
+        service.fetchData(type: EndPointItems<Playlists>.playlists) { result in
+            switch result {
+            case .success(let platlistData):
+                self.presenter?.handleInteractorOutput(output: .playlistsLoaded(platlistData.data))
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    //MARK: - PreviewInteractor Methods
+    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+        self.audioService.previewPlayerDelegate = delegate
+    }
+    
+    func playPreview(url : URL) {
+        audioService.insertQueueAndPlay(url: url)
+    }
+    
+    func stopPreview() {
+        audioService.stopAndClearQueue()
+    }
+    
 }

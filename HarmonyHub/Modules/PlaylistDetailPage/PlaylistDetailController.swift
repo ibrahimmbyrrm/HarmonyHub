@@ -62,6 +62,7 @@ extension PlaylistDetailController : UITableViewDelegate,UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as! TrackListCell
         let itemAtIndex = playlist.tracks.data[indexPath.row]
+        presenter?.implementPreviewPlayableDelegate(delegate: cell as PreviewPlayable)
         cell.configure(track: itemAtIndex)
         cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
         return cell

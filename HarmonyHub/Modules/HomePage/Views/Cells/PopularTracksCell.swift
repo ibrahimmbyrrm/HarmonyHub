@@ -52,7 +52,6 @@ class PopularTracksCell: UICollectionViewCell {
         super.init(frame: frame)
         addSubviews()
         setupImageViewConstraints()
-        listenToAudioManagerForMusicChanges()
     }
     
     required init?(coder: NSCoder) {
@@ -117,13 +116,12 @@ extension PopularTracksCell : PreviewPlayable {
         }
     }
     
-    func listenToAudioManagerForMusicChanges() {
-        AudioManager.shared.bind { url in
-            if url != self.ownerTrack.previewURL {
-                self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
-                self.isPlaying = false
-            }
+    func listenToAudioManagerForMusicChanges(url : URL) {
+        if url != self.ownerTrack.previewURL {
+            self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
+            self.isPlaying = false
         }
+        
     }
     
     func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewInterface,delegate: PreviewButtonDelegate, indexPath: IndexPath) {

@@ -12,7 +12,7 @@ import UIKit
 final class AlbumDetailPresente : AlbumDetailPresenterInterface {
     
     private weak var view : AlbumDetailViewInterface?
-    private let interactor : AlbumDetailInteractorInterface
+    private var interactor : AlbumDetailInteractorInterface
     private let router : AlbumDetailRouterInterface
     private let selectedAlbumID : Int
     
@@ -26,13 +26,31 @@ final class AlbumDetailPresente : AlbumDetailPresenterInterface {
     func viewDidLoad() {
         interactor.fetchAlbumDetail(id: self.selectedAlbumID)
     }
+    
     func handleViewOutput(output: AlbumDetailViewOutput) {
         
     }
+    
     func handleInteractorOutput(output: AlbumDetailInteractorOutput) {
         switch output {
         case .albumLoaded(let album):
             view?.handlePresenterOutput(output: .albumLoaded(album))
         }
     }
+    //MARK: - PreviewPresenter Methods
+    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+        interactor.setupAudioServiceDelegate(delegate: delegate)
+    }
+    
+    func handleTrackPreviewOutput(output: TrackPreviewOutput) {
+        switch output {
+        case .playPreview(let track):
+            guard let url = track.previewURL else {return}
+            self.interactor.playPreview(url: url)
+        case .stopPreview:
+            self.interactor.stopPreview()
+        }
+    }
+    
+    
 }

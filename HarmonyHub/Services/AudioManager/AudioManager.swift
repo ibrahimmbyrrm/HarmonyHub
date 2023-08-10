@@ -11,30 +11,21 @@ import AVFoundation
 protocol AudioService {
     func stopAndClearQueue()
     func insertQueueAndPlay(url : URL)
-    func bind(_ listener : @escaping (URL)->Void)
     
     var playerQueue : AVPlayer {get set}
     var currentTrack : URL? {get set}
-    var listener : ((URL) -> Void)? {get set}
+    var previewPlayerDelegate : PreviewPlayable? {get set}
 }
 
 class AudioManager {
     
-    static let shared = AudioManager()
-    private init() {}
-    
     lazy var playerQueue : AVPlayer = AVPlayer()
     lazy var currentTrack : URL? = nil
-    
-    var listener : ((URL) -> Void)?
-    func bind(_ listener : @escaping (URL)->Void) {
-        self.listener = listener
-    }
-    
+    weak var previewPlayerDelegate : PreviewPlayable?
     
 }
 extension AudioManager : AudioService {
-    
+
     func stopAndClearQueue() {
         currentTrack = nil
         self.playerQueue.replaceCurrentItem(with: nil)
@@ -43,7 +34,7 @@ extension AudioManager : AudioService {
     
     func insertQueueAndPlay(url : URL) {
         if currentTrack != nil {
-            listener!(url)
+            previewPlayerDelegate?.listenToAudioManagerForMusicChanges(url: url)
             stopAndClearQueue()
         }
         self.currentTrack = url
@@ -51,8 +42,7 @@ extension AudioManager : AudioService {
         self.playerQueue.replaceCurrentItem(with: playerItem)
         self.playerQueue.play()
         DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            guard let listener = self.listener else {return}
-            listener("https://samplelib.com/lib/preview/mp3/sample-12s.mp3".convertToUrl()!)
+            self.previewPlayerDelegate?.listenToAudioManagerForMusicChanges(url: "https://samplelib.com/lib/preview/mp3/sample-12s.mp3".convertToUrl()!)
         }
         
     }

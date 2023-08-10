@@ -28,6 +28,13 @@ final class HomePresenter : HomePresenterInterface {
         view?.setupMediaButtonsActions()
     }
     
+    func handleInteractorOutput(chart : Welcome) {
+        guard let albums = chart.albums?.data,let artists = chart.artists?.data,let tracks = chart.tracks?.data else {return}
+        view?.handlePresenterOutput(output: .albumLoaded(albums))
+        view?.handlePresenterOutput(output: .artistsLoaded(artists))
+        view?.handlePresenterOutput(output: .tracksLoaded(tracks))
+    }
+    
     func handleViewOutput(output: HomeViewToPresenterOutput) {
         switch output {
         case .loadData:
@@ -36,7 +43,7 @@ final class HomePresenter : HomePresenterInterface {
             router.navigateTo(to: .toAlbum(albumId))
         }
     }
-    
+    //MARK: - PreviewPresenter Methods
     func handleTrackPreviewOutput(output : TrackPreviewOutput) {
         switch output {
         case .playPreview(let track):
@@ -48,10 +55,9 @@ final class HomePresenter : HomePresenterInterface {
         
     }
     
-    func handleInteractorOutput(chart : Welcome) {
-        guard let albums = chart.albums?.data,let artists = chart.artists?.data,let tracks = chart.tracks?.data else {return}
-        view?.handlePresenterOutput(output: .albumLoaded(albums))
-        view?.handlePresenterOutput(output: .artistsLoaded(artists))
-        view?.handlePresenterOutput(output: .tracksLoaded(tracks))
+    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+        interactor.setupAudioServiceDelegate(delegate: delegate)
     }
+    
+    
 }

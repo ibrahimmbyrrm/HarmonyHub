@@ -14,7 +14,7 @@ final class AlbumDetailBuilder {
     
     static func buildModule(albumId : Int) -> UIViewController {
         var view : AlbumDetailViewInterfaceAndController = AlbumDetailController()
-        var interactor : AlbumDetailInteractorInterface  = AlbumDetailInteractor(service: NetworkManager())
+        var interactor : AlbumDetailInteractorInterface  = AlbumDetailInteractor(service: NetworkManager(),audioService: AudioManager())
         var router : AlbumDetailRouterInterface = AlbumDetailRouter()
         let presenter : AlbumDetailPresenterInterface = AlbumDetailPresente(selectedAlbumID: albumId, view: view, interactor: interactor, router: router)
         view.presenter = presenter

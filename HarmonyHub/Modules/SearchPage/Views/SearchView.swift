@@ -8,11 +8,6 @@
 import Foundation
 import UIKit
 
-protocol PreviewPlayerViewInterface : AnyObject {
-    func restartTrackCellPreviewButton(url : URL)
-}
-
-
 class SearchView: UIView, PreviewPlayerViewInterface {
 
     lazy var scrollView = UIScrollView()

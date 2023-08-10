@@ -63,7 +63,6 @@ class TrackListCell : UITableViewCell {
         setupTrackImageViewConstraints()
         setupStackViewConstraints()
         setupPlayPreviewButtonConstraints()
-        listenToAudioManagerForMusicChanges()
     }
     
     required init?(coder: NSCoder) {
@@ -116,7 +115,7 @@ class TrackListCell : UITableViewCell {
 }
 //MARK: - Preview Playable Methods
 extension TrackListCell : PreviewPlayable {
-   
+    
     @objc func playPreviewButtonTapped() {
         if isPlaying {
             controllerDelegate?.handleCellsAudioOutput(output: .stop)
@@ -129,14 +128,14 @@ extension TrackListCell : PreviewPlayable {
             playPreviewButton.setTitle(PreviewButtonIcons.pause, for: .normal)
         }
     }
-    func listenToAudioManagerForMusicChanges() {
-        AudioManager.shared.bind { url in
-            if url != self.ownerTrack.previewURL {
-                self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
-                self.isPlaying = false
-            }
+    
+    func listenToAudioManagerForMusicChanges(url : URL) {
+        if url != self.ownerTrack.previewURL {
+            self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
+            self.isPlaying = false
         }
     }
+    
     func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewInterface,delegate: PreviewButtonDelegate, indexPath: IndexPath) {
         self.rootViewDelegate = viewDelegate
         self.controllerDelegate = delegate

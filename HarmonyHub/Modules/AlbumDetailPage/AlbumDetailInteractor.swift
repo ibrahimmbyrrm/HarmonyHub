@@ -12,12 +12,13 @@ import Foundation
 final class AlbumDetailInteractor : AlbumDetailInteractorInterface {
     
     var service : NetworkService
-    
-    init(service : NetworkService) {
-        self.service = service
-    }
-
+    var audioService : AudioService
     weak var presenter: AlbumDetailPresenterInterface?
+    
+    init(service : NetworkService,audioService : AudioService) {
+        self.service = service
+        self.audioService = audioService
+    }
     
     func fetchAlbumDetail(id: Int) {
         service.fetchData(type: EndPointItems<BaseAlbum>.albumDetail(id)) { [weak self] result in
@@ -30,5 +31,19 @@ final class AlbumDetailInteractor : AlbumDetailInteractorInterface {
             }
         }
     }
+    //MARK: - PreviewInteractor Methods
+    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+        self.audioService.previewPlayerDelegate = delegate
+    }
+
+    func playPreview(url: URL) {
+        audioService.insertQueueAndPlay(url: url)
+    }
+    
+    func stopPreview() {
+        audioService.stopAndClearQueue()
+    }
+    
+    
     
 }

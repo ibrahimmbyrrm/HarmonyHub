@@ -24,14 +24,12 @@ struct BaseAlbum: Codable {
     let label: String
     let nbTracks, duration, fans: Int
     let releaseDate: String
-    let recordType: RecordTypeEnum
     let available: Bool
     let tracklist: String
     let explicitLyrics: Bool
     let explicitContentLyrics, explicitContentCover: Int
     let contributors: [Contributor]
     let artist: ArtistOfAlbum
-    let type: RecordTypeEnum
     let tracks: Tracks
 
     enum CodingKeys: String, CodingKey {
@@ -45,12 +43,11 @@ struct BaseAlbum: Codable {
         case nbTracks = "nb_tracks"
         case duration, fans
         case releaseDate = "release_date"
-        case recordType = "record_type"
         case available, tracklist
         case explicitLyrics = "explicit_lyrics"
         case explicitContentLyrics = "explicit_content_lyrics"
         case explicitContentCover = "explicit_content_cover"
-        case contributors, artist, type, tracks
+        case contributors, artist, tracks
     }
 }
 
@@ -90,7 +87,4 @@ struct Contributor: Codable {
     }
 }
 
-enum RecordTypeEnum: String, Codable {
-    case album = "album"
-}
 

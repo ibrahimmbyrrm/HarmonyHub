@@ -11,9 +11,11 @@ final class PlaylistDetailInteractor : PlaylistDetailInteractorInterface {
     
     var service : NetworkService
     weak var presenter: PlaylistDetailPresenterInterface?
+    var audioService: AudioService
     
-    init(service : NetworkService) {
+    init(service : NetworkService,audioService : AudioService) {
         self.service = service
+        self.audioService = audioService
     }
     
     func fetchDetails(id : Int) {
@@ -27,10 +29,16 @@ final class PlaylistDetailInteractor : PlaylistDetailInteractorInterface {
             }
         }
     }
+    //MARK: - PreviewInteractor Methods
+    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+        self.audioService.previewPlayerDelegate = delegate
+    }
+    
+    
     func playPreview(url: URL) {
-        AudioManager.shared.insertQueueAndPlay(url: url)
+        audioService.insertQueueAndPlay(url: url)
     }
     func stopPreview() {
-        AudioManager.shared.stopAndClearQueue()
+        audioService.stopAndClearQueue()
     }
 }

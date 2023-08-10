@@ -24,6 +24,15 @@ final class SearchPresenter : SearchPresenterInterface {
         view?.setupNavigationController()
     }
     
+    func handleInteractorOutput(output: SearchInteractorToPresenterOutput) {
+        switch output {
+        case .playlistsLoaded(let playlists):
+            view?.handlePresenterOutput(output: .playlistsLoaded(playlists))
+        case .queryResultsLoaded(let tracks):
+            view?.handlePresenterOutput(output: .queryResultsLoaded(tracks))
+        }
+    }
+    
     func handleViewOutput(output: SearchViewToPresenterOutput) {
         switch output {
         case .loadPlaylists:
@@ -36,7 +45,7 @@ final class SearchPresenter : SearchPresenterInterface {
             router.navigateTo(to: .toTrack(selectedTrack.id))
         }
     }
-    
+    //MARK: - PreviewPresenter Methods
     func handleTrackPreviewOutput(output : TrackPreviewOutput) {
         switch output {
         case .playPreview(let track):
@@ -47,14 +56,8 @@ final class SearchPresenter : SearchPresenterInterface {
         }
     }
     
-    func handleInteractorOutput(output: SearchInteractorToPresenterOutput) {
-        switch output {
-        case .playlistsLoaded(let playlists):
-            view?.handlePresenterOutput(output: .playlistsLoaded(playlists))
-        case .queryResultsLoaded(let tracks):
-            view?.handlePresenterOutput(output: .queryResultsLoaded(tracks))
-        }
+    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+        interactor.setupAudioServiceDelegate(delegate: delegate)
     }
-    
     
 }

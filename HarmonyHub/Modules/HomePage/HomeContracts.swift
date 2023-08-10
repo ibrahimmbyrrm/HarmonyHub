@@ -34,18 +34,15 @@ protocol HomeViewInterface : AnyObject {
     func setupMediaButtonsActions()
     func setDelegates()
 }
-protocol HomePresenterInterface : AnyObject {
+protocol HomePresenterInterface : AnyObject,PreviewPresenter {
     func handleInteractorOutput(chart : Welcome)
     func handleViewOutput(output : HomeViewToPresenterOutput)
-    func handleTrackPreviewOutput(output : TrackPreviewOutput)
     func viewDidLoad()
 }
-protocol HomeInteractorInterface {
+protocol HomeInteractorInterface : PreviewInteractor {
     var presenter : HomePresenterInterface? {get set}
     var service : NetworkService {get set}
     func fetchChart()
-    func playPreview(url : URL)
-    func stopPreview()
 }
 protocol HomeRouterInterface {
     var view : UIViewController? {get set}
