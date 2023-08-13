@@ -23,9 +23,10 @@ final class HomePresenter : HomePresenterInterface {
     }
     
     func viewDidLoad() {
-        view?.setDelegates()
-        view?.setupNavigationController()
-        view?.setupMediaButtonsActions()
+        self.view?.setDelegates()
+        self.view?.setupNavigationController()
+        self.view?.setupMediaButtonsActions()
+        self.view?.getData()
     }
     
     func handleInteractorOutput(chart : Welcome) {
@@ -41,6 +42,8 @@ final class HomePresenter : HomePresenterInterface {
             interactor.fetchChart()
         case .goToAlbumDetail(let albumId):
             router.navigateTo(to: .toAlbum(albumId))
+        case .goToArtistDetail(let artistID):
+            router.navigateTo(to: .toArtist(artistID))
         }
     }
     //MARK: - PreviewPresenter Methods
@@ -55,7 +58,7 @@ final class HomePresenter : HomePresenterInterface {
         
     }
     
-    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+    func transferPreviewPlayableCellToInteractor(delegate: PreviewPlayableCellClient) {
         interactor.setupAudioServiceDelegate(delegate: delegate)
     }
     

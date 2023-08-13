@@ -29,14 +29,15 @@ protocol SearchViewInterface : AnyObject {
     var presenter : SearchPresenterInterface? {get set}
     func setupNavigationController()
     func setDelegates()
+    func getPlaylists()
     func handlePresenterOutput(output : SearchPresenterToViewOutput)
 }
-protocol SearchPresenterInterface : AnyObject,PreviewPresenter {
+protocol SearchPresenterInterface : AnyObject,PreviewPlayerPresenterClient {
     func viewDidLoad()
     func handleViewOutput(output : SearchViewToPresenterOutput)
     func handleInteractorOutput(output : SearchInteractorToPresenterOutput)
 }
-protocol SearchInteractorInterface : PreviewInteractor {
+protocol SearchInteractorInterface : PreviewPlayerInteractorClient {
     var presenter : SearchPresenterInterface? {get set}
     func fetchPlaylists()
     func fetchQueryResults(_ query : String)

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AlbumDetailView : UIView, PreviewPlayerViewInterface {
+class AlbumDetailView : UIView, PreviewPlayerViewClient {
     
     lazy var albumCover : UIImageView = {
         let imageView = UIImageView()
@@ -35,7 +35,7 @@ class AlbumDetailView : UIView, PreviewPlayerViewInterface {
         let tableView = UITableView()
         tableView.backgroundColor = .black
         tableView.isScrollEnabled = true
-        tableView.register(TrackListCell.self, forCellReuseIdentifier: "trackCell")
+        tableView.register(TrackListCell.self, forCellReuseIdentifier: AlbumDetailModuleConstants.trackCell)
         return tableView
     }()
     override init(frame: CGRect) {

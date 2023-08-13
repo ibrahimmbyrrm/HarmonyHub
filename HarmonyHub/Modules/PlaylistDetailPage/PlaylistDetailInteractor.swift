@@ -30,14 +30,14 @@ final class PlaylistDetailInteractor : PlaylistDetailInteractorInterface {
         }
     }
     //MARK: - PreviewInteractor Methods
-    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+    func setupAudioServiceDelegate(delegate: PreviewPlayableCellClient) {
         self.audioService.previewPlayerDelegate = delegate
     }
-    
     
     func playPreview(url: URL) {
         audioService.insertQueueAndPlay(url: url)
     }
+    
     func stopPreview() {
         audioService.stopAndClearQueue()
     }

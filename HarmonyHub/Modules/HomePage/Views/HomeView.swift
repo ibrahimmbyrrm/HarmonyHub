@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class HomeView : UIView, PreviewPlayerViewInterface {
+class HomeView : UIView, PreviewPlayerViewClient {
     //MARK: - UI Objects
     lazy var topAlbumsCollectionView : UICollectionView = {
         var layout = UICollectionViewFlowLayout()

@@ -14,9 +14,9 @@ final class HomeRouter : HomeRouterInterface{
     func navigateTo(to rotate: HomeRouterNavigations) {
         switch rotate {
         case .toAlbum(let albumId):
-            let detailPage = AlbumDetailBuilder.buildModule(albumId: albumId)
-            view?.navigationController?.pushViewController(detailPage, animated: true)
+            view?.navigationController?.pushViewController(AlbumDetailBuilder.buildModule(albumId: albumId), animated: false)
         case .toArtist(let artistId):
+            view?.navigationController?.pushViewController(ArtistDetailBuilder.buildModule(artistID: artistId), animated: false)
             print("going to artist with \(artistId) id")
         case .toTrack(let trackId):
             print("going to track with \(trackId) id")

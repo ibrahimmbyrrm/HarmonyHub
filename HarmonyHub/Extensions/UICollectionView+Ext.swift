@@ -16,5 +16,4 @@ extension UICollectionViewCell {
             return PopularTracksCell()
         }
     }
-    
 }

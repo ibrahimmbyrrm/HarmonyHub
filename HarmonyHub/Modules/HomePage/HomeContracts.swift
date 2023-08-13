@@ -16,6 +16,7 @@ enum HomePresenterToViewOutput {
 enum HomeViewToPresenterOutput {
     case loadData
     case goToAlbumDetail(Int)
+    case goToArtistDetail(Int)
 }
 
 enum TrackPreviewOutput {
@@ -33,15 +34,15 @@ protocol HomeViewInterface : AnyObject {
     func setupNavigationController()
     func setupMediaButtonsActions()
     func setDelegates()
+    func getData()
 }
-protocol HomePresenterInterface : AnyObject,PreviewPresenter {
+protocol HomePresenterInterface : AnyObject,PreviewPlayerPresenterClient {
     func handleInteractorOutput(chart : Welcome)
     func handleViewOutput(output : HomeViewToPresenterOutput)
     func viewDidLoad()
 }
-protocol HomeInteractorInterface : PreviewInteractor {
+protocol HomeInteractorInterface : PreviewPlayerInteractorClient {
     var presenter : HomePresenterInterface? {get set}
-    var service : NetworkService {get set}
     func fetchChart()
 }
 protocol HomeRouterInterface {

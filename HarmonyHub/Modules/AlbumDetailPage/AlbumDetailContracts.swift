@@ -11,13 +11,16 @@ import UIKit
 protocol AlbumDetailViewInterface : AnyObject {
     var presenter : AlbumDetailPresenterInterface? {get set}
     func handlePresenterOutput(output : AlbumDetailPresenterToViewOutput)
+    func setDelegates()
+    func getDetails()
+    func setupNavigationController()
 }
-protocol AlbumDetailPresenterInterface : AnyObject,PreviewPresenter {
+protocol AlbumDetailPresenterInterface : AnyObject,PreviewPlayerPresenterClient {
     func viewDidLoad()
     func handleViewOutput(output : AlbumDetailViewOutput)
     func handleInteractorOutput(output : AlbumDetailInteractorOutput)
 }
-protocol AlbumDetailInteractorInterface : PreviewInteractor {
+protocol AlbumDetailInteractorInterface : PreviewPlayerInteractorClient {
     var presenter : AlbumDetailPresenterInterface? {get set}
     func fetchAlbumDetail(id : Int)
 }
@@ -32,5 +35,5 @@ enum AlbumDetailInteractorOutput {
     case albumLoaded(BaseAlbum)
 }
 enum AlbumDetailViewOutput {
-    
+    case fetchDetails
 }

@@ -21,15 +21,15 @@ final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
     }
     
     func viewDidLoad() {
-        interactor.fetchDetails(id: self.selectedID)
         view?.setDelegates()
         view?.setupNavigationController()
+        view?.getDetails()
     }
     
     func handleViewOutput(output: PlaylistDetailViewToPresenterOutput) {
         switch output {
-        case .loadPlaylistDetails(let id):
-            interactor.fetchDetails(id: id)
+        case .loadPlaylistDetails:
+            interactor.fetchDetails(id: self.selectedID)
         }
     }
     
@@ -41,7 +41,7 @@ final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
         }
     }
     //MARK: - PreviewPresenter Methods
-    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+    func transferPreviewPlayableCellToInteractor(delegate: PreviewPlayableCellClient) {
         interactor.setupAudioServiceDelegate(delegate: delegate)
     }
     

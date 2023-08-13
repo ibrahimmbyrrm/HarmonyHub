@@ -8,24 +8,12 @@
 import Foundation
 import AVFoundation
 
-protocol AudioService {
-    func stopAndClearQueue()
-    func insertQueueAndPlay(url : URL)
-    
-    var playerQueue : AVPlayer {get set}
-    var currentTrack : URL? {get set}
-    var previewPlayerDelegate : PreviewPlayable? {get set}
-}
-
-class AudioManager {
+class AudioManager : AudioService {
     
     lazy var playerQueue : AVPlayer = AVPlayer()
     lazy var currentTrack : URL? = nil
-    weak var previewPlayerDelegate : PreviewPlayable?
+    weak var previewPlayerDelegate : PreviewPlayableCellClient?
     
-}
-extension AudioManager : AudioService {
-
     func stopAndClearQueue() {
         currentTrack = nil
         self.playerQueue.replaceCurrentItem(with: nil)

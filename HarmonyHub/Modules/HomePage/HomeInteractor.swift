@@ -12,11 +12,11 @@ final class HomeInteractor : HomeInteractorInterface {
     weak var presenter: HomePresenterInterface?
     var service: NetworkService
     var audioService: AudioService
+    
     init(service : NetworkService,audioService : AudioService) {
         self.service = service
         self.audioService = audioService
     }
-    
     func fetchChart() {
         service.fetchData(type: EndPointItems<Welcome>.chart) { result in
             switch result {
@@ -28,7 +28,7 @@ final class HomeInteractor : HomeInteractorInterface {
         }
     }
     //MARK: - PreviewInteractor Methods
-    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+    func setupAudioServiceDelegate(delegate: PreviewPlayableCellClient) {
         self.audioService.previewPlayerDelegate = delegate
     }
     

@@ -11,6 +11,7 @@ enum SearchModuleConstants {
     static let pageTitle = "Let's Discover"
     static let searchCell = "searchCell"
     static let playlistCell = "playlistCell"
+    static let playlistTitle = "Playlist"
     static let searchBarPlaceholder = "What do you want to listen ?"
 }
 enum HomeModuleConstants {
@@ -20,6 +21,11 @@ enum HomeModuleConstants {
     static let popularTrackCell = "popularTracksCell"
     static let artistTitle = "Artists"
     static let tracksTitle = "Popular Tracks"
+}
+
+enum AlbumDetailModuleConstants {
+    static let title = "Album"
+    static let trackCell = "trackCell"
 }
 
 enum PreviewButtonIcons {

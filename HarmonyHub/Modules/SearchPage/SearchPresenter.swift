@@ -22,6 +22,7 @@ final class SearchPresenter : SearchPresenterInterface {
     func viewDidLoad() {
         view?.setDelegates()
         view?.setupNavigationController()
+        view?.getPlaylists()
     }
     
     func handleInteractorOutput(output: SearchInteractorToPresenterOutput) {
@@ -56,7 +57,7 @@ final class SearchPresenter : SearchPresenterInterface {
         }
     }
     
-    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+    func transferPreviewPlayableCellToInteractor(delegate: PreviewPlayableCellClient) {
         interactor.setupAudioServiceDelegate(delegate: delegate)
     }
     

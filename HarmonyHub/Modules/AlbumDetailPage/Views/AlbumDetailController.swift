@@ -16,12 +16,25 @@ final class AlbumDetailController : BaseViewController<AlbumDetailView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
+        
+    }
+    
+    func getDetails() {
+        presenter?.handleViewOutput(output: .fetchDetails)
+    }
+    
+    func setupNavigationController() {
+        title = AlbumDetailModuleConstants.title
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
+    func setDelegates() {
         rootView.tracksTableView.delegate = self
         rootView.tracksTableView.dataSource = self
     }
     
 }
-extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,PreviewButtonDelegate {
+extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,PlayPreviewButtonDelegate {
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let index):
@@ -41,8 +54,8 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pre
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as! TrackListCell
-        presenter?.implementPreviewPlayableDelegate(delegate: cell as PreviewPlayable)
+        let cell = tableView.dequeueReusableCell(withIdentifier: AlbumDetailModuleConstants.trackCell, for: indexPath) as! TrackListCell
+        presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.configure(track: self.album.tracks.data[indexPath.row])
         cell.setupIndexPathAndDelegate(viewDelegate: self.rootView, delegate: self, indexPath: indexPath)
         return cell

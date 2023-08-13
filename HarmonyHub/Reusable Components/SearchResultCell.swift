@@ -47,8 +47,8 @@ class TrackListCell : UITableViewCell {
         return button
     }()
     //MARK: - Preview Playable Variables
-    weak var controllerDelegate : PreviewButtonDelegate?
-    weak var rootViewDelegate : PreviewPlayerViewInterface?
+    weak var controllerDelegate : PlayPreviewButtonDelegate?
+    weak var rootViewDelegate : PreviewPlayerViewClient?
     var indexPath : IndexPath?
     
     var ownerTrack : TracksDatum!
@@ -114,7 +114,7 @@ class TrackListCell : UITableViewCell {
     }
 }
 //MARK: - Preview Playable Methods
-extension TrackListCell : PreviewPlayable {
+extension TrackListCell : PreviewPlayableCellClient {
     
     @objc func playPreviewButtonTapped() {
         if isPlaying {
@@ -136,7 +136,7 @@ extension TrackListCell : PreviewPlayable {
         }
     }
     
-    func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewInterface,delegate: PreviewButtonDelegate, indexPath: IndexPath) {
+    func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewClient,delegate: PlayPreviewButtonDelegate, indexPath: IndexPath) {
         self.rootViewDelegate = viewDelegate
         self.controllerDelegate = delegate
         self.indexPath = indexPath

@@ -16,16 +16,22 @@ protocol EndPointType {
 
 enum EndPointItems<T : Decodable> {
     case chart
+    case artistDetail(Int)
     case trackDetail(Int)
     case search(String)
     case playlists
     case playlistDetail(Int)
     case albumDetail(Int)
+    case tracksOfArtist(Int)
 }
 
 extension EndPointItems : EndPointType {
     var path: String {
         switch self {
+        case .artistDetail(let artistID):
+            return "artist/\(artistID)"
+        case .tracksOfArtist(let artistID):
+            return "artist/\(artistID)/top?limit=50"
         case .playlistDetail(let playlistID):
             return "playlist/\(playlistID)"
         case .chart:

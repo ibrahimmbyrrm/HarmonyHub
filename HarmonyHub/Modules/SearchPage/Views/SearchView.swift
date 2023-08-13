@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SearchView: UIView, PreviewPlayerViewInterface {
+class SearchView: UIView, PreviewPlayerViewClient {
 
     lazy var scrollView = UIScrollView()
 

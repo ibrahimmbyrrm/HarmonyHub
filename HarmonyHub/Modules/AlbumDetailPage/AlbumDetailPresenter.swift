@@ -24,11 +24,16 @@ final class AlbumDetailPresente : AlbumDetailPresenterInterface {
     }
     
     func viewDidLoad() {
-        interactor.fetchAlbumDetail(id: self.selectedAlbumID)
+        view?.setDelegates()
+        view?.setupNavigationController()
+        view?.getDetails()
     }
     
     func handleViewOutput(output: AlbumDetailViewOutput) {
-        
+        switch output {
+        case .fetchDetails:
+            interactor.fetchAlbumDetail(id: self.selectedAlbumID)
+        }
     }
     
     func handleInteractorOutput(output: AlbumDetailInteractorOutput) {
@@ -38,7 +43,7 @@ final class AlbumDetailPresente : AlbumDetailPresenterInterface {
         }
     }
     //MARK: - PreviewPresenter Methods
-    func implementPreviewPlayableDelegate(delegate: PreviewPlayable) {
+    func transferPreviewPlayableCellToInteractor(delegate: PreviewPlayableCellClient) {
         interactor.setupAudioServiceDelegate(delegate: delegate)
     }
     

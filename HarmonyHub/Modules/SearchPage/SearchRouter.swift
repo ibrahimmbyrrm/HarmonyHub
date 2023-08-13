@@ -15,7 +15,6 @@ final class SearchRouter : SearchRouterInterface {
         switch rotate {
         case .toPlatlist(let playlistId):
             view?.navigationController?.pushViewController(PlaylistDetailBuilder.buildModule(playlistID: playlistId), animated: true)
-            print("Going to playlist which \(playlistId) id")
         case .toTrack(let trackId):
             print("Going to track which \(trackId) id")
         }

@@ -18,6 +18,9 @@ final class SearchController : BaseViewController<SearchView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
+    }
+    
+    func getPlaylists() {
         presenter?.handleViewOutput(output: .loadPlaylists)
     }
     
@@ -71,7 +74,7 @@ extension SearchController : SearchViewInterface {
     }
 }
 
-extension SearchController : UITableViewDelegate, UITableViewDataSource, PreviewButtonDelegate {
+extension SearchController : UITableViewDelegate, UITableViewDataSource, PlayPreviewButtonDelegate {
     
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
@@ -88,7 +91,7 @@ extension SearchController : UITableViewDelegate, UITableViewDataSource, Preview
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.searchCell, for: indexPath) as! TrackListCell
-        presenter?.implementPreviewPlayableDelegate(delegate: cell as PreviewPlayable)
+        presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
         cell.configure(track: searchResults[indexPath.row])
         return cell

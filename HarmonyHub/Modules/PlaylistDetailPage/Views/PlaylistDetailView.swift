@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class PlaylistDetailView : UIView, PreviewPlayerViewInterface {
+class PlaylistDetailView : UIView, PreviewPlayerViewClient {
     
     lazy var scrollView = UIScrollView()
     lazy var activityIndicator = UIActivityIndicatorView()

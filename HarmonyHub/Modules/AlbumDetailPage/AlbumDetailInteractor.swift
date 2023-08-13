@@ -32,7 +32,7 @@ final class AlbumDetailInteractor : AlbumDetailInteractorInterface {
         }
     }
     //MARK: - PreviewInteractor Methods
-    func setupAudioServiceDelegate(delegate: PreviewPlayable) {
+    func setupAudioServiceDelegate(delegate: PreviewPlayableCellClient) {
         self.audioService.previewPlayerDelegate = delegate
     }
 

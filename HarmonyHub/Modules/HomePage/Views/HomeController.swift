@@ -24,12 +24,14 @@ final class HomeController : BaseViewController<HomeView>{
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
-        presenter?.handleViewOutput(output: .loadData)
-        
     }
     //MARK: - Interface Methods
     func setDelegates() {
         rootView.setCollectionViewDelegates(self)
+    }
+    
+    func getData() {
+        presenter?.handleViewOutput(output: .loadData)
     }
     
     func setupMediaButtonsActions() {
@@ -51,7 +53,7 @@ final class HomeController : BaseViewController<HomeView>{
     }
     
 }
-extension HomeController : HomeViewInterface , PreviewButtonDelegate{
+extension HomeController : HomeViewInterface , PlayPreviewButtonDelegate{
     func handlePresenterOutput(output: HomePresenterToViewOutput) {
         switch output {
         case .albumLoaded(let albums):
@@ -80,7 +82,7 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
         case rootView.topAlbumsCollectionView:
             self.presenter?.handleViewOutput(output: .goToAlbumDetail(albums[indexPath.row].id))
         case rootView.artistsCollectionView:
-            print("go to artist")
+            presenter?.handleViewOutput(output: .goToArtistDetail(artists[indexPath.row].id))
         case rootView.popularTracksCollectionView:
             print("go to track")
         default:
@@ -128,7 +130,7 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
             return cell
         case rootView.popularTracksCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeModuleConstants.popularTrackCell, for: indexPath) as! PopularTracksCell
-            presenter?.implementPreviewPlayableDelegate(delegate: cell as PreviewPlayable)
+            presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
             cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
             let trackAtIndex = tracks[indexPath.row]
             cell.configure(track: trackAtIndex)

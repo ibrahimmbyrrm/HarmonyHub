@@ -13,13 +13,14 @@ protocol PlaylistDetailViewInterface : AnyObject {
     func handlePresenterOutput(output : PlaylistDetailPresenterToViewOutput)
     func setupNavigationController()
     func setDelegates()
+    func getDetails()
 }
-protocol PlaylistDetailPresenterInterface : AnyObject,PreviewPresenter {
+protocol PlaylistDetailPresenterInterface : AnyObject,PreviewPlayerPresenterClient {
     func handleInteractorOutput(output : PlaylistDetailInteractorToPresenterOutput)
     func handleViewOutput(output : PlaylistDetailViewToPresenterOutput)
     func viewDidLoad()
 }
-protocol PlaylistDetailInteractorInterface : PreviewInteractor {
+protocol PlaylistDetailInteractorInterface : PreviewPlayerInteractorClient {
     var presenter : PlaylistDetailPresenterInterface? {get set}
     func fetchDetails(id : Int)
 }
@@ -27,7 +28,7 @@ protocol PlaylistDetailRouterInterface {
     var view : UIViewController? {get set}
 }
 enum PlaylistDetailViewToPresenterOutput {
-    case loadPlaylistDetails(Int)
+    case loadPlaylistDetails
 }
 enum PlaylistDetailPresenterToViewOutput {
     case playlistDetailsLoaded(DetailedPlaylist)
