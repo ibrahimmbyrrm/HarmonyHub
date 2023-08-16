@@ -18,27 +18,44 @@ final class ArtistDetailInteractor : ArtistDetailInteractorInterface {
     var presenter: ArtistDetailPresenterInterface?
     
     func fetchArtistProfile(with id : Int) {
-        service.fetchData(type: EndPointItems<ArtistDetail>.artistDetail(id)) { result in
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        service.fetchData(type: EndPointItems<ArtistDetail>.artistDetail(id)) { [weak self] result in
+            guard let self else {return}
+            defer {dispatchGroup.leave()}
             switch result {
             case .success(let artistDetail):
-                //Transfet artist detail to presenter
-                //call fetchTracks function to fetch all tracks of artist
-                self.fetchTracks(with: id)
-                print(artistDetail.name)
+                self.presenter?.handleInteractorOutput(output: .artistDetailsLoaded(artistDetail))
             case .failure(let error):
                 print(error)
             }
         }
-    }
-    
-    func fetchTracks(with id : Int) {
-        service.fetchData(type: EndPointItems<Tracks>.tracksOfArtist(id)) { result in
+        dispatchGroup.enter()
+        service.fetchData(type: EndPointItems<ArtistAlbumsBase>.albumsOfArtist(id)) { [weak self] result in
+            guard let self else {return}
+            defer {dispatchGroup.leave()}
             switch result {
-            case .success(let tracks):
-                print(tracks.data.first?.title)
+            case .success(let artistAlbums):
+                self.presenter?.handleInteractorOutput(output: .albumsOfArtistLoaded(artistAlbums.data))
             case .failure(let error):
                 print(error)
             }
+        }
+        
+        dispatchGroup.enter()
+        service.fetchData(type: EndPointItems<Tracks>.tracksOfArtist(id)) { [weak self] result in
+            guard let self else {return}
+            defer {dispatchGroup.leave()}
+            switch result {
+            case .success(let tracks):
+                self.presenter?.handleInteractorOutput(output: .tracksLoaded(tracks))
+            case .failure(let error):
+                print(error)
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            self.presenter?.interactorDidDownloadAllData()
         }
     }
 }

@@ -17,3 +17,7 @@ struct ArtistDetail : Codable{
     let tracklist: String
     let type: String
 }
+
+struct ArtistAlbumsBase : Codable {
+    let data : [BaseAlbum]
+}

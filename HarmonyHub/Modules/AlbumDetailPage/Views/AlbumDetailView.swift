@@ -55,7 +55,9 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
         DispatchQueue.main.async {
             self.albumCover.setImage(with: album.coverMedium)
             self.albumNameLabel.text = album.title
-            self.albumOwnerLabel.text = album.artist.name
+            if let name = album.artist?.name {
+                self.albumOwnerLabel.text = name
+            }
         }
     }
     

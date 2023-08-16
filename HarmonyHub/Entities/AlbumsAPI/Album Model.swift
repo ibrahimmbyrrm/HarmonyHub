@@ -17,37 +17,28 @@ import Foundation
 struct BaseAlbum: Codable {
     let id: Int
     let title: String
-    let upc: String
-    let link, share, cover: String
+    let link, cover: String
     let coverSmall, coverMedium, coverBig, coverXl: String
     let genreID: Int
-    let label: String
-    let nbTracks, duration, fans: Int
+    let fans: Int
     let releaseDate: String
-    let available: Bool
     let tracklist: String
     let explicitLyrics: Bool
-    let explicitContentLyrics, explicitContentCover: Int
-    let contributors: [Contributor]
-    let artist: ArtistOfAlbum
-    let tracks: Tracks
+    let artist: ArtistOfAlbum?
+    let tracks: Tracks?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, upc, link, share, cover
+        case id, title, link, cover
         case coverSmall = "cover_small"
         case coverMedium = "cover_medium"
         case coverBig = "cover_big"
         case coverXl = "cover_xl"
         case genreID = "genre_id"
-        case label
-        case nbTracks = "nb_tracks"
-        case duration, fans
+        case fans
         case releaseDate = "release_date"
-        case available, tracklist
+        case tracklist
         case explicitLyrics = "explicit_lyrics"
-        case explicitContentLyrics = "explicit_content_lyrics"
-        case explicitContentCover = "explicit_content_cover"
-        case contributors, artist, tracks
+        case artist, tracks
     }
 }
 

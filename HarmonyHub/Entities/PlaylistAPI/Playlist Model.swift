@@ -9,8 +9,6 @@ import Foundation
 struct DetailedPlaylist : Codable {
     let id: Int
     let title, description: String
-    let duration: Int
-    let welcomePublic, isLovedTrack, collaborative: Bool
     let nbTracks, fans: Int
     let link, share, picture: String
     let pictureSmall, pictureMedium, pictureBig, pictureXl: String
@@ -22,10 +20,7 @@ struct DetailedPlaylist : Codable {
     let tracks: Tracks
     
     enum CodingKeys: String, CodingKey {
-        case id, title, description, duration
-        case welcomePublic = "public"
-        case isLovedTrack = "is_loved_track"
-        case collaborative
+        case id, title, description
         case nbTracks = "nb_tracks"
         case fans, link, share, picture
         case pictureSmall = "picture_small"

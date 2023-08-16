@@ -22,6 +22,8 @@ final class ArtistDetailPresenter : ArtistDetailPresenterInterface {
     }
     
     func viewDidLoad() {
+        view?.setDelegates()
+        view?.setupNavigationController()
         view?.getDeta()
     }
     
@@ -31,8 +33,20 @@ final class ArtistDetailPresenter : ArtistDetailPresenterInterface {
             interactor.fetchArtistProfile(with: self.selectedID)
         }
     }
+    
+    func interactorDidDownloadAllData() {
+        self.view?.reloadUI()
+    }
+    
     func handleInteractorOutput(output: ArtistDetailInteractorOutput) {
-        
+        switch output {
+        case .artistDetailsLoaded(let artistDetail):
+            self.view?.handlePresenterOutput(with: .artistLoaded(artistDetail))
+        case .tracksLoaded(let tracks):
+            self.view?.handlePresenterOutput(with: .tracksLoaded(tracks.data))
+        case .albumsOfArtistLoaded(let albums):
+            self.view?.handlePresenterOutput(with: .albumsLoaded(albums))
+        }
     }
     
 }

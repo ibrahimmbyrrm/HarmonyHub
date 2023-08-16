@@ -38,7 +38,8 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pla
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let index):
-            let itemAtIndex = self.album.tracks.data [index.row]
+            guard let list = self.album.tracks else {return}
+            let itemAtIndex = list.data[index.row]
             self.presenter?.handleTrackPreviewOutput(output: .playPreview(itemAtIndex))
         case .stop:
             self.presenter?.handleTrackPreviewOutput(output: .stopPreview
@@ -48,15 +49,17 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pla
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let album = album {
-            return album.tracks.data.count
+            guard let itemCount = album.tracks?.data.count else {return 0}
+            return itemCount
         }else {
             return 0
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AlbumDetailModuleConstants.trackCell, for: indexPath) as! TrackListCell
+        guard let list = self.album.tracks else {return UITableViewCell()}
         presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
-        cell.configure(track: self.album.tracks.data[indexPath.row])
+        cell.configure(track: list.data[indexPath.row])
         cell.setupIndexPathAndDelegate(viewDelegate: self.rootView, delegate: self, indexPath: indexPath)
         return cell
     }

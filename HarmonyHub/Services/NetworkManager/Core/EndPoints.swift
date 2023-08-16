@@ -23,6 +23,7 @@ enum EndPointItems<T : Decodable> {
     case playlistDetail(Int)
     case albumDetail(Int)
     case tracksOfArtist(Int)
+    case albumsOfArtist(Int)
 }
 
 extension EndPointItems : EndPointType {
@@ -44,7 +45,8 @@ extension EndPointItems : EndPointType {
             }else {
                 return "search?q="
             }
-            
+        case .albumsOfArtist(let artistID):
+            return "artist/\(artistID)/albums"
         case .playlists:
             return "chart/0/playlists"
         case .albumDetail(let id):

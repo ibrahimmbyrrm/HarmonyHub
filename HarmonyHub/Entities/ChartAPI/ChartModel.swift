@@ -87,7 +87,6 @@ struct Playlists: Codable {
 struct PlaylistsDatum: Codable {
     let id: Int
     let title: String
-    let datumPublic: Bool?
     let nbTracks: Int?
     let link, picture: String?
     let pictureSmall, pictureMedium, pictureBig, pictureXl: String?
@@ -100,7 +99,6 @@ struct PlaylistsDatum: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, title
-        case datumPublic = "public"
         case nbTracks = "nb_tracks"
         case link, picture
         case pictureSmall = "picture_small"
@@ -171,7 +169,7 @@ struct Tracks: Codable {
 // MARK: - TracksDatum
 struct TracksDatum: Codable {
     let id: Int
-    let title, titleShort, titleVersion: String?
+    let title : String
     let link: String?
     let duration, rank: Int?
     let explicitLyrics: Bool?
@@ -185,8 +183,6 @@ struct TracksDatum: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, title
-        case titleShort = "title_short"
-        case titleVersion = "title_version"
         case link, duration, rank
         case explicitLyrics = "explicit_lyrics"
         case explicitContentLyrics = "explicit_content_lyrics"
