@@ -18,6 +18,7 @@ final class NetworkManager: NetworkService {
             completion(.failure(AFError.invalidURL(url: "\(type.baseUrl)\(type.path)")))
             return
         }
+        print(url)
         AF.request(url).responseDecodable(of : T.self) { response in
             switch response.result {
             case .success(let decoded):

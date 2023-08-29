@@ -69,9 +69,7 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
     }
     
     private func addScrollViewSubviews() {
-        [albumCover,albumNameLabel,albumOwnerLabel,tracksTableView,tracksTableView].forEach { v in
-            self.addSubview(v)
-        }
+        [albumCover,albumNameLabel,albumOwnerLabel,tracksTableView,tracksTableView].forEach({ self.addSubview($0) })
     }
     
     private func setupTracksTableViewConstraints() {

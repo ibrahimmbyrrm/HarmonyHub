@@ -25,13 +25,30 @@ final class ArtistDetailController : BaseViewController<ArtistDetailView> {
     }
     
     func setDelegates() {
-        print("set delegates called")
+        rootView.tracksTableView.delegate = self
+        rootView.tracksTableView.dataSource = self
     }
     
     func setupNavigationController() {
         print("navigation controller setup called")
     }
     
+}
+
+extension ArtistDetailController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return trackList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = rootView.tracksTableView.dequeueReusableCell(withIdentifier: AlbumDetailModuleConstants.trackCell, for: indexPath) as! TrackListCell
+        cell.configure(track: trackList[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
 }
 
 extension ArtistDetailController : ArtistDetailViewInterface {
@@ -41,9 +58,14 @@ extension ArtistDetailController : ArtistDetailViewInterface {
     }
     
     func reloadUI() {
-        print(artistDetail.name)
+        guard let url = artistDetail.picture_big else {return}
+        print(url)
+        rootView.artistImageView.setImage(with: url)
+        rootView.artistStatsStackView.setupStats(artist: artistDetail, trackCount: trackList.count)
         print(trackList.map({$0.title}))
         print(albums.map({$0.title}))
+        print(trackList.count)
+        rootView.tracksTableView.reloadData()
     }
     
     func handlePresenterOutput(with output: ArtistDetailPresenterToViewOutput) {

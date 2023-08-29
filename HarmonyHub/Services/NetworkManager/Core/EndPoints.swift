@@ -32,7 +32,7 @@ extension EndPointItems : EndPointType {
         case .artistDetail(let artistID):
             return "artist/\(artistID)"
         case .tracksOfArtist(let artistID):
-            return "artist/\(artistID)/top?limit=50"
+            return "artist/\(artistID)/top?limit=100"
         case .playlistDetail(let playlistID):
             return "playlist/\(playlistID)"
         case .chart:

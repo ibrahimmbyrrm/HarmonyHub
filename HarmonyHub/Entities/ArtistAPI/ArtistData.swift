@@ -11,8 +11,8 @@ struct ArtistDetail : Codable{
     let id: Int
     let name: String
     let link, share, picture: String
-    let pictureSmall, pictureMedium, pictureBig, pictureXl: String?
-    let nbAlbum, nbFan: Int?
+    let picture_small, picture_medium, picture_big, xl: String?
+    let nb_album, nb_fan: Int?
     let radio: Bool
     let tracklist: String
     let type: String
@@ -21,3 +21,22 @@ struct ArtistDetail : Codable{
 struct ArtistAlbumsBase : Codable {
     let data : [BaseAlbum]
 }
+
+extension ArtistDetail {
+    var popularity: String {
+        guard let fans = self.nb_fan else { return "" }
+        switch fans {
+            case ..<5000:
+                return "★"
+            case 5000..<50000:
+                return "★★"
+            case 50000..<500000:
+                return "★★★"
+            case 500000..<1000000:
+                return "★★★★★"
+            default:
+                return "★★★★★"
+        }
+    }
+}
+
