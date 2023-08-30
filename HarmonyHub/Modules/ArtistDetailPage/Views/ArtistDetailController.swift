@@ -30,19 +30,31 @@ final class ArtistDetailController : BaseViewController<ArtistDetailView> {
     }
     
     func setupNavigationController() {
-        print("navigation controller setup called")
+        self.title = ArtistDetailModuleConstants.title
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
 }
 
-extension ArtistDetailController : UITableViewDelegate, UITableViewDataSource {
+extension ArtistDetailController : UITableViewDelegate, UITableViewDataSource,PlayPreviewButtonDelegate {
+    func handleCellsAudioOutput(output: previewPlayerOutput) {
+        switch output {
+        case .play(let index):
+            presenter?.handleTrackPreviewOutput(output: .playPreview(trackList[index.row]))
+        case .stop:
+            presenter?.handleTrackPreviewOutput(output: .stopPreview)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trackList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = rootView.tracksTableView.dequeueReusableCell(withIdentifier: AlbumDetailModuleConstants.trackCell, for: indexPath) as! TrackListCell
+        presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.configure(track: trackList[indexPath.row])
+        cell.setupIndexPathAndDelegate(viewDelegate: self.rootView, delegate: self, indexPath: indexPath)
         return cell
     }
     

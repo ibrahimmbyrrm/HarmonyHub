@@ -12,14 +12,18 @@ final class HomeRouter : HomeRouterInterface{
     unowned var view: UIViewController?
     
     func navigateTo(to rotate: HomeRouterNavigations) {
+        var destination : UIViewController?
+        
         switch rotate {
         case .toAlbum(let albumId):
-            view?.navigationController?.pushViewController(AlbumDetailBuilder.buildModule(albumId: albumId), animated: false)
+            destination = AlbumDetailBuilder.buildModule(albumId: albumId)
         case .toArtist(let artistId):
-            view?.navigationController?.pushViewController(ArtistDetailBuilder.buildModule(artistID: artistId), animated: false)
-            print("going to artist with \(artistId) id")
+            destination = ArtistDetailBuilder.buildModule(artistID: artistId)
         case .toTrack(let trackId):
             print("going to track with \(trackId) id")
         }
+        
+        guard let destination else {return}
+        view?.navigationController?.pushViewController(destination, animated: true)
     }
 }

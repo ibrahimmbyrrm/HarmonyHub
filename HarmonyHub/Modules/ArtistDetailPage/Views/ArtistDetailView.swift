@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ArtistDetailView : UIView {
+class ArtistDetailView : UIView, PreviewPlayerViewClient {
     
     lazy var artistImageView : UIImageView = {
         let imageView = UIImageView()
@@ -44,10 +44,17 @@ class ArtistDetailView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func restartTrackCellPreviewButton(url: URL) {
+        tracksTableView.visibleCells.filter({$0.asTrackListCell().ownerTrack.previewURL != url}).map( {
+            $0.asTrackListCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
+                $0.asTrackListCell().isPlaying = false
+        })
+    }
     
     private func addSubviews() {
         [artistImageView,artistStatsStackView,tracksTableView].forEach({ self.addSubview($0) })
     }
+    
     private func setupArtistStatsStackViewConstraints() {
         artistStatsStackView.snp.makeConstraints { make in
             make.leading.equalTo(self.artistImageView.snp.trailing).offset(10)

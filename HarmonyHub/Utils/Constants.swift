@@ -28,6 +28,10 @@ enum AlbumDetailModuleConstants {
     static let trackCell = "trackCell"
 }
 
+enum ArtistDetailModuleConstants {
+    static let title = "Artist"
+}
+
 enum PreviewButtonIcons {
     static let play = "▶"
     static let pause = "▐▐"

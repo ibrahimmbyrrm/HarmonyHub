@@ -8,15 +8,14 @@
 import Foundation
 import UIKit
 
-
 typealias ArtistDetailViewInterfaceAndController = UIViewController & ArtistDetailViewInterface
 
 final class ArtistDetailBuilder {
     
     static func buildModule(artistID : Int) -> UIViewController {
-        var view : ArtistDetailViewInterfaceAndController = ArtistDetailController()
+        let view : ArtistDetailViewInterfaceAndController = ArtistDetailController()
         var router : ArtistDetailRouterInterface = ArtistDetailRouter()
-        var interactor : ArtistDetailInteractorInterface = ArtistDetailInteractor(service: NetworkManager())
+        var interactor : ArtistDetailInteractorInterface = ArtistDetailInteractor(service: NetworkManager(),audioService: AudioManager())
         let presenter : ArtistDetailPresenterInterface = ArtistDetailPresenter(view: view, router: router, interactor: interactor, selectedID: artistID)
         view.presenter = presenter
         router.view = view

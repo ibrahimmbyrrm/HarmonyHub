@@ -9,10 +9,12 @@ import Foundation
 
 final class ArtistDetailInteractor : ArtistDetailInteractorInterface {
     
+    var audioService: AudioService
     private var service : NetworkService
     
-    init(service: NetworkService) {
+    init(service: NetworkService,audioService : AudioService) {
         self.service = service
+        self.audioService = audioService
     }
     
     var presenter: ArtistDetailPresenterInterface?
@@ -58,4 +60,17 @@ final class ArtistDetailInteractor : ArtistDetailInteractorInterface {
             self.presenter?.interactorDidDownloadAllData()
         }
     }
+    
+    func setupAudioServiceDelegate(delegate: PreviewPlayableCellClient) {
+        audioService.previewPlayerDelegate = delegate
+    }
+    
+    func playPreview(url: URL) {
+        audioService.insertQueueAndPlay(url: url)
+    }
+    
+    func stopPreview() {
+        audioService.stopAndClearQueue()
+    }
+    
 }

@@ -12,11 +12,15 @@ final class SearchRouter : SearchRouterInterface {
     unowned var view: UIViewController?
     
     func navigateTo(to rotate : SearchRouterNavigations) {
+        var destination : UIViewController?
+        
         switch rotate {
         case .toPlatlist(let playlistId):
-            view?.navigationController?.pushViewController(PlaylistDetailBuilder.buildModule(playlistID: playlistId), animated: true)
+            destination = PlaylistDetailBuilder.buildModule(playlistID: playlistId)
         case .toTrack(let trackId):
             print("Going to track which \(trackId) id")
         }
+        guard let destination else {return}
+        view?.navigationController?.pushViewController(destination, animated: true)
     }
 }
