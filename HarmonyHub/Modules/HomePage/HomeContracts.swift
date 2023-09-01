@@ -17,6 +17,7 @@ enum HomeViewToPresenterOutput {
     case loadData
     case goToAlbumDetail(Int)
     case goToArtistDetail(Int)
+    case goToTrackDetail(Int)
 }
 
 enum TrackPreviewOutput {

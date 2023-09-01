@@ -54,6 +54,7 @@ class HomeView : UIView, PreviewPlayerViewClient {
         super.init(frame: frame)
         artistsLabel.text = HomeModuleConstants.artistTitle
         popularTracksLabel.text = HomeModuleConstants.tracksTitle
+        buttonsStackView.isUserInteractionEnabled = false
         addSubviews()
         scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1500)
         setupScrollViewConstraints()

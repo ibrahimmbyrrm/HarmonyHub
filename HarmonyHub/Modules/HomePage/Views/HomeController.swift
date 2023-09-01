@@ -84,7 +84,7 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
         case rootView.artistsCollectionView:
             presenter?.handleViewOutput(output: .goToArtistDetail(artists[indexPath.row].id))
         case rootView.popularTracksCollectionView:
-            print("go to track")
+            presenter?.handleViewOutput(output: .goToTrackDetail(tracks[indexPath.row].id))
         default:
             break
         }

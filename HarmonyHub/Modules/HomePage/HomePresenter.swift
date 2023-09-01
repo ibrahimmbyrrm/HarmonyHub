@@ -44,6 +44,8 @@ final class HomePresenter : HomePresenterInterface {
             router.navigateTo(to: .toAlbum(albumId))
         case .goToArtistDetail(let artistID):
             router.navigateTo(to: .toArtist(artistID))
+        case .goToTrackDetail(let trackId):
+            router.navigateTo(to: .toTrack(trackId))
         }
     }
     //MARK: - PreviewPresenter Methods

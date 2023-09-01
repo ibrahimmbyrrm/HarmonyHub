@@ -40,6 +40,7 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .black
         addScrollViewSubviews()
         setupTracksTableViewConstraints()
         setupAlbumCoverConstraints()

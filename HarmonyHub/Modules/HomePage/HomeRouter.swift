@@ -20,7 +20,7 @@ final class HomeRouter : HomeRouterInterface{
         case .toArtist(let artistId):
             destination = ArtistDetailBuilder.buildModule(artistID: artistId)
         case .toTrack(let trackId):
-            print("going to track with \(trackId) id")
+            destination = TrackDetailBuilder.buildModule(with: trackId)
         }
         
         guard let destination else {return}
