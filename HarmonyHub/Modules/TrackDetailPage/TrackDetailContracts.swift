@@ -14,13 +14,15 @@ protocol TrackDetailViewInterface : AnyObject {
     func getData()
     func setupNavigationController()
     func setDelegates()
+    func reloadUI()
 }
-protocol TrackDetailPresenterInterface : AnyObject {
+protocol TrackDetailPresenterInterface : AnyObject, PreviewPlayerPresenterClient {
     func viewDidLoad()
     func handleViewOutput(output : TrackDetailViewToPresenterOutput)
     func handleInteractorOutput(output : TrackDetailInteractorToPresenterOutput)
+    func interactorDownloadProcessFinished()
 }
-protocol TrackDetailInteractorInterface {
+protocol TrackDetailInteractorInterface : PreviewPlayerInteractorClient {
     var presenter : TrackDetailPresenterInterface? {get set}
     func fetchDetails(trackID : Int)
 }

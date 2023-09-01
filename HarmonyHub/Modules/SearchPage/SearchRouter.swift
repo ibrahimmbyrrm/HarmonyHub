@@ -18,7 +18,7 @@ final class SearchRouter : SearchRouterInterface {
         case .toPlatlist(let playlistId):
             destination = PlaylistDetailBuilder.buildModule(playlistID: playlistId)
         case .toTrack(let trackId):
-            print("Going to track which \(trackId) id")
+            destination = TrackDetailBuilder.buildModule(with: trackId)
         }
         guard let destination else {return}
         view?.navigationController?.pushViewController(destination, animated: true)

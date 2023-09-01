@@ -15,7 +15,7 @@ final class TrackDetailBuilder {
     static func buildModule(with trackId : Int) -> UIViewController {
         
         let view : TrackDetailViewAndInterface = TrackDetailController()
-        var interactor : TrackDetailInteractorInterface = TrackDetailInteractor(service: NetworkManager())
+        var interactor : TrackDetailInteractorInterface = TrackDetailInteractor(service: NetworkManager(), audioService: AudioManager())
         var router : TrackDetailRouterInterface = TrackDetailRouter()
         let presenter : TrackDetailPresenterInterface = TrackDetailPresenter(selectedTracksId: trackId, view: view, router: router, interactor: interactor)
         view.presenter = presenter

@@ -41,4 +41,19 @@ final class TrackDetailPresenter : TrackDetailPresenterInterface {
             interactor.fetchDetails(trackID: self.selectedTracksId)
         }
     }
+    func interactorDownloadProcessFinished() {
+        view?.reloadUI()
+    }
+    func transferPreviewPlayableCellToInteractor(delegate: PreviewPlayableCellClient) {
+        
+    }
+    func handleTrackPreviewOutput(output: TrackPreviewOutput) {
+        switch output {
+        case .playPreview(let track):
+            guard let url = track.previewURL else {return}
+            interactor.playPreview(url: url)
+        case .stopPreview:
+            interactor.stopPreview()
+        }
+    }
 }

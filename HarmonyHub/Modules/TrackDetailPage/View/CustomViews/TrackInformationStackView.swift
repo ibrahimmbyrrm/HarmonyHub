@@ -18,7 +18,7 @@ class TrackInformationStackView : UIStackView {
     }()
     lazy var artistsLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontNames.ariel, size: 22)
+        label.font = UIFont(name: FontNames.ariel, size: 18)
         label.textColor = .white
         label.textAlignment = .left
         return label
@@ -42,7 +42,10 @@ class TrackInformationStackView : UIStackView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    
+    func setupUI(track : TrackDetail) {
+        self.trackTitle.text = track.title
+        self.trackTypeLabel.text = "\(track.releaseDate.components(separatedBy: "-").first!) - \(track.type.capitalized)"
+        self.artistsLabel.text = track.contributors.first?.name
+    }
 }
+
