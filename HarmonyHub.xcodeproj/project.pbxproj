@@ -81,6 +81,7 @@
 		80973E702AA2226B0049C0B5 /* TrackDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80973E6F2AA2226B0049C0B5 /* TrackDetailView.swift */; };
 		80973E732AA225B10049C0B5 /* TrackInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80973E722AA225B10049C0B5 /* TrackInformationStackView.swift */; };
 		80973E762AA226D40049C0B5 /* TrackDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80973E752AA226D40049C0B5 /* TrackDetail.swift */; };
+		80973E782AA26C700049C0B5 /* ArtistInformationStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80973E772AA26C700049C0B5 /* ArtistInformationStackView.swift */; };
 		80B76CEF2A7D0EA400FC3CE6 /* SearchConstracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */; };
 		80B76CF32A7D2E6800FC3CE6 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CF22A7D2E6800FC3CE6 /* SearchResultCell.swift */; };
 		80B76CF82A7D3D8200FC3CE6 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B76CF72A7D3D8200FC3CE6 /* UITableView+Ext.swift */; };
@@ -183,6 +184,7 @@
 		80973E6F2AA2226B0049C0B5 /* TrackDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailView.swift; sourceTree = "<group>"; };
 		80973E722AA225B10049C0B5 /* TrackInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackInformationStackView.swift; sourceTree = "<group>"; };
 		80973E752AA226D40049C0B5 /* TrackDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetail.swift; sourceTree = "<group>"; };
+		80973E772AA26C700049C0B5 /* ArtistInformationStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistInformationStackView.swift; sourceTree = "<group>"; };
 		80B76CEE2A7D0EA400FC3CE6 /* SearchConstracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConstracts.swift; sourceTree = "<group>"; };
 		80B76CF22A7D2E6800FC3CE6 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		80B76CF72A7D3D8200FC3CE6 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
@@ -591,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				80973E722AA225B10049C0B5 /* TrackInformationStackView.swift */,
+				80973E772AA26C700049C0B5 /* ArtistInformationStackView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				8025F23B2A79249E00EA331F /* EndPoints.swift in Sources */,
 				8025F20D2A77F7AD00EA331F /* HomeBuilder.swift in Sources */,
 				80973E662AA222440049C0B5 /* TrackDetailPresenter.swift in Sources */,
+				80973E782AA26C700049C0B5 /* ArtistInformationStackView.swift in Sources */,
 				80401AF62A895C6E00380E2F /* ArtistDetailRouter.swift in Sources */,
 				8025F1D12A77F64900EA331F /* SceneDelegate.swift in Sources */,
 				8025F2262A786D2000EA331F /* UIImageView+Ext.swift in Sources */,

@@ -32,6 +32,7 @@ class SearchView: UIView, PreviewPlayerViewClient {
         tableView.register(TrackListCell.self, forCellReuseIdentifier: SearchModuleConstants.searchCell)
         tableView.isHidden = true
         tableView.isUserInteractionEnabled = true
+        tableView.keyboardDismissMode = .onDrag
         return tableView
     }()
 
@@ -45,6 +46,7 @@ class SearchView: UIView, PreviewPlayerViewClient {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
+        scrollView.keyboardDismissMode = .onDrag
         scrollView.contentSize = CGSize(width: scrollView.frame.width, height: 1300)
         addSubviews()
         setupSearchBarConstraints()
@@ -52,7 +54,7 @@ class SearchView: UIView, PreviewPlayerViewClient {
         setupSearchResultsTableViewConstraints()
         setupCollectionViewConstraints()
     }
-    
+
     func searchStarted(_ isStarted : Bool) {
         self.popularPlaylistsCollectionView.isHidden = isStarted
         self.searchResultsTableView.isHidden = !isStarted

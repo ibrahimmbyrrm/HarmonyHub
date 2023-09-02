@@ -28,6 +28,7 @@ final class TrackDetailView : UIView {
     }()
     
     lazy var trackInfoStackView = TrackInformationStackView()
+    lazy var artistInfoStackView = ArtistInformationStackView()
     
     var controllerDelegate: PlayPreviewButtonDelegate?
     var ownerTrack: TracksDatum!
@@ -40,6 +41,7 @@ final class TrackDetailView : UIView {
         setupTrackCoverConstraints()
         setupTrackInfoConstraints()
         setupPlayButtonConstraints()
+        setupArtistInfoStackView()
     }
     
     required init?(coder: NSCoder) {
@@ -48,12 +50,15 @@ final class TrackDetailView : UIView {
     
     func setupUI(track : TrackDetail) {
         trackInfoStackView.setupUI(track: track)
+        artistInfoStackView.artistImageView.setImage(with: track.contributors.first!.pictureBig)
+        artistInfoStackView.artistNameLabel.text = track.contributors.first!.name
         self.trackCover.setImage(with: track.album.coverBig)
     }
 
     private func addSubviews() {
-        [trackCover,trackInfoStackView,playButton].forEach({ self.addSubview($0) })
+        [trackCover,trackInfoStackView,playButton,artistInfoStackView].forEach({ self.addSubview($0) })
     }
+    
     private func setupTrackCoverConstraints() {
         trackCover.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
@@ -61,6 +66,7 @@ final class TrackDetailView : UIView {
             make.width.height.equalTo(200)
         }
     }
+    
     private func setupTrackInfoConstraints() {
         trackInfoStackView.snp.makeConstraints { make in
             make.leading.equalTo(self.snp.leading).offset(5)
@@ -69,6 +75,16 @@ final class TrackDetailView : UIView {
             make.height.equalTo(75)
         }
     }
+    
+    private func setupArtistInfoStackView() {
+        artistInfoStackView.snp.makeConstraints { make in
+            make.leading.equalTo(self.snp.leading).offset(5)
+            make.width.equalTo(self.snp.width)
+            make.height.equalTo(30)
+            make.bottom.equalTo(self.snp.bottom).inset(5)
+        }
+    }
+    
     private func setupPlayButtonConstraints() {
         playButton.snp.makeConstraints { make in
             make.trailing.equalTo(self.snp.trailing).inset(5)
