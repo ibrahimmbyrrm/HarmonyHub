@@ -49,8 +49,7 @@ final class TrackDetailPresenter : TrackDetailPresenterInterface {
     }
     func handleTrackPreviewOutput(output: TrackPreviewOutput) {
         switch output {
-        case .playPreview(let track):
-            guard let url = track.previewURL else {return}
+        case .playPreview(let url):
             interactor.playPreview(url: url)
         case .stopPreview:
             interactor.stopPreview()

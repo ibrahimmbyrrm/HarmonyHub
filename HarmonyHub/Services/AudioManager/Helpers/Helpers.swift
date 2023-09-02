@@ -9,5 +9,5 @@ import Foundation
 //MARK: - Outputs
 enum previewPlayerOutput {
     case stop
-    case play(IndexPath)
+    case play(IndexPath?)
 }

@@ -38,8 +38,9 @@ class ArtistInformationStackView : UIStackView {
         [artistImageView,artistNameLabel].forEach({ self.addArrangedSubview($0) })
     }
     private func setupStackViewProperties() {
-        self.distribution = .equalSpacing
+        self.distribution = .fill
         self.axis = .horizontal
+        self.alignment = .leading
     }
     
 }

@@ -17,6 +17,9 @@ final class PlaylistDetailController : BaseViewController<PlaylistDetailView> {
         super.viewDidLoad()
         presenter?.viewDidLoad()
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.handleTrackPreviewOutput(output: .stopPreview)
+    }
     
     func getDetails() {
         presenter?.handleViewOutput(output: .loadPlaylistDetails)
@@ -49,7 +52,8 @@ extension PlaylistDetailController : UITableViewDelegate,UITableViewDataSource, 
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let indexPath):
-            presenter?.handleTrackPreviewOutput(output: .playPreview(playlist.tracks.data[indexPath.row]))
+            guard let indexPath,let url = playlist.tracks.data[indexPath.row].previewURL else {return}
+            presenter?.handleTrackPreviewOutput(output: .playPreview(url))
         case .stop:
             presenter?.handleTrackPreviewOutput(output: .stopPreview)
         }

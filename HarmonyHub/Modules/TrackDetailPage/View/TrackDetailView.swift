@@ -31,9 +31,7 @@ final class TrackDetailView : UIView {
     lazy var artistInfoStackView = ArtistInformationStackView()
     
     var controllerDelegate: PlayPreviewButtonDelegate?
-    var ownerTrack: TracksDatum!
     var isPlaying: Bool = false
-    var indexPath: IndexPath?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,9 +77,9 @@ final class TrackDetailView : UIView {
     private func setupArtistInfoStackView() {
         artistInfoStackView.snp.makeConstraints { make in
             make.leading.equalTo(self.snp.leading).offset(5)
-            make.width.equalTo(self.snp.width)
-            make.height.equalTo(30)
-            make.bottom.equalTo(self.snp.bottom).inset(5)
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(5)
         }
     }
     
@@ -96,9 +94,11 @@ final class TrackDetailView : UIView {
 extension TrackDetailView : PreviewPlayableClient {
     @objc func playPreviewButtonTapped() {
         if isPlaying {
+            controllerDelegate?.handleCellsAudioOutput(output: .stop)
             playButton.setTitle(PreviewButtonIcons.play, for: .normal)
             isPlaying = false
         }else {
+            controllerDelegate?.handleCellsAudioOutput(output: .play(nil))
             self.isPlaying = true
             playButton.setTitle(PreviewButtonIcons.pause, for: .normal)
         }

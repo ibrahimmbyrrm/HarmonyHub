@@ -49,8 +49,7 @@ final class AlbumDetailPresente : AlbumDetailPresenterInterface {
     
     func handleTrackPreviewOutput(output: TrackPreviewOutput) {
         switch output {
-        case .playPreview(let track):
-            guard let url = track.previewURL else {return}
+        case .playPreview(let url):
             self.interactor.playPreview(url: url)
         case .stopPreview:
             self.interactor.stopPreview()

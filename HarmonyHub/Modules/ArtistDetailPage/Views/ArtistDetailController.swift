@@ -24,6 +24,10 @@ final class ArtistDetailController : BaseViewController<ArtistDetailView> {
         presenter?.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.handleTrackPreviewOutput(output: .stopPreview)
+    }
+    
     func setDelegates() {
         rootView.tracksTableView.delegate = self
         rootView.tracksTableView.dataSource = self
@@ -40,7 +44,8 @@ extension ArtistDetailController : UITableViewDelegate, UITableViewDataSource,Pl
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let index):
-            presenter?.handleTrackPreviewOutput(output: .playPreview(trackList[index.row]))
+            guard let index,let url = trackList[index.row].previewURL else {return}
+            presenter?.handleTrackPreviewOutput(output: .playPreview(url))
         case .stop:
             presenter?.handleTrackPreviewOutput(output: .stopPreview)
         }

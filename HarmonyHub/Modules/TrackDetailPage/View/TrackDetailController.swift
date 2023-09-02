@@ -12,32 +12,33 @@ final class TrackDetailController : BaseViewController<TrackDetailView> {
     
     var presenter: TrackDetailPresenterInterface?
     var trackDetail : TrackDetail!
+    //MARK: - UIViewController LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.handleTrackPreviewOutput(output: .stopPreview)
+    }
+    //MARK: - Initial Methods
     func getData() {
         presenter?.handleViewOutput(output: .fetchData)
     }
     func setDelegates() {
-        print("set delegates called")
         rootView.controllerDelegate = self
     }
     func setupNavigationController() {
         print("setup navigation controller called")
     }
 }
-
+//MARK: - Interface Methods
 extension TrackDetailController : TrackDetailViewInterface, PlayPreviewButtonDelegate {
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(_):
-            if let trackDatum = trackDetail as? TracksDatum {
-                presenter?.handleTrackPreviewOutput(output: .playPreview(trackDatum))
-            }else {
-                print("data convertation failed")
-            }
+            guard let url = trackDetail.preview.convertToUrl() else {return}
+            presenter?.handleTrackPreviewOutput(output: .playPreview(url))
         case .stop:
             presenter?.handleTrackPreviewOutput(output: .stopPreview)
             

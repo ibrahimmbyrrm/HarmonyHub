@@ -28,6 +28,8 @@ protocol PreviewPlayerViewClient : AnyObject {
 //MARK: - Implement To Cell
 ///This protocol should be implemented on cell which includes play preview feature
 protocol PreviewPlayableCellClient : AnyObject, PreviewPlayableClient {
+    var ownerTrack : TracksDatum! {get}
+    var indexPath : IndexPath? {get}
     var rootViewDelegate : PreviewPlayerViewClient? {get set}
     func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewClient,delegate: PlayPreviewButtonDelegate, indexPath: IndexPath)
     func listenToAudioManagerForMusicChanges(url : URL)
@@ -37,8 +39,6 @@ protocol PreviewPlayableCellClient : AnyObject, PreviewPlayableClient {
 protocol PreviewPlayableClient : AnyObject {
     func playPreviewButtonTapped()
     var controllerDelegate : PlayPreviewButtonDelegate? {get}
-    var ownerTrack : TracksDatum! {get}
-    var indexPath : IndexPath? {get}
     var isPlaying : Bool {get set}
 }
 //MARK: - Implement To Controller

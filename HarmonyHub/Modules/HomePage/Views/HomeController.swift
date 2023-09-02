@@ -25,6 +25,10 @@ final class HomeController : BaseViewController<HomeView>{
         super.viewDidLoad()
         presenter?.viewDidLoad()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.handleTrackPreviewOutput(output: .stopPreview)
+    }
     //MARK: - Interface Methods
     func setDelegates() {
         rootView.setCollectionViewDelegates(self)
@@ -69,7 +73,8 @@ extension HomeController : HomeViewInterface , PlayPreviewButtonDelegate{
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let indexPath):
-            presenter?.handleTrackPreviewOutput(output: .playPreview(tracks[indexPath.row]))
+            guard let indexPath,let url = tracks[indexPath.row].previewURL else {return}
+            presenter?.handleTrackPreviewOutput(output: .playPreview(url))
         case .stop:
             presenter?.handleTrackPreviewOutput(output: .stopPreview)
         }

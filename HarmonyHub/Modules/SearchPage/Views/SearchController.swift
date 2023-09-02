@@ -15,9 +15,14 @@ final class SearchController : BaseViewController<SearchView> {
     lazy var playlists = [PlaylistsDatum]()
     lazy var searchResults = [TracksDatum]()
     var searchQueryTimer: Timer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.handleTrackPreviewOutput(output: .stopPreview)
     }
     
     func getPlaylists() {
@@ -79,7 +84,8 @@ extension SearchController : UITableViewDelegate, UITableViewDataSource, PlayPre
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let indexPath):
-            presenter?.handleTrackPreviewOutput(output: .playPreview(searchResults[indexPath.row]))
+            guard let indexPath,let url = searchResults[indexPath.row].previewURL else {return}
+            presenter?.handleTrackPreviewOutput(output: .playPreview(url))
         case .stop:
             presenter?.handleTrackPreviewOutput(output: .stopPreview)
         }

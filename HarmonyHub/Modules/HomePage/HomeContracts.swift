@@ -21,7 +21,7 @@ enum HomeViewToPresenterOutput {
 }
 
 enum TrackPreviewOutput {
-    case playPreview(TracksDatum)
+    case playPreview(URL)
     case stopPreview
 }
 

@@ -16,7 +16,10 @@ final class AlbumDetailController : BaseViewController<AlbumDetailView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        presenter?.handleTrackPreviewOutput(output: .stopPreview)
     }
     
     func getDetails() {
@@ -38,9 +41,10 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pla
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(let index):
-            guard let list = self.album.tracks else {return}
+            guard let list = self.album.tracks,let index else {return}
             let itemAtIndex = list.data[index.row]
-            self.presenter?.handleTrackPreviewOutput(output: .playPreview(itemAtIndex))
+            guard let itemUrl = itemAtIndex.previewURL else {return}
+            self.presenter?.handleTrackPreviewOutput(output: .playPreview(itemUrl))
         case .stop:
             self.presenter?.handleTrackPreviewOutput(output: .stopPreview
             )
