@@ -31,7 +31,7 @@ final class TrackDetailController : BaseViewController<TrackDetailView> {
     }
     func setupNavigationController() {
         view.backgroundColor = .black
-        title = "Track"
+        title = PageTitles.trackDetailTitle
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 }

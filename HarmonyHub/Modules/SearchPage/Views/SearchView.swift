@@ -29,7 +29,7 @@ class SearchView: UIView, PreviewPlayerViewClient {
     
     lazy var searchResultsTableView : UITableView = {
         var tableView = UITableView()
-        tableView.register(TrackListCell.self, forCellReuseIdentifier: SearchModuleConstants.searchCell)
+        tableView.register(TrackListCell.self, forCellReuseIdentifier: TrackListCell.identifier)
         tableView.isHidden = true
         tableView.isUserInteractionEnabled = true
         tableView.keyboardDismissMode = .onDrag

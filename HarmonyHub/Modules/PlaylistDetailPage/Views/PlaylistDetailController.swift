@@ -26,7 +26,7 @@ final class PlaylistDetailController : BaseViewController<PlaylistDetailView> {
     }
     
     func setupNavigationController() {
-        title = "Playlist"
+        title = PageTitles.playlistDetailTitle
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
@@ -73,7 +73,7 @@ extension PlaylistDetailController : UITableViewDelegate,UITableViewDataSource, 
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath) as! TrackListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TrackListCell.identifier, for: indexPath) as! TrackListCell
         let itemAtIndex = playlist.tracks.data[indexPath.row]
         presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.configure(track: itemAtIndex)

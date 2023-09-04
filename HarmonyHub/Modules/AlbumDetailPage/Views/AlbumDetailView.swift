@@ -35,7 +35,7 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
         let tableView = UITableView()
         tableView.backgroundColor = .black
         tableView.isScrollEnabled = true
-        tableView.register(TrackListCell.self, forCellReuseIdentifier: AlbumDetailModuleConstants.trackCell)
+        tableView.register(TrackListCell.self, forCellReuseIdentifier: TrackListCell.identifier)
         return tableView
     }()
     

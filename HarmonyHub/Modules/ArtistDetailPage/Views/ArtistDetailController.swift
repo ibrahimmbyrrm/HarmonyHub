@@ -30,7 +30,7 @@ final class ArtistDetailController : BaseViewController<ArtistDetailView> {
     }
     
     func setupNavigationController() {
-        self.title = ArtistDetailModuleConstants.title
+        self.title = PageTitles.artistDetailTitle
         self.navigationController?.navigationBar.prefersLargeTitles = false
     }
     
@@ -57,7 +57,7 @@ extension ArtistDetailController : UITableViewDelegate, UITableViewDataSource,Pl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = rootView.tracksTableView.dequeueReusableCell(withIdentifier: AlbumDetailModuleConstants.trackCell, for: indexPath) as! TrackListCell
+        let cell = rootView.tracksTableView.dequeueReusableCell(withIdentifier: TrackListCell.identifier, for: indexPath) as! TrackListCell
         presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.configure(track: trackList[indexPath.row])
         cell.setupIndexPathAndDelegate(viewDelegate: self.rootView, delegate: self, indexPath: indexPath)

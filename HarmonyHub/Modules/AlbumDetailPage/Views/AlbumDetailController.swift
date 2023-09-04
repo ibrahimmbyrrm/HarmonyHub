@@ -27,7 +27,7 @@ final class AlbumDetailController : BaseViewController<AlbumDetailView> {
     }
     
     func setupNavigationController() {
-        title = AlbumDetailModuleConstants.title
+        title = PageTitles.albumDetailTitle
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
@@ -66,7 +66,7 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pla
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: AlbumDetailModuleConstants.trackCell, for: indexPath) as! TrackListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TrackListCell.identifier, for: indexPath) as! TrackListCell
         guard let list = self.album.tracks else {return UITableViewCell()}
         presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.configure(track: list.data[indexPath.row])

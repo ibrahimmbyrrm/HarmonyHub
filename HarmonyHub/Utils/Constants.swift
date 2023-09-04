@@ -8,14 +8,11 @@
 import Foundation
 
 enum SearchModuleConstants {
-    static let pageTitle = "Let's Discover"
-    static let searchCell = "searchCell"
     static let playlistCell = "playlistCell"
     static let playlistTitle = "Playlist"
     static let searchBarPlaceholder = "What do you want to listen ?"
 }
 enum HomeModuleConstants {
-    static let pageTitle = "HarmonyHub"
     static let albumCell = "topAlbumCell"
     static let artistCell = "artistCell"
     static let popularTrackCell = "popularTracksCell"
@@ -23,13 +20,13 @@ enum HomeModuleConstants {
     static let tracksTitle = "Popular Tracks"
 }
 
-enum AlbumDetailModuleConstants {
-    static let title = "Album"
-    static let trackCell = "trackCell"
-}
-
-enum ArtistDetailModuleConstants {
-    static let title = "Artist"
+enum PageTitles {
+    static let albumDetailTitle = "Album"
+    static let trackDetailTitle = "Track"
+    static let artistDetailTitle = "Artist"
+    static let homeTitle = "HarmonyHub"
+    static let searchTitle = "Let's Discover"
+    static let playlistDetailTitle = "Playlist"
 }
 
 enum PreviewButtonIcons {
@@ -39,4 +36,8 @@ enum PreviewButtonIcons {
 enum FontNames {
     static let ariel = "Arial"
     static let rockwell = "Rockwell"
+}
+enum FavoriteIconNames{
+    static let normalHeart = "heart"
+    static let filledHeart = "heart.fill"
 }

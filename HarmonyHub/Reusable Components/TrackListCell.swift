@@ -10,6 +10,9 @@ import UIKit
 
 
 class TrackListCell : UITableViewCell {
+    
+    static let identifier = "trackCell"
+    
     //MARK: - UI Objects
     lazy var trackName : UILabel = {
         let label = UILabel()

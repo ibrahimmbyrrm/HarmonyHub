@@ -46,7 +46,7 @@ final class HomeController : BaseViewController<HomeView>{
     
     func setupNavigationController() {
         view.backgroundColor = .black
-        title = HomeModuleConstants.pageTitle
+        title = PageTitles.homeTitle
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.white,.font : UIFont(name: FontNames.rockwell, size: 44)!]
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }

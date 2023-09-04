@@ -38,7 +38,7 @@ final class SearchController : BaseViewController<SearchView> {
     }
     
     func setupNavigationController() {
-        title = SearchModuleConstants.pageTitle
+        title = PageTitles.searchTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.white,.font : UIFont(name: FontNames.rockwell, size: 40)!]
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -96,7 +96,7 @@ extension SearchController : UITableViewDelegate, UITableViewDataSource, PlayPre
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchModuleConstants.searchCell, for: indexPath) as! TrackListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TrackListCell.identifier, for: indexPath) as! TrackListCell
         presenter?.transferPreviewPlayableCellToInteractor(delegate: cell as PreviewPlayableCellClient)
         cell.setupIndexPathAndDelegate(viewDelegate : rootView,delegate: self, indexPath: indexPath)
         cell.configure(track: searchResults[indexPath.row])

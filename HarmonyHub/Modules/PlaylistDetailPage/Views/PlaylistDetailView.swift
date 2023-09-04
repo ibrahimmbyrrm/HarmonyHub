@@ -36,7 +36,7 @@ class PlaylistDetailView : UIView, PreviewPlayerViewClient {
     }()
     lazy var tracksTableView : UITableView = {
         let tableView = UITableView()
-        tableView.register(TrackListCell.self, forCellReuseIdentifier: "trackCell")
+        tableView.register(TrackListCell.self, forCellReuseIdentifier: TrackListCell.identifier)
         tableView.isScrollEnabled = false
         return tableView
     }()
