@@ -30,13 +30,14 @@ final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
         switch output {
         case .loadPlaylistDetails:
             interactor.fetchDetails(id: self.selectedID)
+        case .trackSelected(let trackID):
+            router.navigateToTrack(with: trackID)
         }
     }
     
     func handleInteractorOutput(output: PlaylistDetailInteractorToPresenterOutput) {
         switch output {
         case .playlistDownloaded(let detailedPlaylist):
-            print(detailedPlaylist.pictureMedium)
             self.view?.handlePresenterOutput(output: .playlistDetailsLoaded(detailedPlaylist))
         }
     }

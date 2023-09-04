@@ -77,12 +77,8 @@ extension ArtistDetailController : ArtistDetailViewInterface {
     
     func reloadUI() {
         guard let url = artistDetail.picture_big else {return}
-        print(url)
         rootView.artistImageView.setImage(with: url)
         rootView.artistStatsStackView.setupStats(artist: artistDetail, trackCount: trackList.count)
-        print(trackList.map({$0.title}))
-        print(albums.map({$0.title}))
-        print(trackList.count)
         rootView.tracksTableView.reloadData()
     }
     

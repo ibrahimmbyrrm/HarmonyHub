@@ -26,9 +26,12 @@ protocol PlaylistDetailInteractorInterface : PreviewPlayerInteractorClient {
 }
 protocol PlaylistDetailRouterInterface {
     var view : UIViewController? {get set}
+    
+    func navigateToTrack(with trakId : Int)
 }
 enum PlaylistDetailViewToPresenterOutput {
     case loadPlaylistDetails
+    case trackSelected(Int)
 }
 enum PlaylistDetailPresenterToViewOutput {
     case playlistDetailsLoaded(DetailedPlaylist)

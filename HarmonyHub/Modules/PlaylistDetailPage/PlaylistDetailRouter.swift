@@ -10,4 +10,9 @@ import UIKit
 
 final class PlaylistDetailRouter : PlaylistDetailRouterInterface {
     unowned var view: UIViewController?
+    
+    func navigateToTrack(with trakId: Int) {
+        let destination = TrackDetailBuilder.buildModule(with: trakId)
+        view?.navigationController?.pushViewController(destination, animated: true)
+    }
 }

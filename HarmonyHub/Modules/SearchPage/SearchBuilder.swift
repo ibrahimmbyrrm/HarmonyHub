@@ -14,7 +14,7 @@ final class SearchBuilder {
     
     static func buildModule() -> UIViewController {
         var interactor : SearchInteractorInterface = SearchInteractor(service: NetworkManager(),audioService: AudioManager())
-        var view : SearchViewInterfaceAsController = SearchController()
+        let view : SearchViewInterfaceAsController = SearchController()
         var router : SearchRouterInterface = SearchRouter()
         let presenter : SearchPresenterInterface = SearchPresenter(interactor: interactor, view: view, router: router)
         interactor.presenter = presenter

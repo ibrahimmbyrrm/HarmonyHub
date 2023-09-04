@@ -59,6 +59,11 @@ extension PlaylistDetailController : UITableViewDelegate,UITableViewDataSource, 
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let trackID = playlist.tracks.data[indexPath.row].id
+        presenter?.handleViewOutput(output: .trackSelected(trackID))
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let playlist = playlist {
             return playlist.tracks.data.count
