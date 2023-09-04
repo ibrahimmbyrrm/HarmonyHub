@@ -9,14 +9,7 @@ import UIKit
 
 class ArtistsCell: UICollectionViewCell {
     
-    lazy var artistImage : UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 35
-        imageView.clipsToBounds = true
-        imageView.backgroundColor = .clear
-        return imageView
-    }()
+    lazy var artistImage  = RoundedImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     lazy var artistNameLabel : UILabel = {
         let label = UILabel()
         label.textColor = .white

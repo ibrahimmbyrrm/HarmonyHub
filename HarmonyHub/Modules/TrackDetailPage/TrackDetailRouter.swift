@@ -11,5 +11,8 @@ import UIKit
 final class TrackDetailRouter : TrackDetailRouterInterface {
     unowned var view: UIViewController?
     
-    
+    func navigateToArtist(artistId: Int) {
+        let destination = ArtistDetailBuilder.buildModule(artistID: artistId)
+        view?.navigationController?.pushViewController(destination, animated: true)
+    }
 }

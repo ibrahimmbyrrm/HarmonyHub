@@ -25,12 +25,12 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
     }()
     lazy var albumOwnerLabel : UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = .lightGray
+        label.isUserInteractionEnabled = true
         label.textAlignment = .left
         return label
     }()
-    
     lazy var tracksTableView : UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .black
@@ -38,6 +38,9 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
         tableView.register(TrackListCell.self, forCellReuseIdentifier: AlbumDetailModuleConstants.trackCell)
         return tableView
     }()
+    
+    weak var delegate : ArtistDetailGestureInterface?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .black
@@ -46,10 +49,20 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
         setupAlbumCoverConstraints()
         setupAlbumNameLabelConstraints()
         setupAlbumOwnerConstraints()
+        setupGesture()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupGesture() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(artistNameTapped))
+        self.albumOwnerLabel.addGestureRecognizer(gesture)
+    }
+    
+    @objc func artistNameTapped() {
+        delegate?.artistContainerDidTapped()
     }
     
     func configureUI(with album : BaseAlbum) {
@@ -84,7 +97,7 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
         albumOwnerLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.snp.leading).offset(5)
             make.height.equalTo(20)
-            make.top.equalTo(self.albumNameLabel.snp.bottom).offset(5)
+            make.top.equalTo(self.albumNameLabel.snp.bottom).offset(2)
         }
     }
 

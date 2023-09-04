@@ -39,6 +39,8 @@ final class TrackDetailPresenter : TrackDetailPresenterInterface {
         switch output {
         case .fetchData:
             interactor.fetchDetails(trackID: self.selectedTracksId)
+        case .goToArtist(let artistID):
+            router.navigateToArtist(artistId: artistID)
         }
     }
     func interactorDownloadProcessFinished() {

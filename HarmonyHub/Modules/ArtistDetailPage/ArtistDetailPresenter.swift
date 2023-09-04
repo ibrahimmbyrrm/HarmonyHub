@@ -31,6 +31,8 @@ final class ArtistDetailPresenter : ArtistDetailPresenterInterface {
         switch output {
         case .fetchDetails:
             interactor.fetchArtistProfile(with: self.selectedID)
+        case .goToTrack(let trackID):
+            router.navigateToTrack(trackID: trackID)
         }
     }
     

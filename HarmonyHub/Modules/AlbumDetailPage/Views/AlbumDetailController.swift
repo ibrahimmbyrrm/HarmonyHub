@@ -34,6 +34,7 @@ final class AlbumDetailController : BaseViewController<AlbumDetailView> {
     func setDelegates() {
         rootView.tracksTableView.delegate = self
         rootView.tracksTableView.dataSource = self
+        rootView.delegate = self
     }
     
 }
@@ -49,6 +50,11 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pla
             self.presenter?.handleTrackPreviewOutput(output: .stopPreview
             )
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let trackId = album.tracks?.data[indexPath.row].id else {return}
+        presenter?.handleViewOutput(output: .goToTrack(trackId))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,7 +78,12 @@ extension AlbumDetailController : UITableViewDelegate, UITableViewDataSource,Pla
         return 80
     }
 }
-extension AlbumDetailController : AlbumDetailViewInterface {
+extension AlbumDetailController : AlbumDetailViewInterface, ArtistDetailGestureInterface {
+    
+    func artistContainerDidTapped() {
+        guard let artistId = album.artist?.id else {return}
+        presenter?.handleViewOutput(output: .goToArtist(artistId))
+    }
     
     func handlePresenterOutput(output: AlbumDetailPresenterToViewOutput) {
         switch output {

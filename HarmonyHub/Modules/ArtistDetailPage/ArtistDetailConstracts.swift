@@ -28,6 +28,11 @@ protocol ArtistDetailInteractorInterface : PreviewPlayerInteractorClient {
 }
 protocol ArtistDetailRouterInterface {
     var view : UIViewController? {get set}
+    func navigateToTrack(trackID : Int)
+}
+enum ArtistDetailViewOutput {
+    case fetchDetails
+    case goToTrack(Int)
 }
 enum ArtistDetailPresenterToInteractorOutput {
     

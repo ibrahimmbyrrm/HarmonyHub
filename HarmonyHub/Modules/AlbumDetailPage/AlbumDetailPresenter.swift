@@ -33,6 +33,10 @@ final class AlbumDetailPresente : AlbumDetailPresenterInterface {
         switch output {
         case .fetchDetails:
             interactor.fetchAlbumDetail(id: self.selectedAlbumID)
+        case .goToTrack(let trackId):
+            router.navigateTo(destination: .goToTrack(trackId))
+        case .goToArtist(let artistId):
+            router.navigateTo(destination: .goToArtist(artistId))
         }
     }
     

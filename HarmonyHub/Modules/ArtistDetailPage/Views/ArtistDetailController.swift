@@ -7,10 +7,6 @@
 import Foundation
 import UIKit
 
-enum ArtistDetailViewOutput {
-    case fetchDetails
-}
-
 final class ArtistDetailController : BaseViewController<ArtistDetailView> {
     
     var artistDetail : ArtistDetail!
@@ -53,6 +49,11 @@ extension ArtistDetailController : UITableViewDelegate, UITableViewDataSource,Pl
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return trackList.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let trackID = trackList[indexPath.row].id
+        presenter?.handleViewOutput(output: .goToTrack(trackID))
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

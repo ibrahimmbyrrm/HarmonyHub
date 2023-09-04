@@ -28,10 +28,17 @@ protocol TrackDetailInteractorInterface : PreviewPlayerInteractorClient {
 }
 protocol TrackDetailRouterInterface {
     var view : UIViewController? {get set}
+    
+    func navigateToArtist(artistId : Int)
+}
+
+protocol ArtistDetailGestureInterface : AnyObject {
+    func artistContainerDidTapped()
 }
 
 enum TrackDetailViewToPresenterOutput {
     case fetchData
+    case goToArtist(Int)
 }
 enum TrackDetailPresenterToViewOutput {
     case trackDetailDidFetch(TrackDetail)

@@ -26,7 +26,7 @@ protocol AlbumDetailInteractorInterface : PreviewPlayerInteractorClient {
 }
 protocol AlbumDetailRouterInterface {
     var view : UIViewController? {get set}
-    func navigateTo()
+    func navigateTo(destination : AlbumRouterDestinations)
 }
 enum AlbumDetailPresenterToViewOutput {
     case albumLoaded(BaseAlbum)
@@ -36,4 +36,10 @@ enum AlbumDetailInteractorOutput {
 }
 enum AlbumDetailViewOutput {
     case fetchDetails
+    case goToTrack(Int)
+    case goToArtist(Int)
+}
+enum AlbumRouterDestinations {
+    case goToTrack(Int)
+    case goToArtist(Int)
 }

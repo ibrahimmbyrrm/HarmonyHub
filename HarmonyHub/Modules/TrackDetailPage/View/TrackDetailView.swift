@@ -28,7 +28,9 @@ final class TrackDetailView : UIView {
     }()
     
     lazy var trackInfoStackView = TrackInformationStackView()
-    lazy var artistInfoStackView = ArtistInformationStackView()
+    
+    
+    lazy var artistDetailContainer = ArtistDetailContainer()
     
     var controllerDelegate: PlayPreviewButtonDelegate?
     var isPlaying: Bool = false
@@ -39,7 +41,7 @@ final class TrackDetailView : UIView {
         setupTrackCoverConstraints()
         setupTrackInfoConstraints()
         setupPlayButtonConstraints()
-        setupArtistInfoStackView()
+        setupArtistDetailContainer()
     }
     
     required init?(coder: NSCoder) {
@@ -48,13 +50,13 @@ final class TrackDetailView : UIView {
     
     func setupUI(track : TrackDetail) {
         trackInfoStackView.setupUI(track: track)
-        artistInfoStackView.artistImageView.setImage(with: track.contributors.first!.pictureBig)
-        artistInfoStackView.artistNameLabel.text = track.contributors.first!.name
+        artistDetailContainer.ownerArtistImageView.setImage(with: track.contributors.first!.pictureBig)
+        artistDetailContainer.ownerArtistName.text = track.contributors.first!.name
         self.trackCover.setImage(with: track.album.coverBig)
     }
 
     private func addSubviews() {
-        [trackCover,trackInfoStackView,playButton,artistInfoStackView].forEach({ self.addSubview($0) })
+        [trackCover,trackInfoStackView,playButton,artistDetailContainer].forEach({ self.addSubview($0) })
     }
     
     private func setupTrackCoverConstraints() {
@@ -73,21 +75,21 @@ final class TrackDetailView : UIView {
             make.height.equalTo(75)
         }
     }
-    
-    private func setupArtistInfoStackView() {
-        artistInfoStackView.snp.makeConstraints { make in
-            make.leading.equalTo(self.snp.leading).offset(5)
-            make.width.equalTo(200)
-            make.height.equalTo(50)
-            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(5)
-        }
-    }
-    
+
     private func setupPlayButtonConstraints() {
         playButton.snp.makeConstraints { make in
             make.trailing.equalTo(self.snp.trailing).inset(5)
             make.width.height.equalTo(50)
             make.centerY.equalTo(self.trackInfoStackView.snp.centerY)
+        }
+    }
+    
+    private func setupArtistDetailContainer() {
+        artistDetailContainer.snp.makeConstraints { make in
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
+            make.width.equalTo(self.snp.width)
+            make.height.equalTo(80)
+            make.centerX.equalTo(self.snp.centerX)
         }
     }
 }

@@ -11,7 +11,15 @@ import UIKit
 final class AlbumDetailRouter : AlbumDetailRouterInterface {
     unowned var view: UIViewController?
     
-    func navigateTo() {
-        
+    func navigateTo(destination: AlbumRouterDestinations) {
+        var dest : UIViewController?
+        switch destination {
+        case .goToArtist(let artistID):
+            dest = ArtistDetailBuilder.buildModule(artistID: artistID)
+        case .goToTrack(let trackId):
+            dest = TrackDetailBuilder.buildModule(with: trackId)
+        }
+        guard let dest else {return}
+        view?.navigationController?.pushViewController(dest, animated: true)
     }
 }

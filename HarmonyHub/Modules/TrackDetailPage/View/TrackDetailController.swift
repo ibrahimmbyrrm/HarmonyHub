@@ -27,13 +27,21 @@ final class TrackDetailController : BaseViewController<TrackDetailView> {
     }
     func setDelegates() {
         rootView.controllerDelegate = self
+        rootView.artistDetailContainer.delegate = self
     }
     func setupNavigationController() {
-        print("setup navigation controller called")
+        view.backgroundColor = .black
+        title = "Track"
+        self.navigationController?.navigationBar.prefersLargeTitles = false
     }
 }
 //MARK: - Interface Methods
-extension TrackDetailController : TrackDetailViewInterface, PlayPreviewButtonDelegate {
+extension TrackDetailController : TrackDetailViewInterface, PlayPreviewButtonDelegate, ArtistDetailGestureInterface {
+    
+    func artistContainerDidTapped() {
+        presenter?.handleViewOutput(output: .goToArtist(self.trackDetail.artist.id))
+    }
+    
     func handleCellsAudioOutput(output: previewPlayerOutput) {
         switch output {
         case .play(_):
