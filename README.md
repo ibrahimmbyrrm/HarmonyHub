@@ -30,4 +30,11 @@ The project was built from the ground up in a modular fashion using the VIPER ar
 
 <h3>🔥As as Result</h3>
 
+Completely testable, modular, and adaptable project has emerged. I would like to mention that I did not follow any videos or courses while creating this project, and it is entirely my own project. Here is a short video of the project. Enjoy...
+
+
+
+https://github.com/ibrahimmbyrrm/HarmonyHub/assets/96320314/7c679a68-512e-4ee5-9567-be5563ec37ae
+
+
 
