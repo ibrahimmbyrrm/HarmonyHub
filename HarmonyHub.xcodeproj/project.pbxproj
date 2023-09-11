@@ -732,6 +732,7 @@
 				8025F2102A77FD7600EA331F /* XCRemoteSwiftPackageReference "SnapKit" */,
 				8025F2222A7866AB00EA331F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8025F2292A78FED900EA331F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				80050FED2AAB86EE00CFA796 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 8025F1CC2A77F64900EA331F /* Products */;
 			projectDirPath = "";
@@ -1182,6 +1183,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		80050FED2AAB86EE00CFA796 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.52.4;
+			};
+		};
 		8025F2102A77FD7600EA331F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";

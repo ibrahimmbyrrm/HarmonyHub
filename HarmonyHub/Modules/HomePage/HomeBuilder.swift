@@ -12,7 +12,7 @@ typealias HomeViewControllerInterface = HomeViewInterface & UIViewController
 final class HomeBuilder {
     
     static func buildModule() -> UIViewController {
-        var view : HomeViewControllerInterface = HomeController()
+        let view : HomeViewControllerInterface = HomeController()
         var interactor : HomeInteractorInterface = HomeInteractor(service: NetworkManager(),audioService: AudioManager())
         var router : HomeRouterInterface = HomeRouter()
         let presenter : HomePresenterInterface = HomePresenter(view: view, interactor: interactor, router: router)

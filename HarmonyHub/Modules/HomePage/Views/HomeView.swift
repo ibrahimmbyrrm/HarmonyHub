@@ -83,7 +83,7 @@ class HomeView : UIView, PreviewPlayerViewClient {
     }
     
     func restartTrackCellPreviewButton(url : URL) {
-        popularTracksCollectionView.visibleCells.filter({$0.asTrackCell().ownerTrack.previewURL != url}).map( {
+        popularTracksCollectionView.visibleCells.filter({$0.asTrackCell().ownerTrack.previewURL != url}).forEach( {
             $0.asTrackCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
                 $0.asTrackCell().isPlaying = false
         })
@@ -99,9 +99,7 @@ class HomeView : UIView, PreviewPlayerViewClient {
     
     func addSubviews(){
         addSubview(scrollView)
-        [topAlbumsCollectionView,buttonsStackView,artistsLabel,artistsCollectionView,popularTracksLabel,popularTracksCollectionView].forEach { v in
-            scrollView.addSubview(v)
-        }
+        [topAlbumsCollectionView,buttonsStackView,artistsLabel,artistsCollectionView,popularTracksLabel,popularTracksCollectionView].forEach({ scrollView.addSubview($0) })
     }
     
     func setupPopularTracksCollectionViewConstraints() {
