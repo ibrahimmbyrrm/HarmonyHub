@@ -20,6 +20,10 @@ enum HomeViewToPresenterOutput {
     case goToTrackDetail(Int)
 }
 
+enum HomeInteractorOutput {
+    case chart(Welcome)
+}
+
 enum TrackPreviewOutput {
     case playPreview(URL)
     case stopPreview

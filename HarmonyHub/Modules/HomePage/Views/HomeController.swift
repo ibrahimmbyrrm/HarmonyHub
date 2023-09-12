@@ -9,12 +9,9 @@ import Foundation
 import SnapKit
 import UIKit
 import Kingfisher
-import AVFoundation
-var player : AVPlayer!
 
 final class HomeController : BaseViewController<HomeView>{
     //MARK: - Variables
-    var audioPlayer : AVAudioPlayer?
     var albums: [AlbumsDatum] = []
     var artists: [ArtistElement] = []
     var tracks : [TracksDatum] = []
@@ -39,9 +36,7 @@ final class HomeController : BaseViewController<HomeView>{
     }
     
     func setupMediaButtonsActions() {
-        rootView.buttonsStackView.buttons.forEach { button in
-            button.addTarget(nil, action: #selector(tapped), for: .touchUpInside)
-        }
+        rootView.buttonsStackView.buttons.forEach( {$0.addTarget(nil, action: #selector(tapped), for: .touchUpInside) })
     }
     
     func setupNavigationController() {
@@ -110,14 +105,12 @@ extension HomeController : UICollectionViewDelegate,UICollectionViewDataSource,U
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch collectionView {
-        case rootView.artistsCollectionView:
-            return CGSize(width: 80, height: 100)
-        case rootView.topAlbumsCollectionView:
-            return CGSize(width: 150, height: 180)
-        case rootView.popularTracksCollectionView:
-            return CGSize(width: 180, height: 250)
-        default:
-            return CGSize(width: 0, height: 0)
+            
+        case rootView.artistsCollectionView: CGSize(width: 80, height: 100)
+        case rootView.topAlbumsCollectionView: CGSize(width: 150, height: 180)
+        case rootView.popularTracksCollectionView: CGSize(width: 180, height: 250)
+        default: CGSize(width: 0, height: 0)
+            
         }
     }
     

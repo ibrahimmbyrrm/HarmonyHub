@@ -80,13 +80,8 @@ class PlaylistDetailView : UIView, PreviewPlayerViewClient {
     }
     
     private func addSubviews() {
-        addSubview(scrollView)
-        addSubview(activityIndicator)
-        scrollView.addSubview(favoriteButton)
-        scrollView.addSubview(playlistCover)
-        scrollView.addSubview(playlistTitle)
-        scrollView.addSubview(playlistDescription)
-        scrollView.addSubview(tracksTableView)
+        [scrollView,activityIndicator].forEach({ addSubview($0) })
+        [favoriteButton,playlistCover,playlistTitle,playlistDescription,tracksTableView].forEach({ scrollView.addSubview($0) })
     }
     
     func restartTrackCellPreviewButton(url: URL) {

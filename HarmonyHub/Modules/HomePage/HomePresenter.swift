@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum HomeInteractorOutput {
-    case chart(Welcome)
-}
-
 final class HomePresenter : HomePresenterInterface {
     private weak var view : HomeViewInterface?
     private var interactor : HomeInteractorInterface

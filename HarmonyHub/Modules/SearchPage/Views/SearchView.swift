@@ -39,7 +39,8 @@ class SearchView: UIView, PreviewPlayerViewClient {
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = SearchModuleConstants.searchBarPlaceholder
-        searchBar.backgroundColor = .systemIndigo
+        searchBar.backgroundColor = .label
+        searchBar.barTintColor = .label
         return searchBar
     }()
 
@@ -73,10 +74,8 @@ class SearchView: UIView, PreviewPlayerViewClient {
     }
     
     func addSubviews() {
-        addSubview(searchBar)
-        addSubview(scrollView)
-        scrollView.addSubview(searchResultsTableView)
-        scrollView.addSubview(popularPlaylistsCollectionView)
+        [searchBar,scrollView].forEach({ addSubview($0) })
+        [searchResultsTableView,popularPlaylistsCollectionView].forEach({ scrollView.addSubview($0)})
     }
 
     func setupCollectionViewConstraints() {

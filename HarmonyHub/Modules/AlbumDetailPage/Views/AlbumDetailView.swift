@@ -78,7 +78,7 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
     func restartTrackCellPreviewButton(url: URL) {
         tracksTableView.visibleCells.filter({$0.asTrackListCell().ownerTrack.previewURL != url}).forEach( {
             $0.asTrackListCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
-                $0.asTrackListCell().isPlaying = false
+            $0.asTrackListCell().isPlaying = false
         })
     }
     

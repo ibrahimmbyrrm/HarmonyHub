@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import Network
 
 protocol NetworkService {
     func fetchData<T : Decodable>(type : EndPointItems<T>,completion : @escaping (Result<T,AFError>)->Void)

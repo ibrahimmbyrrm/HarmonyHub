@@ -64,6 +64,7 @@ class TopAlbumCell: UICollectionViewCell {
     }
     
     func setup() {
+        self.backgroundColor = .label
         albumImage.snp.makeConstraints { make in
             make.width.equalTo(stackView.snp.width)
             make.height.equalTo(140)
