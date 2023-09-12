@@ -9,12 +9,9 @@ import Foundation
 import SnapKit
 import UIKit
 import Kingfisher
-import AVFoundation
-var player : AVPlayer!
 
 final class HomeController : BaseViewController<HomeView>{
     //MARK: - Variables
-    var audioPlayer : AVAudioPlayer?
     var albums: [AlbumsDatum] = []
     var artists: [ArtistElement] = []
     var tracks : [TracksDatum] = []
