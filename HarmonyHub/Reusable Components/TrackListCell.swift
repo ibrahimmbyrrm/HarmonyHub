@@ -110,9 +110,7 @@ class TrackListCell : UITableViewCell {
     }
     
     private func addSubviews() {
-        [infoStackView,trackImage,playPreviewButton].forEach { v in
-            contentView.addSubview(v)
-        }
+        [infoStackView,trackImage,playPreviewButton].forEach({ contentView.addSubview($0)})
         contentView.bringSubviewToFront(playPreviewButton)
     }
 }
@@ -133,10 +131,9 @@ extension TrackListCell : PreviewPlayableCellClient {
     }
     
     func listenToAudioManagerForMusicChanges(url : URL) {
-        if url != self.ownerTrack.previewURL {
-            self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
-            self.isPlaying = false
-        }
+        guard url != self.ownerTrack.previewURL else {return}
+        self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
+        self.isPlaying = false
     }
     
     func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewClient,delegate: PlayPreviewButtonDelegate, indexPath: IndexPath) {
