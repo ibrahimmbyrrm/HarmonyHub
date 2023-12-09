@@ -66,13 +66,11 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
     }
     
     func configureUI(with album : BaseAlbum) {
-        DispatchQueue.main.async {
             self.albumCover.setImage(with: album.coverMedium)
             self.albumNameLabel.text = album.title
             if let name = album.artist?.name {
                 self.albumOwnerLabel.text = name
             }
-        }
     }
     
     func restartTrackCellPreviewButton(url: URL) {

@@ -17,7 +17,7 @@ final class ArtistDetailInteractor : ArtistDetailInteractorInterface {
         self.audioService = audioService
     }
     
-    var presenter: ArtistDetailPresenterInterface?
+    weak var presenter: ArtistDetailPresenterInterface?
     
     func fetchArtistProfile(with id : Int) {
         let dispatchGroup = DispatchGroup()

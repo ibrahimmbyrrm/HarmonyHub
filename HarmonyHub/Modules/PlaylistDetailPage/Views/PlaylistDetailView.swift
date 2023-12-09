@@ -99,13 +99,11 @@ class PlaylistDetailView : UIView, PreviewPlayerViewClient {
     }
     
     func configureUI(with playlist : DetailedPlaylist) {
-        DispatchQueue.main.async {
             self.playlistCover.setImage(with: playlist.pictureBig)
             self.playlistTitle.text = playlist.title
             self.playlistDescription.text = playlist.description
             self.scrollView.isHidden = false
             self.activityIndicator.stopAnimating()
-        }
     }
 
     private func setupActivityIndicatorConstraints() {

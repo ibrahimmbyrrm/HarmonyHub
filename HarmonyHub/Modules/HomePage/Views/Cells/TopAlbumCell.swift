@@ -49,11 +49,9 @@ class TopAlbumCell: UICollectionViewCell {
     }
     
     func configure(with album : AlbumsDatum) {
-        DispatchQueue.main.async {
             self.albumImage.setImage(with: album.coverMedium ?? "")
             self.albumName.text = album.title
             self.artistName.text = album.artist?.name
-        }
     }
     
     private func addSubviews() {

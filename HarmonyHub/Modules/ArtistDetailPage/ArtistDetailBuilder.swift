@@ -15,7 +15,7 @@ final class ArtistDetailBuilder {
     static func buildModule(artistID : Int) -> UIViewController {
         let view : ArtistDetailViewInterfaceAndController = ArtistDetailController()
         var router : ArtistDetailRouterInterface = ArtistDetailRouter()
-        var interactor : ArtistDetailInteractorInterface = ArtistDetailInteractor(service: NetworkManager(),audioService: AudioManager())
+        var interactor : ArtistDetailInteractorInterface = ArtistDetailInteractor(service: NetworkManager.shared,audioService: AudioManager())
         let presenter : ArtistDetailPresenterInterface = ArtistDetailPresenter(view: view, router: router, interactor: interactor, selectedID: artistID)
         view.presenter = presenter
         router.view = view

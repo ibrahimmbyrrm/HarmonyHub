@@ -62,7 +62,7 @@ extension HomeController : HomeViewInterface , PlayPreviewButtonDelegate{
         case .tracksLoaded(let tracks):
             self.tracks = tracks
         }
-        rootView.reloadCollectionViewsAsync()
+        rootView.reloadCollectionViews()
     }
     
     func handleCellsAudioOutput(output: previewPlayerOutput) {

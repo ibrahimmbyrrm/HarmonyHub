@@ -20,6 +20,10 @@ final class ArtistDetailController : BaseViewController<ArtistDetailView> {
         presenter?.viewDidLoad()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        presenter = nil
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         presenter?.handleTrackPreviewOutput(output: .stopPreview)
     }

@@ -43,9 +43,7 @@ final class TrackDetailPresenter : TrackDetailPresenterInterface {
             router.navigateToArtist(artistId: artistID)
         }
     }
-    func interactorDownloadProcessFinished() {
-        view?.reloadUI()
-    }
+    
     func transferPreviewPlayableCellToInteractor(delegate: PreviewPlayableCellClient) {
         
     }

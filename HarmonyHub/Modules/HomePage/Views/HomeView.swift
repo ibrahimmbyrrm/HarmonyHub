@@ -88,10 +88,8 @@ class HomeView : UIView, PreviewPlayerViewClient {
         })
     }
     
-    func reloadCollectionViewsAsync() {
-        DispatchQueue.main.async {
+    func reloadCollectionViews() {
             [self.topAlbumsCollectionView,self.artistsCollectionView,self.popularTracksCollectionView].forEach({ $0.reloadData() })
-        }
     }
     
     func addSubviews(){

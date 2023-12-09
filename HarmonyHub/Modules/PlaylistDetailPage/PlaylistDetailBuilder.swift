@@ -15,7 +15,7 @@ final class PlaylistDetailBuilder {
     static func buildModule(playlistID : Int) -> UIViewController {
         let view : PlaylistDetailViewAndController = PlaylistDetailController()
         var router : PlaylistDetailRouterInterface = PlaylistDetailRouter()
-        var interactor : PlaylistDetailInteractorInterface = PlaylistDetailInteractor(service: NetworkManager(),audioService: AudioManager())
+        var interactor : PlaylistDetailInteractorInterface = PlaylistDetailInteractor(service: NetworkManager.shared,audioService: AudioManager())
         let presenter : PlaylistDetailPresenterInterface = PlaylistDetailPresenter(id: playlistID,view: view, interactor: interactor, router: router)
         view.presenter = presenter
         router.view = view

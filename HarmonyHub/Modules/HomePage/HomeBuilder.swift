@@ -13,7 +13,7 @@ final class HomeBuilder {
     
     static func buildModule() -> UIViewController {
         let view : HomeViewControllerInterface = HomeController()
-        var interactor : HomeInteractorInterface = HomeInteractor(service: NetworkManager(),audioService: AudioManager())
+        var interactor : HomeInteractorInterface = HomeInteractor(service: NetworkManager.shared,audioService: AudioManager())
         var router : HomeRouterInterface = HomeRouter()
         let presenter : HomePresenterInterface = HomePresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter

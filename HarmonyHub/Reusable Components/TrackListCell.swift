@@ -74,12 +74,10 @@ class TrackListCell : UITableViewCell {
     //MARK: - Setup UI Methods
     func configure(track : TracksDatum) {
         guard let image = track.album.coverMedium,let artist = track.artist?.name else {return}
-        DispatchQueue.main.async {
             self.artistName.text = artist
             self.trackName.text = track.title
             self.trackImage.setImage(with: image)
             self.ownerTrack = track
-        }
     }
     //MARK: - Layout Methods
     private func setupTrackImageViewConstraints() {
