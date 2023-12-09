@@ -8,7 +8,7 @@
 import Foundation
 
 final class PlaylistDetailPresenter : PlaylistDetailPresenterInterface {
-    private var view : PlaylistDetailViewInterface?
+    private weak var view : PlaylistDetailViewInterface?
     private var interactor : PlaylistDetailInteractorInterface
     private let router : PlaylistDetailRouterInterface
     private var selectedID : Int

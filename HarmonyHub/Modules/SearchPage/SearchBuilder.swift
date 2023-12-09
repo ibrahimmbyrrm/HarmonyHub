@@ -13,7 +13,7 @@ typealias SearchViewInterfaceAsController = SearchViewInterface & UIViewControll
 final class SearchBuilder {
     
     static func buildModule() -> UIViewController {
-        var interactor : SearchInteractorInterface = SearchInteractor(service: NetworkManager(),audioService: AudioManager())
+        var interactor : SearchInteractorInterface = SearchInteractor(service: NetworkManager.shared,audioService: AudioManager())
         let view : SearchViewInterfaceAsController = SearchController()
         var router : SearchRouterInterface = SearchRouter()
         let presenter : SearchPresenterInterface = SearchPresenter(interactor: interactor, view: view, router: router)

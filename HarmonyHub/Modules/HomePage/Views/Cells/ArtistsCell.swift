@@ -30,17 +30,16 @@ class ArtistsCell: UICollectionViewCell {
     }
     
     func configureData(artist : ArtistElement) {
-        DispatchQueue.main.async {
-            guard let image = artist.pictureSmall else {return}
-            self.artistImage.setImage(with: image)
-            self.artistNameLabel.text = artist.name
-        }
+        guard let image = artist.pictureSmall else {return}
+        self.artistImage.setImage(with: image)
+        self.artistNameLabel.text = artist.name
     }
     
     private func addSubviews() {
         addSubview(artistImage)
         addSubview(artistNameLabel)
     }
+    
     private func setupArtistImageViewConstraints() {
         artistImage.snp.makeConstraints { make in
             make.width.equalTo(70)

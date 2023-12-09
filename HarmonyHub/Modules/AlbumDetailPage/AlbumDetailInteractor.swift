@@ -22,10 +22,9 @@ final class AlbumDetailInteractor : AlbumDetailInteractorInterface {
     
     func fetchAlbumDetail(id: Int) {
         service.fetchData(type: EndPointItems<BaseAlbum>.albumDetail(id)) { [weak self] result in
-            guard let self else {return}
             switch result {
             case .success(let baseAlbum):
-                self.presenter?.handleInteractorOutput(output: .albumLoaded(baseAlbum))
+                self?.presenter?.handleInteractorOutput(output: .albumLoaded(baseAlbum))
             case .failure(let error):
                 print(error)
             }

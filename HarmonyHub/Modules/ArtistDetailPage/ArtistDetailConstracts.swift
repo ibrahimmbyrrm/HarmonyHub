@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol ArtistDetailPresenterInterface : PreviewPlayerPresenterClient {
+protocol ArtistDetailPresenterInterface : AnyObject, PreviewPlayerPresenterClient {
     func viewDidLoad()
     func handleViewOutput(output : ArtistDetailViewOutput)
     func interactorDidDownloadAllData()
@@ -22,7 +22,7 @@ protocol ArtistDetailViewInterface : AnyObject {
     func reloadUI()
     func handlePresenterOutput(with output : ArtistDetailPresenterToViewOutput)
 }
-protocol ArtistDetailInteractorInterface : PreviewPlayerInteractorClient {
+protocol ArtistDetailInteractorInterface : AnyObject, PreviewPlayerInteractorClient {
     var presenter : ArtistDetailPresenterInterface? {get set}
     func fetchArtistProfile(with id : Int)
 }

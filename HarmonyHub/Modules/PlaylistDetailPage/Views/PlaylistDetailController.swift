@@ -21,6 +21,10 @@ final class PlaylistDetailController : BaseViewController<PlaylistDetailView> {
         presenter?.handleTrackPreviewOutput(output: .stopPreview)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        presenter = nil
+    }
+    
     func getDetails() {
         presenter?.handleViewOutput(output: .loadPlaylistDetails)
     }

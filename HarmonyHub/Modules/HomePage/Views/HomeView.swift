@@ -17,6 +17,7 @@ class HomeView : UIView, PreviewPlayerViewClient {
         let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         collectionView.register(TopAlbumCell.self, forCellWithReuseIdentifier: HomeModuleConstants.albumCell)
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .label
         collectionView.isPagingEnabled = false
         return collectionView
         
@@ -74,27 +75,21 @@ class HomeView : UIView, PreviewPlayerViewClient {
     typealias CollectionViewDelegate = UICollectionViewDelegate & UICollectionViewDataSource & UICollectionViewDelegateFlowLayout
     
     func setCollectionViewDelegates(_ delegate : CollectionViewDelegate) {
-        topAlbumsCollectionView.delegate = delegate
-        topAlbumsCollectionView.dataSource = delegate
-        artistsCollectionView.delegate = delegate
-        artistsCollectionView.dataSource = delegate
-        popularTracksCollectionView.delegate = delegate
-        popularTracksCollectionView.dataSource = delegate
+        [topAlbumsCollectionView,artistsCollectionView,popularTracksCollectionView].forEach({
+            $0.delegate = delegate
+            $0.dataSource = delegate
+        })
     }
     
     func restartTrackCellPreviewButton(url : URL) {
         popularTracksCollectionView.visibleCells.filter({$0.asTrackCell().ownerTrack.previewURL != url}).forEach( {
             $0.asTrackCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
-                $0.asTrackCell().isPlaying = false
+            $0.asTrackCell().isPlaying = false
         })
     }
     
-    func reloadCollectionViewsAsync() {
-        DispatchQueue.main.async {
-            self.artistsCollectionView.reloadData()
-            self.topAlbumsCollectionView.reloadData()
-            self.popularTracksCollectionView.reloadData()
-        }
+    func reloadCollectionViews() {
+            [self.topAlbumsCollectionView,self.artistsCollectionView,self.popularTracksCollectionView].forEach({ $0.reloadData() })
     }
     
     func addSubviews(){

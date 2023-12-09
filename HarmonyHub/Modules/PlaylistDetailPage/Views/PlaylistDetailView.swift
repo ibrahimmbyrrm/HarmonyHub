@@ -80,13 +80,8 @@ class PlaylistDetailView : UIView, PreviewPlayerViewClient {
     }
     
     private func addSubviews() {
-        addSubview(scrollView)
-        addSubview(activityIndicator)
-        scrollView.addSubview(favoriteButton)
-        scrollView.addSubview(playlistCover)
-        scrollView.addSubview(playlistTitle)
-        scrollView.addSubview(playlistDescription)
-        scrollView.addSubview(tracksTableView)
+        [scrollView,activityIndicator].forEach({ addSubview($0) })
+        [favoriteButton,playlistCover,playlistTitle,playlistDescription,tracksTableView].forEach({ scrollView.addSubview($0) })
     }
     
     func restartTrackCellPreviewButton(url: URL) {
@@ -104,13 +99,11 @@ class PlaylistDetailView : UIView, PreviewPlayerViewClient {
     }
     
     func configureUI(with playlist : DetailedPlaylist) {
-        DispatchQueue.main.async {
             self.playlistCover.setImage(with: playlist.pictureBig)
             self.playlistTitle.text = playlist.title
             self.playlistDescription.text = playlist.description
             self.scrollView.isHidden = false
             self.activityIndicator.stopAnimating()
-        }
     }
 
     private func setupActivityIndicatorConstraints() {

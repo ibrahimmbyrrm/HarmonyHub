@@ -24,7 +24,7 @@ final class SearchController : BaseViewController<SearchView> {
     override func viewWillDisappear(_ animated: Bool) {
         presenter?.handleTrackPreviewOutput(output: .stopPreview)
     }
-    
+
     func getPlaylists() {
         presenter?.handleViewOutput(output: .loadPlaylists)
     }
@@ -44,7 +44,6 @@ final class SearchController : BaseViewController<SearchView> {
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
-    
 }
 extension SearchController : UISearchBarDelegate {
     //Wait 0.5 second after user finished to enter a search text.
@@ -66,15 +65,11 @@ extension SearchController : SearchViewInterface {
     func handlePresenterOutput(output: SearchPresenterToViewOutput) {
         switch output {
         case .playlistsLoaded(let playlists):
-            DispatchQueue.main.async {
                 self.playlists = playlists
                 self.rootView.popularPlaylistsCollectionView.reloadData()
-            }
         case .queryResultsLoaded(let tracks):
-            DispatchQueue.main.async {
                 self.searchResults = tracks
                 self.rootView.searchResultsTableView.reloadData()
-            }
         }
     }
 }

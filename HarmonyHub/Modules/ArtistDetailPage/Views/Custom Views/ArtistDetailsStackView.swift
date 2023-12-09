@@ -33,11 +33,9 @@ final class ArtistDetailStackView : UIStackView {
     }
     
     func setupStats(artist : ArtistDetail,trackCount : Int) {
-        DispatchQueue.main.async {
             self.artistName.text = artist.name
             self.popularityLabel.text = "Popularity \(artist.popularity)"
             self.numberOfAlbumsLabel.text = "\(artist.nb_album!) Albums"
             self.numberOfTracksLabel.text = "\(trackCount) Tracks"
-        }
     }
 }

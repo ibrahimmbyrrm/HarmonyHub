@@ -19,10 +19,10 @@ final class HomeInteractor : HomeInteractorInterface {
         self.audioService = audioService
     }
     func fetchChart() {
-        service.fetchData(type: EndPointItems<Welcome>.chart) { result in
+        service.fetchData(type: EndPointItems<Welcome>.chart) { [weak self] result in
             switch result {
             case .success(let chart):
-                self.presenter?.handleInteractorOutput(chart: chart)
+                self?.presenter?.handleInteractorOutput(chart: chart)
             case .failure(let error):
                 print(error)
             }

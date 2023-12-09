@@ -29,10 +29,9 @@ final class TrackDetailView : UIView {
     
     lazy var trackInfoStackView = TrackInformationStackView()
     
-    
     lazy var artistDetailContainer = ArtistDetailContainer()
     
-    var controllerDelegate: PlayPreviewButtonDelegate?
+    weak var controllerDelegate: PlayPreviewButtonDelegate?
     var isPlaying: Bool = false
     
     override init(frame: CGRect) {

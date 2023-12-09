@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol EndPointType {
     var path : String {get}

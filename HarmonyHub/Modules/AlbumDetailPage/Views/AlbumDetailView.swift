@@ -66,19 +66,17 @@ class AlbumDetailView : UIView, PreviewPlayerViewClient {
     }
     
     func configureUI(with album : BaseAlbum) {
-        DispatchQueue.main.async {
             self.albumCover.setImage(with: album.coverMedium)
             self.albumNameLabel.text = album.title
             if let name = album.artist?.name {
                 self.albumOwnerLabel.text = name
             }
-        }
     }
     
     func restartTrackCellPreviewButton(url: URL) {
         tracksTableView.visibleCells.filter({$0.asTrackListCell().ownerTrack.previewURL != url}).forEach( {
             $0.asTrackListCell().playPreviewButton.setTitle(PreviewButtonIcons.play, for: .normal)
-                $0.asTrackListCell().isPlaying = false
+            $0.asTrackListCell().isPlaying = false
         })
     }
     

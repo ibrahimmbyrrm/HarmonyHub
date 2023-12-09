@@ -11,11 +11,19 @@ import UIKit
 final class TrackDetailController : BaseViewController<TrackDetailView> {
     
     var presenter: TrackDetailPresenterInterface?
-    var trackDetail : TrackDetail!
+    var trackDetail : TrackDetail! {
+        didSet {
+            self.reloadUI()
+        }
+    }
     //MARK: - UIViewController LifeCycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        presenter = nil
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -49,11 +49,9 @@ class TopAlbumCell: UICollectionViewCell {
     }
     
     func configure(with album : AlbumsDatum) {
-        DispatchQueue.main.async {
             self.albumImage.setImage(with: album.coverMedium ?? "")
             self.albumName.text = album.title
             self.artistName.text = album.artist?.name
-        }
     }
     
     private func addSubviews() {
@@ -64,6 +62,7 @@ class TopAlbumCell: UICollectionViewCell {
     }
     
     func setup() {
+        self.backgroundColor = .label
         albumImage.snp.makeConstraints { make in
             make.width.equalTo(stackView.snp.width)
             make.height.equalTo(140)

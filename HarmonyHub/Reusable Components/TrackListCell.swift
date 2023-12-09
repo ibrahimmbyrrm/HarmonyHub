@@ -74,12 +74,10 @@ class TrackListCell : UITableViewCell {
     //MARK: - Setup UI Methods
     func configure(track : TracksDatum) {
         guard let image = track.album.coverMedium,let artist = track.artist?.name else {return}
-        DispatchQueue.main.async {
             self.artistName.text = artist
             self.trackName.text = track.title
             self.trackImage.setImage(with: image)
             self.ownerTrack = track
-        }
     }
     //MARK: - Layout Methods
     private func setupTrackImageViewConstraints() {
@@ -110,9 +108,7 @@ class TrackListCell : UITableViewCell {
     }
     
     private func addSubviews() {
-        [infoStackView,trackImage,playPreviewButton].forEach { v in
-            contentView.addSubview(v)
-        }
+        [infoStackView,trackImage,playPreviewButton].forEach({ contentView.addSubview($0)})
         contentView.bringSubviewToFront(playPreviewButton)
     }
 }
@@ -133,10 +129,9 @@ extension TrackListCell : PreviewPlayableCellClient {
     }
     
     func listenToAudioManagerForMusicChanges(url : URL) {
-        if url != self.ownerTrack.previewURL {
-            self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
-            self.isPlaying = false
-        }
+        guard url != self.ownerTrack.previewURL else {return}
+        self.rootViewDelegate?.restartTrackCellPreviewButton(url: url)
+        self.isPlaying = false
     }
     
     func setupIndexPathAndDelegate(viewDelegate : PreviewPlayerViewClient,delegate: PlayPreviewButtonDelegate, indexPath: IndexPath) {
